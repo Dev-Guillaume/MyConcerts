@@ -30,6 +30,7 @@ class ArtistsCell: UITableViewCell {
         self.imageArtist.layer.cornerRadius = self.imageArtist.frame.height / 2
         self.imageArtist.clipsToBounds = true
         self.imageArtist.image = imageArtist
+        self.isHidden = false
     }
 
 }

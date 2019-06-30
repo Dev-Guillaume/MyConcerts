@@ -18,6 +18,8 @@
 		F0AEA67222C576D6009100D1 /* extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0AEA67122C576D6009100D1 /* extension.swift */; };
 		F0AEA67422C577B2009100D1 /* Artists.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0AEA67322C577B2009100D1 /* Artists.swift */; };
 		F0AEA67622C58490009100D1 /* ArtistsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0AEA67522C58490009100D1 /* ArtistsCell.swift */; };
+		F0AEA67822C7B653009100D1 /* ArtistController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0AEA67722C7B653009100D1 /* ArtistController.swift */; };
+		F0AEA67A22C7C593009100D1 /* ArtistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0AEA67922C7C593009100D1 /* ArtistView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +48,8 @@
 		F0AEA67122C576D6009100D1 /* extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extension.swift; sourceTree = "<group>"; };
 		F0AEA67322C577B2009100D1 /* Artists.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artists.swift; sourceTree = "<group>"; };
 		F0AEA67522C58490009100D1 /* ArtistsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistsCell.swift; sourceTree = "<group>"; };
+		F0AEA67722C7B653009100D1 /* ArtistController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistController.swift; sourceTree = "<group>"; };
+		F0AEA67922C7C593009100D1 /* ArtistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +124,7 @@
 			children = (
 				F0AEA64A22C56992009100D1 /* Main.storyboard */,
 				F0AEA67522C58490009100D1 /* ArtistsCell.swift */,
+				F0AEA67922C7C593009100D1 /* ArtistView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -128,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				F0AEA66D22C57634009100D1 /* ListArtistsController.swift */,
+				F0AEA67722C7B653009100D1 /* ArtistController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -248,9 +254,11 @@
 				F0AEA64722C56992009100D1 /* AppDelegate.swift in Sources */,
 				F0AEA64F22C56992009100D1 /* MyConcerts.xcdatamodeld in Sources */,
 				F0AEA67422C577B2009100D1 /* Artists.swift in Sources */,
+				F0AEA67822C7B653009100D1 /* ArtistController.swift in Sources */,
 				F0AEA67022C57698009100D1 /* Api.swift in Sources */,
 				F0AEA67222C576D6009100D1 /* extension.swift in Sources */,
 				F0AEA66E22C57634009100D1 /* ListArtistsController.swift in Sources */,
+				F0AEA67A22C7C593009100D1 /* ArtistView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

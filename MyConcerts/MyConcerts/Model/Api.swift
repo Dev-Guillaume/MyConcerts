@@ -28,6 +28,7 @@ class Api {
     var request: URLRequest!
     var url: String!
     var session = URLSession(configuration: .default)
+    let myGroup = DispatchGroup()
     
     // This function is overrided in the others classes for set a specific url
     func createUrl() {}
@@ -46,6 +47,7 @@ class Api {
     // Get the data received
     func getData() {
         // Create a task with the Url for get some Date
+        self.myGroup.enter()
         let task = self.session.dataTask(with: self.request) { (data, response, error) in
             DispatchQueue.main.async {
                 guard let data = data, error == nil else { // Get the data
@@ -56,6 +58,7 @@ class Api {
                     return NotificationCenter.default.post(name: .error, object: ["Error Response", "Error Access from Api"])
                 }
                 self.getResponseJSON(data: data) // Call the function getResponseJSON for get the data converted into JSON
+                self.myGroup.leave()
             }
         }
         task.resume()

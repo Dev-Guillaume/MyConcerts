@@ -10,22 +10,24 @@ import UIKit
 
 class ListArtistsController: UIViewController {
 
-    let artist = TopArtists()
     var listTopArtists: [InfoArtists] = []
     let infoArtists = InfoArtist()
+    var artistPicked: InfoArtists!
+    
     @IBOutlet weak var artistsTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         NotificationCenter.default.addObserver(self, selector: #selector(displayError), name: .error, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(setInfoArtists), name: .dataTopArtists, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(setInfoTopArtists), name: .dataTopArtists, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(getListTopArtists), name: .dataInfoArtists, object: nil)
-        artist.newRequestGet()
+        TopArtists().newRequestGet()
     }
     
-    @objc func setInfoArtists(notification: Notification) {
+    @objc func setInfoTopArtists(notification: Notification) {
         guard let notificationTopArtists = notification.object as? [Name] else {
             return
         }
@@ -37,8 +39,23 @@ class ListArtistsController: UIViewController {
         guard let notificationTopArtists = notification.object as? [InfoArtists] else {
             return
         }
+        print("getListTopArtists")
+        self.searchBar.isHidden = false
+        self.artistsTableView.isHidden = false
+        self.activityIndicator.stopAnimating()
         self.listTopArtists = notificationTopArtists
         artistsTableView.reloadData()
+    }
+    
+    @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
+        searchBar.resignFirstResponder()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) { // Prepare variables for the changement of controller
+        if segue.identifier == "segueToArtist" {
+            let successVC = segue.destination as! ArtistController
+            successVC.artist = self.artistPicked
+        }
     }
 }
 
@@ -57,6 +74,13 @@ extension ListArtistsController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 71.0
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.artistPicked = self.listTopArtists[indexPath.row]
+        performSegue(withIdentifier: "segueToArtist", sender: self)
+    }
+    
+    
 }
 
 extension ListArtistsController: UISearchBarDelegate {
