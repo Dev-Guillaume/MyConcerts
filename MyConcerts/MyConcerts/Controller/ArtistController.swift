@@ -11,10 +11,12 @@ import UIKit
 class ArtistController: UIViewController {
 
     var artist: InfoArtists!
+    var infoEvents: [Events]!
     @IBOutlet var artistView: ArtistView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(self.infoEvents)
         self.artistView.setArtistView(infoArtist: artist)
         // Do any additional setup after loading the view.
     }

@@ -12,15 +12,17 @@ import Foundation
 
 // Enumeration with the different Api
 enum ApiName {
-    case audioscrobbler, audiodb
+    case audioscrobbler, audiodb, songkick
 }
 
 // Array with key Api
 let keyApi: [ApiName: String] = [.audioscrobbler: "api_key=0dc8921cfd471d1ebe01c2f0d5973119",
-                                 .audiodb: "195003"]
+                                 .audiodb: "195003",
+                                 .songkick: "apikey=JDyRTYDK3g9GUd3V"]
 // Array with url Api
 let urlApi: [ApiName: String] = [.audioscrobbler : "https://ws.audioscrobbler.com/2.0/?method=chart.gettopartists",
-                                 .audiodb: "https://theaudiodb.com/api/v1/json/"]
+                                 .audiodb: "https://theaudiodb.com/api/v1/json/",
+                                 .songkick: "https://api.songkick.com/api/3.0/search/artists.json?"]
 
 // Class Mother Api
 // Containing different mehodes for get some Data using requests
@@ -45,7 +47,7 @@ class Api {
     }
     
     // Get the data received
-    func getData() {
+    private func getData() {
         // Create a task with the Url for get some Date
         self.myGroup.enter()
         let task = self.session.dataTask(with: self.request) { (data, response, error) in

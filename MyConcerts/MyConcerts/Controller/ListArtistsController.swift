@@ -11,12 +11,14 @@ import UIKit
 class ListArtistsController: UIViewController {
 
     var listTopArtists: [InfoArtists] = []
+    var infoEvents: [Events] = []
     let infoArtists = InfoArtist()
+    let event = Event()
     var artistPicked: InfoArtists!
     
     @IBOutlet weak var artistsTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var launchingActivityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,25 +26,32 @@ class ListArtistsController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(displayError), name: .error, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(setInfoTopArtists), name: .dataTopArtists, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(getListTopArtists), name: .dataInfoArtists, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(getInfoEvents), name: .dataInfoEvents, object: nil)
         TopArtists().newRequestGet()
+    }
+    
+    @objc func getInfoEvents(notification: Notification) {
+        guard let notificationInfoEvents = notification.object as? [Events] else {
+            return
+        }
+        self.infoEvents = notificationInfoEvents
+        performSegue(withIdentifier: "segueToArtist", sender: self)
     }
     
     @objc func setInfoTopArtists(notification: Notification) {
         guard let notificationTopArtists = notification.object as? [Name] else {
             return
         }
-        self.infoArtists.setTopArtists(topArtists: notificationTopArtists)
-        self.infoArtists.newRequestGet()
+        self.infoArtists.searchManyArtists(arrayArtists: notificationTopArtists)
     }
     
     @objc func getListTopArtists(notification: Notification) {
         guard let notificationTopArtists = notification.object as? [InfoArtists] else {
             return
         }
-        print("getListTopArtists")
         self.searchBar.isHidden = false
         self.artistsTableView.isHidden = false
-        self.activityIndicator.stopAnimating()
+        self.launchingActivityIndicator.stopAnimating()
         self.listTopArtists = notificationTopArtists
         artistsTableView.reloadData()
     }
@@ -55,6 +64,7 @@ class ListArtistsController: UIViewController {
         if segue.identifier == "segueToArtist" {
             let successVC = segue.destination as! ArtistController
             successVC.artist = self.artistPicked
+            successVC.infoEvents = self.infoEvents
         }
     }
 }
@@ -77,7 +87,8 @@ extension ListArtistsController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.artistPicked = self.listTopArtists[indexPath.row]
-        performSegue(withIdentifier: "segueToArtist", sender: self)
+        event.setArtist(artist: self.artistPicked.info.strArtist)
+        event.newRequestGet()
     }
     
     
@@ -86,8 +97,7 @@ extension ListArtistsController: UITableViewDataSource, UITableViewDelegate {
 extension ListArtistsController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        self.infoArtists.setTopArtists(topArtists: [Name(name: searchBar.text ?? "")])
-        self.infoArtists.newRequestGet()
+        self.infoArtists.searchArtist(artist: searchBar.text ?? "")
         searchBar.resignFirstResponder()
     }
 }

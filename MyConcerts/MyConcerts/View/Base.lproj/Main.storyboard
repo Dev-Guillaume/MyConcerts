@@ -76,6 +76,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="getInfoActivityIndicator" destination="Woq-wC-9wt" id="0Gf-8y-Y2f"/>
                                             <outlet property="imageArtist" destination="jxc-ci-e1t" id="9vm-He-rge"/>
                                             <outlet property="labelGenre" destination="tai-d7-wlT" id="o1n-tk-k7D"/>
                                             <outlet property="labelName" destination="vSl-1P-bMZ" id="cVL-m1-Vf6"/>
@@ -106,8 +107,8 @@
                     <tabBarItem key="tabBarItem" title="Item 1" id="Ma4-Vb-qP5"/>
                     <navigationItem key="navigationItem" title="MyConcerts" id="q1P-LL-uC0"/>
                     <connections>
-                        <outlet property="activityIndicator" destination="pd2-TY-Cgq" id="GqZ-Sw-BdA"/>
                         <outlet property="artistsTableView" destination="wjy-6b-D3f" id="lRy-U3-aEz"/>
+                        <outlet property="launchingActivityIndicator" destination="pd2-TY-Cgq" id="FT9-OI-1N0"/>
                         <outlet property="searchBar" destination="lzw-Yp-7Qq" id="aqn-Lf-KGP"/>
                         <segue destination="oVe-bQ-GAs" kind="show" identifier="segueToArtist" id="xDo-Oo-0Mg"/>
                     </connections>

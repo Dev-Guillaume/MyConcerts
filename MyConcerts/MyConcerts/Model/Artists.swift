@@ -68,29 +68,27 @@ class InfoArtist: Api {
     private var topArtists: [Name] = []
     private var infoArtists: [InfoArtists] = []
     
-    func setTopArtists(topArtists: [Name]) {
-        self.infoArtists = []
-        self.topArtists = topArtists
+    func setArtist(artist: String) {
+        self.artist = artist.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? ""
     }
     
-    override func newRequestGet() {
-        for nameArtist in self.topArtists {
-                self.setArtist(artist: nameArtist.name)
-                self.createUrl()  // Call the function createUrl
-                guard let url = URL(string: self.url) else {
-                    return NotificationCenter.default.post(name: .error, object: ["Error Url", "Can't construct URL"])
-                }
-                self.request = URLRequest(url: url) // Create a request
-                self.request.httpMethod = "GET" // Set the metthod
-                self.getData() // Call the function getData
-            }
+    func searchManyArtists(arrayArtists: [Name]) {
+        for artist in arrayArtists {
+            self.setArtist(artist: artist.name)
+            self.newRequestGet()
+        }
         self.myGroup.notify(queue: .main) {
             NotificationCenter.default.post(name:.dataInfoArtists, object: self.infoArtists)
         }
     }
     
-    func setArtist(artist: String) {
-        self.artist = artist.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? ""
+    func searchArtist(artist: String) {
+        self.infoArtists.removeAll()
+        self.setArtist(artist: artist)
+        self.newRequestGet()
+        self.myGroup.notify(queue: .main) {
+            NotificationCenter.default.post(name:.dataInfoArtists, object: self.infoArtists)
+        }
     }
     
     override func createUrl() {
@@ -115,4 +113,103 @@ class InfoArtist: Api {
             return UIImage(named: "artistNotFound")! // Download a default image if the recover failed
         }
     }
+}
+
+struct Identifier: Codable {
+    let eventsHref: String
+}
+
+struct ArtistBis: Codable {
+    let identifier: [Identifier]
+}
+
+struct Result: Codable {
+    let artist: [ArtistBis]
+}
+
+struct ResultPage: Codable {
+    //let status: String
+    let results: Result
+}
+
+struct EventRef: Codable {
+    let resultsPage: ResultPage
+}
+
+class Event: Api {
+    private var artist: String = ""
+    let events = EventsHref()
+    
+    override func createUrl() {
+        self.url = urlApi[.songkick]! + keyApi[.songkick]! + "&query=" + self.artist
+    }
+    
+    func setArtist(artist: String) {
+        self.artist = artist.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? ""
+    }
+    
+    override func getResponseJSON(data: Data) {
+        do {
+            // Use the struct CurrentWeather with the methode Decode
+            let resultData = try JSONDecoder().decode(EventRef.self, from: data)
+            self.events.setHref(href: resultData.resultsPage.results.artist.first?.identifier.first?.eventsHref ?? "")
+            self.events.newRequestGet()
+            /*self.infoArtists.append(InfoArtists(info: resultData, image: self.recoverImage(urlImage: resultData.strArtistThumb ?? "")))*/
+        } catch {
+            NSLog("Error Decoder: \(error)")
+        }
+    }
+}
+
+struct Performance: Codable {
+    let displayName: String
+}
+
+struct Start: Codable {
+    let date: String
+}
+
+struct Events: Codable {
+    let displayName: String
+    let type: String
+    let popularity: Float
+    let start: Start
+    let performance: [Performance]
+}
+
+struct Results: Codable {
+    let event: [Events]
+}
+
+struct ResultsPage: Codable {
+    let results: Results
+}
+
+struct InfoEvent: Codable {
+    let resultsPage: ResultsPage
+}
+
+class EventsHref: Api {
+    
+    private var href: String = ""
+    
+    func setHref(href: String) {
+        self.href = href
+    }
+    
+    override func createUrl() {
+        self.url = self.href + "?apikey=JDyRTYDK3g9GUd3V"
+        self.url = self.url.replacingOccurrences(of: "http", with: "https")
+    }
+    
+    override func getResponseJSON(data: Data) {
+        do {
+            // Use the struct CurrentWeather with the methode Decode)
+           let resultData = try JSONDecoder().decode(InfoEvent.self, from: data)
+            NotificationCenter.default.post(name:.dataInfoEvents, object: resultData.resultsPage.results.event)
+        } catch {
+            NSLog("Error Decoder: \(error)")
+        }
+    }
+    
 }
