@@ -15,14 +15,22 @@ class InfoArtistController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.infoArtistView.setArtist(infoArtist: infoArtist)
+        self.infoArtistView.setInfoArtist(infoArtist: infoArtist)
     }
 }
 
 extension InfoArtistController: UITableViewDataSource, UITableViewDelegate {
     
-    var arrayInfoArtist: [String] {
-        return [infoArtist.info.strWebsite ?? "No Website", infoArtist.info.strFacebook ?? "No Facebook", infoArtist.info.strTwitter ?? "No Twitter", infoArtist.info.strLabel ?? "No Label", infoArtist.info.intBornYear ?? "?", infoArtist.info.intDiedYear ?? "?", infoArtist.info.strGenre ?? "?", infoArtist.info.strBiographyEN ?? "No Biography", infoArtist.info.strCountry ?? "?"]
+    var arrayInfoArtist: [(String, UIImage?)] {
+        return [(infoArtist.info.strWebsite ?? "No Website", UIImage(named: "website")),
+                (infoArtist.info.strFacebook ?? "No Facebook", UIImage(named: "facebook")),
+                (infoArtist.info.strTwitter ?? "No Twitter", UIImage(named: "twitter")),
+                (infoArtist.info.strLabel ?? "No Label", UIImage(named: "label")),
+                (infoArtist.info.intBornYear ?? "?", UIImage(named: "birth")),
+                (infoArtist.info.intDiedYear ?? "?", UIImage(named: "died")),
+                (infoArtist.info.strGenre ?? "?", UIImage(named: "genre")),
+                (infoArtist.info.strBiographyEN ?? "No Biography", UIImage(named: "biography")),
+                (infoArtist.info.strCountry ?? "?", UIImage(named: "country"))]
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -31,7 +39,11 @@ extension InfoArtistController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: InfoArtistCell = tableView.dequeueReusableCell(withIdentifier: "InfoArtistCell") as! InfoArtistCell
-        cell.setInfoArtistCell(data: arrayInfoArtist[indexPath.row])
+        cell.setInfoArtistCell(data: arrayInfoArtist[indexPath.row] as! (String, UIImage))
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 70.0
     }
 }

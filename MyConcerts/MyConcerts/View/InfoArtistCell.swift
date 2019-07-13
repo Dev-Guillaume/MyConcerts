@@ -11,6 +11,7 @@ import UIKit
 class InfoArtistCell: UITableViewCell {
 
     @IBOutlet weak var labelData: UILabel!
+    @IBOutlet weak var imageData: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -21,8 +22,9 @@ class InfoArtistCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-    func setInfoArtistCell(data: String) {
-        self.labelData.text = data
+    func setInfoArtistCell(data: (String, UIImage)) {
+        self.labelData.text = data.0
+        self.imageData.image = data.1
     }
     
 }

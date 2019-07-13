@@ -120,8 +120,8 @@
 		F0AEA66922C573F9009100D1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				F0AEA64D22C56992009100D1 /* MyConcerts.xcdatamodeld */,
 				F0AEA66F22C57698009100D1 /* Api.swift */,
+				F0AEA64D22C56992009100D1 /* MyConcerts.xcdatamodeld */,
 				F0AEA67322C577B2009100D1 /* Artists.swift */,
 			);
 			path = Model;

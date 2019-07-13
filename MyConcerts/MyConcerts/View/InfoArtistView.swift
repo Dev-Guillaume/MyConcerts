@@ -11,9 +11,13 @@ import UIKit
 class InfoArtistView: UIView {
 
     @IBOutlet weak var imageArtist: UIImageView!
+    @IBOutlet weak var imageArtistNoBlur: UIImageView!
     @IBOutlet weak var labelNameArtist: UILabel!
     
-    func setArtist(infoArtist: InfoArtists) {
+    func setInfoArtist(infoArtist: InfoArtists) {
+        self.imageArtistNoBlur.layer.cornerRadius = self.imageArtistNoBlur.frame.height / 2
+        self.imageArtistNoBlur.clipsToBounds = true
+        self.imageArtistNoBlur.image = infoArtist.image
         self.labelNameArtist.text = infoArtist.info.strArtist
         let blurEffect = UIBlurEffect(style: .light)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
