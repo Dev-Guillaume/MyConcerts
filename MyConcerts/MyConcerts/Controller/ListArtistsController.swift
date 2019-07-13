@@ -12,8 +12,10 @@ class ListArtistsController: UIViewController {
 
     var listTopArtists: [InfoArtists] = []
     var infoEvents: [Events] = []
+    
     let infoArtists = InfoArtist()
-    let event = Event()
+    let concert = Concert()
+    
     var artistPicked: InfoArtists!
     
     @IBOutlet weak var artistsTableView: UITableView!
@@ -87,8 +89,8 @@ extension ListArtistsController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.artistPicked = self.listTopArtists[indexPath.row]
-        event.setArtist(artist: self.artistPicked.info.strArtist)
-        event.newRequestGet()
+        concert.setArtist(artist: self.artistPicked.info.strArtist)
+        concert.newRequestGet()
     }
     
     

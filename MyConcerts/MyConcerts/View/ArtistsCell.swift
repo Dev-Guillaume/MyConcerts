@@ -13,7 +13,6 @@ class ArtistsCell: UITableViewCell {
     @IBOutlet weak var labelName: UILabel!
     @IBOutlet weak var labelGenre: UILabel!
     @IBOutlet weak var imageArtist: UIImageView!
-    @IBOutlet weak var getInfoActivityIndicator: UIActivityIndicatorView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

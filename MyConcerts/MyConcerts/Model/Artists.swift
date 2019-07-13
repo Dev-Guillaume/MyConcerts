@@ -43,7 +43,6 @@ struct Info: Codable {
     let strLabel: String?
     let intBornYear: String?
     let intDiedYear: String?
-    let strStyle: String?
     let strGenre: String?
     let strWebsite: String?
     let strFacebook: String?
@@ -136,7 +135,7 @@ struct EventRef: Codable {
     let resultsPage: ResultPage
 }
 
-class Event: Api {
+class Concert: Api {
     private var artist: String = ""
     let events = EventsHref()
     
@@ -205,10 +204,11 @@ class EventsHref: Api {
     override func getResponseJSON(data: Data) {
         do {
             // Use the struct CurrentWeather with the methode Decode)
-           let resultData = try JSONDecoder().decode(InfoEvent.self, from: data)
+            let resultData = try JSONDecoder().decode(InfoEvent.self, from: data)
             NotificationCenter.default.post(name:.dataInfoEvents, object: resultData.resultsPage.results.event)
         } catch {
             NSLog("Error Decoder: \(error)")
+            NotificationCenter.default.post(name:.dataInfoEvents, object: [])
         }
     }
     

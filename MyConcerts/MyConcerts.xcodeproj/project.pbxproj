@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F03CFBFD22D8C6CE00A44632 /* ConcertsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03CFBFC22D8C6CE00A44632 /* ConcertsCell.swift */; };
+		F03CFBFF22D9358600A44632 /* InfoArtistController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03CFBFE22D9358600A44632 /* InfoArtistController.swift */; };
+		F03CFC0122D9360000A44632 /* InfoArtistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03CFC0022D9360000A44632 /* InfoArtistView.swift */; };
+		F03CFC0322D94FE300A44632 /* InfoArtistCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03CFC0222D94FE300A44632 /* InfoArtistCell.swift */; };
 		F0AEA64722C56992009100D1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0AEA64622C56992009100D1 /* AppDelegate.swift */; };
 		F0AEA64C22C56992009100D1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0AEA64A22C56992009100D1 /* Main.storyboard */; };
 		F0AEA64F22C56992009100D1 /* MyConcerts.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F0AEA64D22C56992009100D1 /* MyConcerts.xcdatamodeld */; };
@@ -33,6 +37,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F03CFBFC22D8C6CE00A44632 /* ConcertsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcertsCell.swift; sourceTree = "<group>"; };
+		F03CFBFE22D9358600A44632 /* InfoArtistController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoArtistController.swift; sourceTree = "<group>"; };
+		F03CFC0022D9360000A44632 /* InfoArtistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoArtistView.swift; sourceTree = "<group>"; };
+		F03CFC0222D94FE300A44632 /* InfoArtistCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoArtistCell.swift; sourceTree = "<group>"; };
 		F0AEA64322C56992009100D1 /* MyConcerts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyConcerts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0AEA64622C56992009100D1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F0AEA64B22C56992009100D1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -125,6 +133,9 @@
 				F0AEA64A22C56992009100D1 /* Main.storyboard */,
 				F0AEA67522C58490009100D1 /* ArtistsCell.swift */,
 				F0AEA67922C7C593009100D1 /* ArtistView.swift */,
+				F03CFBFC22D8C6CE00A44632 /* ConcertsCell.swift */,
+				F03CFC0022D9360000A44632 /* InfoArtistView.swift */,
+				F03CFC0222D94FE300A44632 /* InfoArtistCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -134,6 +145,7 @@
 			children = (
 				F0AEA66D22C57634009100D1 /* ListArtistsController.swift */,
 				F0AEA67722C7B653009100D1 /* ArtistController.swift */,
+				F03CFBFE22D9358600A44632 /* InfoArtistController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -257,7 +269,11 @@
 				F0AEA67822C7B653009100D1 /* ArtistController.swift in Sources */,
 				F0AEA67022C57698009100D1 /* Api.swift in Sources */,
 				F0AEA67222C576D6009100D1 /* extension.swift in Sources */,
+				F03CFBFF22D9358600A44632 /* InfoArtistController.swift in Sources */,
 				F0AEA66E22C57634009100D1 /* ListArtistsController.swift in Sources */,
+				F03CFC0322D94FE300A44632 /* InfoArtistCell.swift in Sources */,
+				F03CFC0122D9360000A44632 /* InfoArtistView.swift in Sources */,
+				F03CFBFD22D8C6CE00A44632 /* ConcertsCell.swift in Sources */,
 				F0AEA67A22C7C593009100D1 /* ArtistView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
