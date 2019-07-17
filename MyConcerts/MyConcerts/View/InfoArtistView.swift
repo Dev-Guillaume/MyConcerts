@@ -17,12 +17,12 @@ class InfoArtistView: UIView {
     func setInfoArtist(infoArtist: InfoArtists) {
         self.imageArtistNoBlur.layer.cornerRadius = self.imageArtistNoBlur.frame.height / 2
         self.imageArtistNoBlur.clipsToBounds = true
-        self.imageArtistNoBlur.image = infoArtist.image
         self.labelNameArtist.text = infoArtist.info.strArtist
         let blurEffect = UIBlurEffect(style: .light)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.frame = self.imageArtist.bounds
         self.imageArtist.addSubview(blurEffectView)
-        self.imageArtist.image = infoArtist.image
+        self.imageArtist.image = infoArtist.image.dataToUIImage
+        self.imageArtistNoBlur.image = infoArtist.image.dataToUIImage
     }
 }

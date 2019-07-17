@@ -30,3 +30,25 @@ extension UIViewController {
         self.displayAlert(title: dataError[0], message: dataError[1])
     }
 }
+
+extension Optional where Wrapped == Data {
+    
+    var dataToUIImage: UIImage {
+        if self != nil, let image = UIImage(data: self!) {
+            return image
+        }
+        return  UIImage(named: "artistNotFound")!
+    }
+    
+}
+
+extension String {
+    
+    func formateDate() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let date = dateFormatter.date(from: self)
+        dateFormatter.dateFormat = "EEEE MMM d yyyy"
+        return  dateFormatter.string(from: date!)
+    }
+}

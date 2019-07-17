@@ -16,20 +16,18 @@ class ArtistsCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
     
-    func setArtist(name: String, genre: String, imageArtist: UIImage) {
+    func setArtist(name: String, genre: String, imageArtist: Data?) {
         self.labelName.text = name
         self.labelGenre.text = genre
         self.imageArtist.layer.cornerRadius = self.imageArtist.frame.height / 2
         self.imageArtist.clipsToBounds = true
-        self.imageArtist.image = imageArtist
         self.isHidden = false
+        self.imageArtist.image = imageArtist.dataToUIImage
     }
-
 }

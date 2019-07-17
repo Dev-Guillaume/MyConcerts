@@ -27,19 +27,6 @@ class ConcertsCell: UITableViewCell {
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 
-}
-
-extension String {
-    
-    func formateDate() -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        let date = dateFormatter.date(from: self)
-        dateFormatter.dateFormat = "EEEE MMM d yyyy"
-        return  dateFormatter.string(from: date!)
-    }
 }

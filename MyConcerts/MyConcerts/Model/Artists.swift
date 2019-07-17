@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import UIKit
 
 struct Name: Codable {
     let name: String
@@ -21,13 +20,18 @@ struct ListTopArtists: Codable {
     let artists: Artist
 }
 
-class TopArtists: Api {
+class TopArtists: ApiProtocol {
+    var myGroup: DispatchGroup = DispatchGroup()
     
-    override func createUrl() {
+    var url: String = ""
+    
+    var request: URLRequest!
+    
+    func createUrl() {
         self.url = urlApi[.audioscrobbler]! + "&" + keyApi[.audioscrobbler]! + "&format=json"
     }
     
-    override func getResponseJSON(data: Data) {
+    func getResponseJSON(data: Data) {
         do {
             // Use the struct CurrentWeather with the methode Decode
             let resultData = try JSONDecoder().decode(ListTopArtists.self, from: data)
@@ -58,10 +62,16 @@ struct ListInfoArtist: Codable {
 
 struct InfoArtists {
     let info: Info
-    let image: UIImage
+    let image: Data?
 }
 
-class InfoArtist: Api {
+class InfoArtist: ApiProtocol {
+    var myGroup: DispatchGroup = DispatchGroup()
+    
+    var url: String = ""
+    
+    var request: URLRequest!
+    
     
     private var artist: String = ""
     private var topArtists: [Name] = []
@@ -90,27 +100,25 @@ class InfoArtist: Api {
         }
     }
     
-    override func createUrl() {
+    func createUrl() {
         self.url = urlApi[.audiodb]! + keyApi[.audiodb]! + "/search.php?s=" + self.artist
     }
     
-    override func getResponseJSON(data: Data) {
+    func getResponseJSON(data: Data) {
         do {
             // Use the struct CurrentWeather with the methode Decode
             let resultData = try JSONDecoder().decode(ListInfoArtist.self, from: data).artists.first!
-            self.infoArtists.append(InfoArtists(info: resultData, image: self.recoverImage(urlImage: resultData.strArtistThumb ?? "")))
+            self.infoArtists.append(InfoArtists(info: resultData, image: self.recoverDataImage(urlImage: resultData.strArtistThumb ?? "")))
         } catch {
             NSLog("Error Decoder: \(error)")
         }
     }
     
-    private func recoverImage(urlImage: String) -> UIImage { // Download all images of recettes and stock in array
+    private func recoverDataImage(urlImage: String) -> Data? { // Download all images of recettes and stock in array
         if URL(string: urlImage) != nil {
-            return UIImage(data: try! Data(contentsOf: URL(string: urlImage)!))!
+            return try? Data(contentsOf: URL(string: urlImage)!)
         }
-        else {
-            return UIImage(named: "artistNotFound")! // Download a default image if the recover failed
-        }
+        return nil
     }
 }
 
@@ -127,7 +135,6 @@ struct Result: Codable {
 }
 
 struct ResultPage: Codable {
-    //let status: String
     let results: Result
 }
 
@@ -135,11 +142,16 @@ struct EventRef: Codable {
     let resultsPage: ResultPage
 }
 
-class Concert: Api {
+class Concert: ApiProtocol {
+    var myGroup: DispatchGroup = DispatchGroup()
+    
+    var url: String = ""
+    
+    var request: URLRequest!
     private var artist: String = ""
     let events = EventsHref()
     
-    override func createUrl() {
+    func createUrl() {
         self.url = urlApi[.songkick]! + keyApi[.songkick]! + "&query=" + self.artist
     }
     
@@ -147,13 +159,12 @@ class Concert: Api {
         self.artist = artist.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? ""
     }
     
-    override func getResponseJSON(data: Data) {
+    func getResponseJSON(data: Data) {
         do {
             // Use the struct CurrentWeather with the methode Decode
             let resultData = try JSONDecoder().decode(EventRef.self, from: data)
             self.events.setHref(href: resultData.resultsPage.results.artist.first?.identifier.first?.eventsHref ?? "")
             self.events.newRequestGet()
-            /*self.infoArtists.append(InfoArtists(info: resultData, image: self.recoverImage(urlImage: resultData.strArtistThumb ?? "")))*/
         } catch {
             NSLog("Error Decoder: \(error)")
         }
@@ -188,7 +199,13 @@ struct InfoEvent: Codable {
     let resultsPage: ResultsPage
 }
 
-class EventsHref: Api {
+class EventsHref: ApiProtocol {
+    var myGroup: DispatchGroup = DispatchGroup()
+    
+    var url: String = ""
+    
+    var request: URLRequest!
+    
     
     private var href: String = ""
     
@@ -196,12 +213,12 @@ class EventsHref: Api {
         self.href = href
     }
     
-    override func createUrl() {
+    func createUrl() {
         self.url = self.href + "?apikey=JDyRTYDK3g9GUd3V"
         self.url = self.url.replacingOccurrences(of: "http", with: "https")
     }
     
-    override func getResponseJSON(data: Data) {
+    func getResponseJSON(data: Data) {
         do {
             // Use the struct CurrentWeather with the methode Decode)
             let resultData = try JSONDecoder().decode(InfoEvent.self, from: data)

@@ -16,8 +16,8 @@ class ArtistView: UIView {
     func setArtistView(infoArtist: InfoArtists) {
         self.imageArtist.layer.cornerRadius = self.imageArtist.frame.height / 2
         self.imageArtist.clipsToBounds = true
-        self.imageArtist.image = infoArtist.image
         self.nameArtist.text = infoArtist.info.strArtist
+        self.imageArtist.image = infoArtist.image.dataToUIImage
     }
 
 }

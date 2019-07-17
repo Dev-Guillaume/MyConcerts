@@ -18,13 +18,10 @@ class InfoArtistCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 
     func setInfoArtistCell(data: (String, UIImage)) {
         self.labelData.text = data.0
         self.imageData.image = data.1
     }
-    
 }
