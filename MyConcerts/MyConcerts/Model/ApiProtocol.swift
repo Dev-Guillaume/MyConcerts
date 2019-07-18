@@ -1,12 +1,10 @@
 //
-//  Api.swift
+//  ApiProtocol.swift
 //  MyConcerts
 //
-//  Created by Guillaume Djaider Fornari on 28/06/2019.
+//  Created by Guillaume Djaider Fornari on 18/07/2019.
 //  Copyright © 2019 Guillaume Djaider Fornari. All rights reserved.
 //
-
-import Foundation
 
 import Foundation
 
@@ -14,10 +12,10 @@ import Foundation
 enum ApiName {
     case audioscrobbler, audiodb, songkick
 }
+protocol DataJSON: Codable {}
 
 protocol ApiProtocol: class {
     var session: URLSession { get }
-    //var myGroup: DispatchGroup { get }
     var keyApi: [ApiName: String] { get }
     var urlApi: [ApiName: String] { get }
     var url: String { set get }
@@ -56,12 +54,11 @@ extension ApiProtocol {
         self.request.httpMethod = "GET" // Set the metthod
         self.getData() { success, data in
             completionHandler(success, data)
-        }// Call the function getData
+        }
     }
     
     func getData(completionHandler: @escaping (Bool, [DataJSON]?) -> Void) {
         // Create a task with the Url for get some Date
-        //self.myGroup.enter()
         let task = self.session.dataTask(with: self.request) { (data, response, error) in
             DispatchQueue.main.async {
                 guard let data = data, error == nil else { // Get the data
@@ -75,8 +72,7 @@ extension ApiProtocol {
                 }
                 self.getResponseJSON(data: data) { success, data in
                     completionHandler(success, data)
-                }// Call the function getResponseJSON for get the data converted into JSON
-                //self.myGroup.leave()
+                }
             }
         }
         task.resume()

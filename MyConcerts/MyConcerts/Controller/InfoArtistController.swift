@@ -17,9 +17,15 @@ class InfoArtistController: UIViewController {
         super.viewDidLoad()
         self.infoArtistView.setInfoArtist(infoArtist: infoArtist)
     }
+    @IBAction func dismissTextView(_ sender: UITapGestureRecognizer) {
+        self.infoArtistView.hiddenTextView()
+    }
 }
 
 extension InfoArtistController: UITableViewDataSource, UITableViewDelegate {
+    
+    static let website: [Int] = [0, 1, 2]
+    static let biography: Int = 7
     
     var arrayInfoArtist: [(String, UIImage?)] {
         return [(infoArtist.info.strWebsite ?? "No Website", UIImage(named: "website")),
@@ -45,5 +51,27 @@ extension InfoArtistController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 70.0
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch true {
+        case InfoArtistController.website.contains(indexPath.row):
+            self.openSafari(url: arrayInfoArtist[indexPath.row].0)
+        case InfoArtistController.biography == indexPath.row:
+            self.openTextView(biography: arrayInfoArtist[indexPath.row].0)
+        default:
+            return
+        }
+    }
+    
+    func openSafari(url: String) {
+        guard let url = URL(string: "https://" + url) else {
+            return
+        }
+        UIApplication.shared.open(url)
+    }
+    
+    func openTextView(biography: String) {
+        self.infoArtistView.setTextView(biography: biography)
     }
 }

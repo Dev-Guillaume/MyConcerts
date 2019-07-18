@@ -12,6 +12,7 @@ class InfoArtistCell: UITableViewCell {
 
     @IBOutlet weak var labelData: UILabel!
     @IBOutlet weak var imageData: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
