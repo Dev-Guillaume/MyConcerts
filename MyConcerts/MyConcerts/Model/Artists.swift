@@ -8,7 +8,9 @@
 
 import Foundation
 
-struct Name: Codable {
+protocol DataJSON: Codable {}
+
+struct Name: DataJSON {
     let name: String
 }
 
@@ -21,28 +23,27 @@ struct ListTopArtists: Codable {
 }
 
 class TopArtists: ApiProtocol {
-    var myGroup: DispatchGroup = DispatchGroup()
-    
     var url: String = ""
-    
     var request: URLRequest!
     
     func createUrl() {
-        self.url = urlApi[.audioscrobbler]! + "&" + keyApi[.audioscrobbler]! + "&format=json"
+        self.url = self.urlApi[.audioscrobbler]! + "&" + self.keyApi[.audioscrobbler]! + "&format=json"
     }
     
-    func getResponseJSON(data: Data) {
+    func getResponseJSON(data: Data, completionHandler: @escaping (Bool, [DataJSON]?) -> Void) {
         do {
             // Use the struct CurrentWeather with the methode Decode
-            let resultData = try JSONDecoder().decode(ListTopArtists.self, from: data)
-            NotificationCenter.default.post(name:.dataTopArtists, object: resultData.artists.artist)
+            let resultData: [DataJSON] = try JSONDecoder().decode(ListTopArtists.self, from: data).artists.artist
+            completionHandler(true, resultData)
+            return
         } catch {
-            NotificationCenter.default.post(name: .error,object: ["Error Decoder", "Can't decode data in JSON"])
+            completionHandler(false, nil)
+            return NotificationCenter.default.post(name: .error,object: ["Error Decoder", "Can't decode data in JSON"])
         }
     }
 }
 
-struct Info: Codable {
+struct Info: DataJSON {
     let strArtist: String
     let strLabel: String?
     let intBornYear: String?
@@ -66,13 +67,8 @@ struct InfoArtists {
 }
 
 class InfoArtist: ApiProtocol {
-    var myGroup: DispatchGroup = DispatchGroup()
-    
     var url: String = ""
-    
     var request: URLRequest!
-    
-    
     private var artist: String = ""
     private var topArtists: [Name] = []
     private var infoArtists: [InfoArtists] = []
@@ -81,35 +77,50 @@ class InfoArtist: ApiProtocol {
         self.artist = artist.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? ""
     }
     
-    func searchManyArtists(arrayArtists: [Name]) {
-        for artist in arrayArtists {
-            self.setArtist(artist: artist.name)
-            self.newRequestGet()
+    func searchManyArtists(arrayArtists: [DataJSON], completionHandler: @escaping (Bool, [InfoArtists]?) -> Void) {
+        guard let arrayArtists = arrayArtists as? [Name] else {
+            completionHandler(false, nil)
+            return
         }
-        self.myGroup.notify(queue: .main) {
-            NotificationCenter.default.post(name:.dataInfoArtists, object: self.infoArtists)
+        let myGroup: DispatchGroup = DispatchGroup()
+        for artist in arrayArtists {
+            myGroup.enter()
+            self.setArtist(artist: artist.name)
+            self.newRequestGet { success, data in
+                if (success) {
+                    self.infoArtists.append(InfoArtists(info: data?.first as! Info,
+                                                        image: self.recoverDataImage(urlImage: (data?.first as! Info).strArtistThumb ?? "")))
+                }
+            myGroup.leave()
+            }
+        }
+        myGroup.notify(queue: .main) {
+          completionHandler(true, self.infoArtists)
         }
     }
     
-    func searchArtist(artist: String) {
+    func searchArtist(artist: String, completionHandler: @escaping (Bool, InfoArtists?) -> Void) {
         self.infoArtists.removeAll()
         self.setArtist(artist: artist)
-        self.newRequestGet()
-        self.myGroup.notify(queue: .main) {
-            NotificationCenter.default.post(name:.dataInfoArtists, object: self.infoArtists)
+        self.newRequestGet { success, data in
+            guard success else {
+                return completionHandler(false, nil)
+            }
+            completionHandler(true, InfoArtists(info: (data?.first as? Info)!, image: self.recoverDataImage(urlImage: (data?.first as? Info)?.strArtistThumb ?? "")))
         }
     }
     
     func createUrl() {
-        self.url = urlApi[.audiodb]! + keyApi[.audiodb]! + "/search.php?s=" + self.artist
+        self.url = self.urlApi[.audiodb]! + self.keyApi[.audiodb]! + "/search.php?s=" + self.artist
     }
     
-    func getResponseJSON(data: Data) {
+    func getResponseJSON(data: Data, completionHandler: @escaping (Bool, [DataJSON]?) -> Void) {
         do {
             // Use the struct CurrentWeather with the methode Decode
-            let resultData = try JSONDecoder().decode(ListInfoArtist.self, from: data).artists.first!
-            self.infoArtists.append(InfoArtists(info: resultData, image: self.recoverDataImage(urlImage: resultData.strArtistThumb ?? "")))
+        let resultData: [DataJSON] = try JSONDecoder().decode(ListInfoArtist.self, from: data).artists
+            completionHandler(true, resultData)
         } catch {
+            completionHandler(false, nil)
             NSLog("Error Decoder: \(error)")
         }
     }
@@ -138,35 +149,36 @@ struct ResultPage: Codable {
     let results: Result
 }
 
-struct EventRef: Codable {
+struct EventRef: Codable, DataJSON {
     let resultsPage: ResultPage
 }
 
 class Concert: ApiProtocol {
-    var myGroup: DispatchGroup = DispatchGroup()
-    
     var url: String = ""
-    
     var request: URLRequest!
     private var artist: String = ""
     let events = EventsHref()
     
     func createUrl() {
-        self.url = urlApi[.songkick]! + keyApi[.songkick]! + "&query=" + self.artist
+        self.url = self.urlApi[.songkick]! + self.keyApi[.songkick]! + "&query=" + self.artist
     }
     
     func setArtist(artist: String) {
         self.artist = artist.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? ""
     }
     
-    func getResponseJSON(data: Data) {
+    func getResponseJSON(data: Data, completionHandler: @escaping (Bool, [DataJSON]?) -> Void) {
         do {
             // Use the struct CurrentWeather with the methode Decode
             let resultData = try JSONDecoder().decode(EventRef.self, from: data)
             self.events.setHref(href: resultData.resultsPage.results.artist.first?.identifier.first?.eventsHref ?? "")
-            self.events.newRequestGet()
+            self.events.newRequestGet() { success, data in
+                completionHandler(success, data)
+            }
         } catch {
+            completionHandler(false, nil)
             NSLog("Error Decoder: \(error)")
+            return
         }
     }
 }
@@ -179,7 +191,7 @@ struct Start: Codable {
     let date: String
 }
 
-struct Events: Codable {
+struct Events: DataJSON {
     let displayName: String
     let type: String
     let popularity: Float
@@ -200,13 +212,8 @@ struct InfoEvent: Codable {
 }
 
 class EventsHref: ApiProtocol {
-    var myGroup: DispatchGroup = DispatchGroup()
-    
     var url: String = ""
-    
     var request: URLRequest!
-    
-    
     private var href: String = ""
     
     func setHref(href: String) {
@@ -218,14 +225,16 @@ class EventsHref: ApiProtocol {
         self.url = self.url.replacingOccurrences(of: "http", with: "https")
     }
     
-    func getResponseJSON(data: Data) {
+    func getResponseJSON(data: Data, completionHandler: @escaping (Bool, [DataJSON]?) -> Void) {
         do {
             // Use the struct CurrentWeather with the methode Decode)
-            let resultData = try JSONDecoder().decode(InfoEvent.self, from: data)
-            NotificationCenter.default.post(name:.dataInfoEvents, object: resultData.resultsPage.results.event)
+            let resultData: [DataJSON] = try JSONDecoder().decode(InfoEvent.self, from: data).resultsPage.results.event
+            completionHandler(true, resultData)
+            return
         } catch {
             NSLog("Error Decoder: \(error)")
-            NotificationCenter.default.post(name:.dataInfoEvents, object: [])
+            completionHandler(false, nil)
+            return
         }
     }
     
