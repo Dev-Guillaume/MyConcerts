@@ -26,7 +26,6 @@ class ListArtistsController: UIViewController {
         super.viewDidLoad()
         
         NotificationCenter.default.addObserver(self, selector: #selector(displayError), name: .error, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(getInfoEvents), name: .dataInfoEvents, object: nil)
         TopArtists().newRequestGet { success, data in
             if success {
                 self.infoArtists.searchManyArtists(arrayArtists: data!) { success, data in
@@ -41,14 +40,6 @@ class ListArtistsController: UIViewController {
                 }
             }
         }
-    }
-    
-    @objc func getInfoEvents(notification: Notification) {
-        guard let notificationInfoEvents = notification.object as? [Events] else {
-            return
-        }
-        self.infoEvents = notificationInfoEvents
-        performSegue(withIdentifier: "segueToArtist", sender: self)
     }
     
     @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {

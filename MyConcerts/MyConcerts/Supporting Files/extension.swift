@@ -11,9 +11,6 @@ import UIKit
 
 extension Notification.Name {
     static let error = Notification.Name("error")
-    static let dataTopArtists = Notification.Name("dataTopArtists")
-    static let dataInfoArtists = Notification.Name("dataInfoArtists")
-    static let dataInfoEvents = Notification.Name("dataInfoEvents")
 }
 
 extension UIViewController {
