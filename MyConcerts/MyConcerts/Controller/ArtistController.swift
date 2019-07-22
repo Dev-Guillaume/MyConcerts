@@ -13,7 +13,8 @@ class ArtistController: UIViewController {
     var artist: InfoArtists!
     var infoEvents: [Events]!
     var index: Int!
-    var imageArtists: [(String, Data?)]!
+    var imageArtists: [ImagesArtists]!
+    var infoEventPicked: DetailEvent!
     
     @IBOutlet var artistView: ArtistView!
     
@@ -33,7 +34,7 @@ class ArtistController: UIViewController {
         }
         if segue.identifier == "segueToInfoConcert" {
             let successVC = segue.destination as! InfoConcertsController
-            successVC.infoEvent = (self.infoEvents[index], self.artist.image)
+            successVC.infoEventPicked = self.infoEventPicked
             successVC.imageArtists = self.imageArtists
         }
     }
@@ -60,25 +61,14 @@ extension ArtistController: UITableViewDataSource, UITableViewDelegate {
             guard success, let data = (data as? [DetailEvent])?.first else {
                 return
             }
+            self.infoEventPicked = data
             ImageArtist().searchManyImagesArtists(arrayArtists: data.performance) { success, data in
-                print(success)
-            }
-            //self.performSegue(withIdentifier: "segueToInfoConcert", sender: self)
-        }
-        
-        
-        
-        
-        /*ImageArtist().searchManyImagesArtists(arrayArtists: infoEvents[indexPath.row].performance) { success, data in
-            guard success, let data = data else {
-                return
-            }
-            self.imageArtists = data
-            self.index = indexPath.row
-            InfoConcert(idConcert: 37612904).newRequestGet { success, data in
-                print(success)
+                guard success, let data = data else {
+                    return
+                }
+                self.imageArtists = data
                 self.performSegue(withIdentifier: "segueToInfoConcert", sender: self)
             }
-        }*/
+        }
     }
 }

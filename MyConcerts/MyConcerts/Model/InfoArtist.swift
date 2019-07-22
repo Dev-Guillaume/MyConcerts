@@ -99,10 +99,15 @@ class InfoArtist: ApiProtocol {
     }
 }
 
+struct ImagesArtists {
+    let name: String
+    let image: Data?
+}
+
 class ImageArtist: InfoArtist {
-    private var imagesArtists: [(String, Data?)] = []
+    private var imagesArtists: [ImagesArtists] = []
     
-    func searchManyImagesArtists(arrayArtists: [DataJSON], completionHandler: @escaping (Bool, [(String, Data?)]?) -> Void) {
+    func searchManyImagesArtists(arrayArtists: [DataJSON], completionHandler: @escaping (Bool, [ImagesArtists]?) -> Void) {
         guard let arrayArtists = arrayArtists as? [Performance] else {
             completionHandler(false, nil)
             return
@@ -113,7 +118,7 @@ class ImageArtist: InfoArtist {
             self.setArtist(artist: artist.displayName )
             self.newRequestGet { success, data in
                 if (success) {
-                    self.imagesArtists.append(((data?.first as! Info).strArtist, self.recoverDataImage(urlImage: (data?.first as! Info).strArtistThumb ?? "")))
+                    self.imagesArtists.append(ImagesArtists(name: (data?.first as! Info).strArtist, image: self.recoverDataImage(urlImage: (data?.first as! Info).strArtistThumb ?? "")))
                 }
                 myGroup.leave()
             }

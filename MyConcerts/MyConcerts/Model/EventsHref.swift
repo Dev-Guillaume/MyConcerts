@@ -8,10 +8,6 @@
 
 import Foundation
 
-/*struct Performance: DataJSON {
-    let displayName: String
-}*/
-
 struct Start: Codable {
     let date: String?
 }
@@ -21,10 +17,6 @@ struct Events: DataJSON {
     let displayName: String
     let type: String?
     let start: Start
-    /*let uri: String?
-    let popularity: Float
-    let start: Start
-    let performance: [Performance]*/
 }
 
 struct Results: Codable {

@@ -62,11 +62,11 @@ struct Performance: DataJSON {
     let displayName: String
 }
 
-struct Country: Codable {
+/*struct Country: Codable {
     let displayName: String?
 }
 
-/*struct City: Codable {
+struct City: Codable {
     let displayName: String
     let uri: String
     let country: Country

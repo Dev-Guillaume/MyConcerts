@@ -10,10 +10,8 @@ import UIKit
 
 class InfoConcertsController: UIViewController {
 
-    var infoEvent: (Events, Data?)!
-    var imageArtists: [(String, Data?)]!
-    var artistPicked: InfoArtists!
-    var infoEventPicked: [Events]!
+    var imageArtists: [ImagesArtists]!
+    var infoEventPicked: DetailEvent!
     
     @IBOutlet var infoConcertView: InfoConcertView!
     override func viewDidLoad() {
@@ -22,11 +20,11 @@ class InfoConcertsController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) { // Prepare variables for the changement of controller
-        if segue.identifier == "segueToArtist" {
+        /*if segue.identifier == "segueToArtist" {
             let successVC = segue.destination as! ArtistController
             successVC.artist = artistPicked
             successVC.infoEvents = infoEventPicked
-        }
+        }*/
     }
 }
 
@@ -37,12 +35,12 @@ extension InfoConcertsController: UICollectionViewDataSource, UICollectionViewDe
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: ArtistCollectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ArtistCollectionCell", for: indexPath) as! ArtistCollectionCell
-        cell.setImageCollection(imageArtist: imageArtists[indexPath.row].1)
+        cell.setImageCollection(imageArtist: imageArtists[indexPath.row].image)
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let concert = Concert()
+        /*let concert = Concert()
         InfoArtist().searchArtist(artist: self.imageArtists[indexPath.row].0) { success, data in
             guard success, let data = data else {
                 return
@@ -56,17 +54,18 @@ extension InfoConcertsController: UICollectionViewDataSource, UICollectionViewDe
                 self.infoEventPicked = data
                 self.performSegue(withIdentifier: "segueToArtist", sender: self)
             }
-        }
+        }*/
     }
 }
 
-/*extension InfoConcertsController: UITableViewDataSource, UITableViewDelegate {
+extension InfoConcertsController: UITableViewDataSource, UITableViewDelegate {
 
     var arrayInfoEvents: [(String, UIImage?)] {
-        return [(infoEvent.0.type ?? "" , UIImage(named: "typeConcert")),
-                (String(infoEvent.0.popularity) + " popularity", UIImage(named: "popularity")),
-                (infoEvent.0.start.date?.formateDate ?? "", UIImage(named: "date")),
-                (infoEvent.0.uri ?? "" , UIImage(named: "website"))]
+        return [(infoEventPicked.type ?? "" , UIImage(named: "typeConcert")),
+                (String(infoEventPicked.popularity) + " popularity", UIImage(named: "popularity")),
+                (infoEventPicked.uri ?? "" , UIImage(named: "website")),
+                (infoEventPicked.start.date?.formateDate ?? "", UIImage(named: "date")),
+                (infoEventPicked.start.time ?? "", UIImage(named: "date"))]
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -78,4 +77,4 @@ extension InfoConcertsController: UICollectionViewDataSource, UICollectionViewDe
         cell.setInfoConcertCell(dataInfo: arrayInfoEvents[indexPath.row].0, imageInfo: arrayInfoEvents[indexPath.row].1)
         return cell
     }
-}*/
+}
