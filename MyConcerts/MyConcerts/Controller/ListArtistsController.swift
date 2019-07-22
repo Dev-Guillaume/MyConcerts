@@ -82,8 +82,6 @@ extension ListArtistsController: UITableViewDataSource, UITableViewDelegate {
             self.performSegue(withIdentifier: "segueToArtist", sender: self)
         }
     }
-    
-    
 }
 
 extension ListArtistsController: UISearchBarDelegate {

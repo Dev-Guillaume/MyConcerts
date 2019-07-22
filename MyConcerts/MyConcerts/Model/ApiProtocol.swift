@@ -42,7 +42,7 @@ extension ApiProtocol {
     var urlApi: [ApiName: String] {
         return [.audioscrobbler : "https://ws.audioscrobbler.com/2.0/?method=chart.gettopartists",
                 .audiodb: "https://theaudiodb.com/api/v1/json/",
-                .songkick: "https://api.songkick.com/api/3.0/search/artists.json?"]
+                .songkick: "https://api.songkick.com/api/3.0/"]
     }
     
     func newRequestGet(completionHandler: @escaping (Bool, [DataJSON]?) -> Void) {

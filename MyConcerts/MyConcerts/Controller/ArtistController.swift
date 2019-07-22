@@ -56,13 +56,29 @@ extension ArtistController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        ImageArtist().searchManyImagesArtists(arrayArtists: infoEvents[indexPath.row].performance) { success, data in
+        InfoConcert(idConcert: self.infoEvents[indexPath.row].id).newRequestGet { success, data in
+            guard success, let data = (data as? [DetailEvent])?.first else {
+                return
+            }
+            ImageArtist().searchManyImagesArtists(arrayArtists: data.performance) { success, data in
+                print(success)
+            }
+            //self.performSegue(withIdentifier: "segueToInfoConcert", sender: self)
+        }
+        
+        
+        
+        
+        /*ImageArtist().searchManyImagesArtists(arrayArtists: infoEvents[indexPath.row].performance) { success, data in
             guard success, let data = data else {
                 return
             }
             self.imageArtists = data
             self.index = indexPath.row
-            self.performSegue(withIdentifier: "segueToInfoConcert", sender: self)
-        }
+            InfoConcert(idConcert: 37612904).newRequestGet { success, data in
+                print(success)
+                self.performSegue(withIdentifier: "segueToInfoConcert", sender: self)
+            }
+        }*/
     }
 }

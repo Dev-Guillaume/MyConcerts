@@ -18,7 +18,7 @@ class InfoConcertsController: UIViewController {
     @IBOutlet var infoConcertView: InfoConcertView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.infoConcertView.setInfoConcertView(dataImageArtist: self.infoEvent.1, nameConcert: self.infoEvent.0.displayName)
+        //self.infoConcertView.setInfoConcertView(dataImageArtist: self.infoEvent.1, nameConcert: self.infoEvent.0.displayName)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) { // Prepare variables for the changement of controller
@@ -60,13 +60,13 @@ extension InfoConcertsController: UICollectionViewDataSource, UICollectionViewDe
     }
 }
 
-extension InfoConcertsController: UITableViewDataSource, UITableViewDelegate {
+/*extension InfoConcertsController: UITableViewDataSource, UITableViewDelegate {
 
     var arrayInfoEvents: [(String, UIImage?)] {
-        return [(infoEvent.0.type , UIImage(named: "typeConcert")),
+        return [(infoEvent.0.type ?? "" , UIImage(named: "typeConcert")),
                 (String(infoEvent.0.popularity) + " popularity", UIImage(named: "popularity")),
-                (infoEvent.0.start.date.formateDate, UIImage(named: "date")),
-                (infoEvent.0.uri , UIImage(named: "website"))]
+                (infoEvent.0.start.date?.formateDate ?? "", UIImage(named: "date")),
+                (infoEvent.0.uri ?? "" , UIImage(named: "website"))]
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -78,4 +78,4 @@ extension InfoConcertsController: UITableViewDataSource, UITableViewDelegate {
         cell.setInfoConcertCell(dataInfo: arrayInfoEvents[indexPath.row].0, imageInfo: arrayInfoEvents[indexPath.row].1)
         return cell
     }
-}
+}*/

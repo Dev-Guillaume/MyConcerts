@@ -9,7 +9,7 @@
 import Foundation
 
 struct Name: DataJSON {
-    let name: String
+    let name: String?
 }
 
 struct Artist: Codable {

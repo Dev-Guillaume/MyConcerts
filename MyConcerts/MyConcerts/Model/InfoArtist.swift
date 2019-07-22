@@ -50,7 +50,7 @@ class InfoArtist: ApiProtocol {
         let myGroup: DispatchGroup = DispatchGroup()
         for artist in arrayArtists {
             myGroup.enter()
-            self.setArtist(artist: artist.name)
+            self.setArtist(artist: artist.name ?? "")
             self.newRequestGet { success, data in
                 if (success) {
                     self.infoArtists.append(InfoArtists(info: data?.first as! Info,
@@ -86,7 +86,7 @@ class InfoArtist: ApiProtocol {
             completionHandler(true, resultData)
         } catch {
             completionHandler(false, nil)
-            NSLog("Error Decoder: \(error)")
+            NSLog("Class InfoArtist - Error Decoder: \(error)")
         }
     }
     
@@ -110,7 +110,7 @@ class ImageArtist: InfoArtist {
         let myGroup: DispatchGroup = DispatchGroup()
         for artist in arrayArtists {
             myGroup.enter()
-            self.setArtist(artist: artist.displayName)
+            self.setArtist(artist: artist.displayName )
             self.newRequestGet { success, data in
                 if (success) {
                     self.imagesArtists.append(((data?.first as! Info).strArtist, self.recoverDataImage(urlImage: (data?.first as! Info).strArtistThumb ?? "")))

@@ -8,21 +8,23 @@
 
 import Foundation
 
-struct Performance: DataJSON {
+/*struct Performance: DataJSON {
     let displayName: String
-}
+}*/
 
 struct Start: Codable {
-    let date: String
+    let date: String?
 }
 
 struct Events: DataJSON {
+    let id: Int
     let displayName: String
-    let type: String
-    let uri: String
+    let type: String?
+    let start: Start
+    /*let uri: String?
     let popularity: Float
     let start: Start
-    let performance: [Performance]
+    let performance: [Performance]*/
 }
 
 struct Results: Codable {
@@ -49,6 +51,7 @@ class EventsHref: ApiProtocol {
     func createUrl() {
         self.url = self.href + "?apikey=JDyRTYDK3g9GUd3V"
         self.url = self.url.replacingOccurrences(of: "http", with: "https")
+        print(self.url)
     }
     
     func getResponseJSON(data: Data, completionHandler: @escaping (Bool, [DataJSON]?) -> Void) {
