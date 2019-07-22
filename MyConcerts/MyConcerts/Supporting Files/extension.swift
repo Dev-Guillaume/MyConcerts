@@ -41,7 +41,7 @@ extension Optional where Wrapped == Data {
 
 extension String {
     
-    func formateDate() -> String {
+    var formateDate: String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         let date = dateFormatter.date(from: self)

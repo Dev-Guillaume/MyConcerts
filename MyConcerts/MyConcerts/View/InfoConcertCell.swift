@@ -10,6 +10,9 @@ import UIKit
 
 class InfoConcertCell: UITableViewCell {
 
+    @IBOutlet weak var imageInfo: UIImageView!
+    @IBOutlet weak var dataInfo: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -19,6 +22,11 @@ class InfoConcertCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    func setInfoConcertCell(dataInfo: String, imageInfo: UIImage?) {
+        self.dataInfo.text = dataInfo
+         self.imageInfo.image = imageInfo
     }
 
 }

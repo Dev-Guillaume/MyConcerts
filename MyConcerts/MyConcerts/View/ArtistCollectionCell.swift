@@ -12,4 +12,9 @@ class ArtistCollectionCell: UICollectionViewCell {
     
     @IBOutlet weak var imageArtist: UIImageView!
     
+    func setImageCollection(imageArtist: Data?) {
+        self.imageArtist.layer.cornerRadius = self.imageArtist.frame.height / 2
+        self.imageArtist.clipsToBounds = true
+        self.imageArtist.image = imageArtist.dataToUIImage
+    }
 }

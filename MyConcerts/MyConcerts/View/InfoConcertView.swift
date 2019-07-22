@@ -10,12 +10,13 @@ import UIKit
 
 class InfoConcertView: UIView {
 
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    @IBOutlet weak var imageArtist: UIImageView!
+    @IBOutlet weak var nameConcert: UILabel!
+    
+    func setInfoConcertView(dataImageArtist: Data?, nameConcert: String) {
+        self.imageArtist.layer.cornerRadius = self.imageArtist.frame.height / 2
+        self.imageArtist.clipsToBounds = true
+        self.imageArtist.image = dataImageArtist.dataToUIImage
+        self.nameConcert.text = nameConcert
     }
-    */
-
 }

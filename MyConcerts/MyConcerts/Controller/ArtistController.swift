@@ -33,7 +33,7 @@ class ArtistController: UIViewController {
         }
         if segue.identifier == "segueToInfoConcert" {
             let successVC = segue.destination as! InfoConcertsController
-            successVC.infoEvent = self.infoEvents[index]
+            successVC.infoEvent = (self.infoEvents[index], self.artist.image)
             successVC.imageArtists = self.imageArtists
         }
     }
@@ -56,7 +56,6 @@ extension ArtistController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(self.infoEvents[indexPath.row].performance)
         ImageArtist().searchManyImagesArtists(arrayArtists: infoEvents[indexPath.row].performance) { success, data in
             guard success, let data = data else {
                 return

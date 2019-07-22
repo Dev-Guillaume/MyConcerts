@@ -19,6 +19,7 @@ struct Start: Codable {
 struct Events: DataJSON {
     let displayName: String
     let type: String
+    let uri: String
     let popularity: Float
     let start: Start
     let performance: [Performance]

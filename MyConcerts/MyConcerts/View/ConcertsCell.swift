@@ -22,7 +22,7 @@ class ConcertsCell: UITableViewCell {
     func setConcert(event: Events) {
         self.displayName.text = event.displayName
         self.type.text = event.type
-        self.date.text = event.start.date.formateDate()
+        self.date.text = event.start.date.formateDate
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
