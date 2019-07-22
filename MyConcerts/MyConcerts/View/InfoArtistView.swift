@@ -16,7 +16,7 @@ class InfoArtistView: UIView {
     @IBOutlet weak var biographyTextView: UITextView!
     
     func setInfoArtist(infoArtist: InfoArtists) {
-        self.biographyTextView.layer.cornerRadius = 5
+        self.biographyTextView.layer.cornerRadius = 10
         self.biographyTextView.layer.masksToBounds = true
         self.imageArtistNoBlur.layer.cornerRadius = self.imageArtistNoBlur.frame.height / 2
         self.imageArtistNoBlur.clipsToBounds = true

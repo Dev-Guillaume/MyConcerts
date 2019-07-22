@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Performance: Codable {
+struct Performance: DataJSON {
     let displayName: String
 }
 

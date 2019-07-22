@@ -51,8 +51,8 @@ class Concert: ApiProtocol {
                 completionHandler(success, data)
             }
         } catch {
-            completionHandler(false, nil)
             NSLog("Class Concert - Error Decoder: \(error)")
+            completionHandler(false, nil)
             return
         }
     }

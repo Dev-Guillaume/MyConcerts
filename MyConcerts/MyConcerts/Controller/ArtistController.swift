@@ -12,12 +12,14 @@ class ArtistController: UIViewController {
 
     var artist: InfoArtists!
     var infoEvents: [Events]!
+    var index: Int!
+    var imageArtists: [(String, Data?)]!
+    
     @IBOutlet var artistView: ArtistView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.artistView.setArtistView(infoArtist: artist)
-        // Do any additional setup after loading the view.
     }
     
     @IBAction func showDetailArtist(_ sender: Any) {
@@ -28,6 +30,11 @@ class ArtistController: UIViewController {
         if segue.identifier == "segueToInfoArtist" {
             let successVC = segue.destination as! InfoArtistController
             successVC.infoArtist = artist
+        }
+        if segue.identifier == "segueToInfoConcert" {
+            let successVC = segue.destination as! InfoConcertsController
+            successVC.infoEvent = self.infoEvents[index]
+            successVC.imageArtists = self.imageArtists
         }
     }
 }
@@ -45,6 +52,18 @@ extension ArtistController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 101.0
+        return 66.0
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(self.infoEvents[indexPath.row].performance)
+        ImageArtist().searchManyImagesArtists(arrayArtists: infoEvents[indexPath.row].performance) { success, data in
+            guard success, let data = data else {
+                return
+            }
+            self.imageArtists = data
+            self.index = indexPath.row
+            self.performSegue(withIdentifier: "segueToInfoConcert", sender: self)
+        }
     }
 }

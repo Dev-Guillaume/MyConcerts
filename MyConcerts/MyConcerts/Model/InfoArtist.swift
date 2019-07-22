@@ -90,10 +90,36 @@ class InfoArtist: ApiProtocol {
         }
     }
     
-    private func recoverDataImage(urlImage: String) -> Data? { // Download all images of recettes and stock in array
+    func recoverDataImage(urlImage: String) -> Data? { // Download all images of recettes and stock in array
         if URL(string: urlImage) != nil {
             return try? Data(contentsOf: URL(string: urlImage)!)
         }
+        NSLog("Error Decoder: Can't recover Image")
         return nil
+    }
+}
+
+class ImageArtist: InfoArtist {
+    private var imagesArtists: [(String, Data?)] = []
+    
+    func searchManyImagesArtists(arrayArtists: [DataJSON], completionHandler: @escaping (Bool, [(String, Data?)]?) -> Void) {
+        guard let arrayArtists = arrayArtists as? [Performance] else {
+            completionHandler(false, nil)
+            return
+        }
+        let myGroup: DispatchGroup = DispatchGroup()
+        for artist in arrayArtists {
+            myGroup.enter()
+            self.setArtist(artist: artist.displayName)
+            self.newRequestGet { success, data in
+                if (success) {
+                    self.imagesArtists.append(((data?.first as! Info).strArtist, self.recoverDataImage(urlImage: (data?.first as! Info).strArtistThumb ?? "")))
+                }
+                myGroup.leave()
+            }
+        }
+        myGroup.notify(queue: .main) {
+            completionHandler(true, self.imagesArtists)
+        }
     }
 }

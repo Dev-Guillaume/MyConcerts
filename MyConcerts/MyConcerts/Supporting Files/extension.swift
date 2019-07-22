@@ -49,3 +49,13 @@ extension String {
         return  dateFormatter.string(from: date!)
     }
 }
+
+extension Array where Element == Performance {
+    var toArrayName: [Name] {
+        var arrayName: [Name] = []
+        for name in self {
+            arrayName.append(Name(name: name.displayName))
+        }
+        return arrayName
+    }
+}
