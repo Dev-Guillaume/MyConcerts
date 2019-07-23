@@ -7,16 +7,22 @@
 //
 
 import UIKit
+import MapKit
 
 class InfoConcertView: UIView {
 
-    @IBOutlet weak var imageArtist: UIImageView!
     @IBOutlet weak var nameConcert: UILabel!
+    @IBOutlet weak var mapView: MKMapView!
     
-    func setInfoConcertView(dataImageArtist: Data?, nameConcert: String) {
-        self.imageArtist.layer.cornerRadius = self.imageArtist.frame.height / 2
-        self.imageArtist.clipsToBounds = true
-        self.imageArtist.image = dataImageArtist.dataToUIImage
-        self.nameConcert.text = nameConcert
+    func setInfoConcertView(infoConcert: DetailEvent) {
+        self.nameConcert.text = infoConcert.displayName
+        mapView.register(MKMarkerAnnotationView.self, forAnnotationViewWithReuseIdentifier: "Annotation")
+        let location = CLLocationCoordinate2D(latitude: infoConcert.venue?.lat ?? 0, longitude: infoConcert.venue?.lng ?? 0)
+        let region = MKCoordinateRegion(center: location, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+        self.mapView.setRegion(region, animated: true)
+        let annotation = MKPointAnnotation()
+        annotation.title = infoConcert.displayName
+        annotation.coordinate = CLLocationCoordinate2D(latitude: infoConcert.venue?.lat ?? 0, longitude: infoConcert.venue?.lng ?? 0)
+       self.mapView.addAnnotation(annotation)
     }
 }

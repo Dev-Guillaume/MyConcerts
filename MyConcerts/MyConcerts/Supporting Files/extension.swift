@@ -59,3 +59,14 @@ extension Array where Element == Performance {
         return arrayName
     }
 }
+
+extension Optional where Wrapped == Int {
+    
+    var intToString: String? {
+        guard(self != nil) else {
+            return nil
+        }
+        return String(self!)
+    }
+    
+}

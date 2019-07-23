@@ -78,3 +78,15 @@ extension ApiProtocol {
         task.resume()
     }
 }
+
+
+protocol ArtistProtocol: class {
+    var artist: String { set get }
+    func setArtist(artist: String) -> Void
+}
+
+extension ArtistProtocol {
+    func setArtist(artist: String) {
+        self.artist = artist.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? ""
+    }
+}

@@ -7,24 +7,27 @@
 //
 
 import UIKit
+import MapKit
 
 class InfoConcertsController: UIViewController {
 
     var imageArtists: [ImagesArtists]!
     var infoEventPicked: DetailEvent!
+    var artistPicked: InfoArtists!
+    var infoEvent: [Events]!
     
     @IBOutlet var infoConcertView: InfoConcertView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        //self.infoConcertView.setInfoConcertView(dataImageArtist: self.infoEvent.1, nameConcert: self.infoEvent.0.displayName)
+        self.infoConcertView.setInfoConcertView(infoConcert: infoEventPicked)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) { // Prepare variables for the changement of controller
-        /*if segue.identifier == "segueToArtist" {
+        if segue.identifier == "segueToArtist" {
             let successVC = segue.destination as! ArtistController
-            successVC.artist = artistPicked
-            successVC.infoEvents = infoEventPicked
-        }*/
+            successVC.artist = self.artistPicked
+            successVC.infoEvents = self.infoEvent
+        }
     }
 }
 
@@ -40,32 +43,33 @@ extension InfoConcertsController: UICollectionViewDataSource, UICollectionViewDe
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        /*let concert = Concert()
-        InfoArtist().searchArtist(artist: self.imageArtists[indexPath.row].0) { success, data in
+        InfoArtist().searchArtist(artist: self.imageArtists[indexPath.row].name) { success, data in
             guard success, let data = data else {
                 return
             }
             self.artistPicked = data
-            concert.setArtist(artist: self.imageArtists[indexPath.row].0)
-            concert.newRequestGet { success, data in
+            Concert(artist: self.imageArtists[indexPath.row].name).newRequestGet { success, data in
                 guard success, let data = data as? [Events] else {
                     return
                 }
-                self.infoEventPicked = data
+                self.infoEvent = data
                 self.performSegue(withIdentifier: "segueToArtist", sender: self)
             }
-        }*/
+        }
     }
 }
 
 extension InfoConcertsController: UITableViewDataSource, UITableViewDelegate {
 
     var arrayInfoEvents: [(String, UIImage?)] {
-        return [(infoEventPicked.type ?? "" , UIImage(named: "typeConcert")),
+        return [(infoEventPicked.type ?? "No type concert" , UIImage(named: "typeConcert")),
                 (String(infoEventPicked.popularity) + " popularity", UIImage(named: "popularity")),
-                (infoEventPicked.uri ?? "" , UIImage(named: "website")),
-                (infoEventPicked.start.date?.formateDate ?? "", UIImage(named: "date")),
-                (infoEventPicked.start.time ?? "", UIImage(named: "date"))]
+                (infoEventPicked.uri ?? "No Webside" , UIImage(named: "website")),
+                (infoEventPicked.start.date?.formateDate ?? "No date", UIImage(named: "date")),
+                (infoEventPicked.start.time ?? "No time found", UIImage(named: "date")),
+                (infoEventPicked.ageRestriction ?? "No restriction", UIImage(named: "date")),
+                (infoEventPicked.venue?.phone ?? "No phone", UIImage(named: "date")),
+                (infoEventPicked.venue?.capacity.intToString ?? "No capacity found", UIImage(named: "date"))]
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -78,3 +82,4 @@ extension InfoConcertsController: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
 }
+

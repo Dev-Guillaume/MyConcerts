@@ -20,6 +20,8 @@
 		F08889C122E0FD1100B8CFDE /* Concert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08889C022E0FD1100B8CFDE /* Concert.swift */; };
 		F08889C322E0FD2C00B8CFDE /* EventsHref.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08889C222E0FD2C00B8CFDE /* EventsHref.swift */; };
 		F08889C522E10F3700B8CFDE /* ApiProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08889C422E10F3700B8CFDE /* ApiProtocol.swift */; };
+		F0ACDF9922E6B08A00C52191 /* ImageArtist.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0ACDF9822E6B08A00C52191 /* ImageArtist.swift */; };
+		F0ACDF9B22E6B0B400C52191 /* InfoConcert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0ACDF9A22E6B0B400C52191 /* InfoConcert.swift */; };
 		F0AEA64722C56992009100D1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0AEA64622C56992009100D1 /* AppDelegate.swift */; };
 		F0AEA64C22C56992009100D1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0AEA64A22C56992009100D1 /* Main.storyboard */; };
 		F0AEA64F22C56992009100D1 /* MyConcerts.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F0AEA64D22C56992009100D1 /* MyConcerts.xcdatamodeld */; };
@@ -57,6 +59,8 @@
 		F08889C022E0FD1100B8CFDE /* Concert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Concert.swift; sourceTree = "<group>"; };
 		F08889C222E0FD2C00B8CFDE /* EventsHref.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsHref.swift; sourceTree = "<group>"; };
 		F08889C422E10F3700B8CFDE /* ApiProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiProtocol.swift; sourceTree = "<group>"; };
+		F0ACDF9822E6B08A00C52191 /* ImageArtist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageArtist.swift; sourceTree = "<group>"; };
+		F0ACDF9A22E6B0B400C52191 /* InfoConcert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoConcert.swift; sourceTree = "<group>"; };
 		F0AEA64322C56992009100D1 /* MyConcerts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyConcerts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0AEA64622C56992009100D1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F0AEA64B22C56992009100D1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -140,6 +144,8 @@
 				F08889BE22E0FCE000B8CFDE /* InfoArtist.swift */,
 				F08889C022E0FD1100B8CFDE /* Concert.swift */,
 				F08889C222E0FD2C00B8CFDE /* EventsHref.swift */,
+				F0ACDF9822E6B08A00C52191 /* ImageArtist.swift */,
+				F0ACDF9A22E6B0B400C52191 /* InfoConcert.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -294,8 +300,10 @@
 				F08889BD22E0FCC300B8CFDE /* TopArtists.swift in Sources */,
 				F08889C122E0FD1100B8CFDE /* Concert.swift in Sources */,
 				F0AEA67822C7B653009100D1 /* ArtistController.swift in Sources */,
+				F0ACDF9922E6B08A00C52191 /* ImageArtist.swift in Sources */,
 				F0AEA67222C576D6009100D1 /* extension.swift in Sources */,
 				F054CF2B22E5167F000F6FFB /* ArtistCollectionCell.swift in Sources */,
+				F0ACDF9B22E6B0B400C52191 /* InfoConcert.swift in Sources */,
 				F03CFBFF22D9358600A44632 /* InfoArtistController.swift in Sources */,
 				F0AEA66E22C57634009100D1 /* ListArtistsController.swift in Sources */,
 				F03CFC0322D94FE300A44632 /* InfoArtistCell.swift in Sources */,

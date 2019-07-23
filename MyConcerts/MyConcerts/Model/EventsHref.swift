@@ -34,9 +34,9 @@ struct InfoEvent: Codable {
 class EventsHref: ApiProtocol {
     var url: String = ""
     var request: URLRequest!
-    private var href: String = ""
+    private var href: String
     
-    func setHref(href: String) {
+    init(href: String) {
         self.href = href
     }
     

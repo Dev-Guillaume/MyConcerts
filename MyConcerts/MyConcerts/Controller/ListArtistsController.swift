@@ -12,10 +12,6 @@ class ListArtistsController: UIViewController {
 
     var listTopArtists: [InfoArtists] = []
     var infoEvents: [Events] = []
-    
-    let infoArtists = InfoArtist()
-    let concert = Concert()
-    
     var artistPicked: InfoArtists!
     
     @IBOutlet weak var artistsTableView: UITableView!
@@ -28,7 +24,7 @@ class ListArtistsController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(displayError), name: .error, object: nil)
         TopArtists().newRequestGet { success, data in
             if success {
-                self.infoArtists.searchManyArtists(arrayArtists: data!) { success, data in
+                InfoArtist().searchManyArtists(arrayArtists: data!) { success, data in
                     guard success, let data = data else {
                         return
                     }
@@ -73,8 +69,7 @@ extension ListArtistsController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.artistPicked = self.listTopArtists[indexPath.row]
-        concert.setArtist(artist: self.artistPicked.info.strArtist)
-        concert.newRequestGet { success, data in
+        Concert(artist: self.artistPicked.info.strArtist).newRequestGet { success, data in
             guard success, let data = data as? [Events] else {
                 return
             }
@@ -87,7 +82,7 @@ extension ListArtistsController: UITableViewDataSource, UITableViewDelegate {
 extension ListArtistsController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        self.infoArtists.searchArtist(artist: searchBar.text ?? "") { success, data in
+        InfoArtist().searchArtist(artist: searchBar.text ?? "") { success, data in
             guard success, let data = data else {
                 return
             }
