@@ -20,6 +20,7 @@ protocol ApiProtocol: class {
     var urlApi: [ApiName: String] { get }
     var url: String { set get }
     var request: URLRequest! { set get }
+    var ecoMode: Bool { get }
     
     func createUrl() -> Void
     func newRequestGet(completionHandler: @escaping (Bool, [DataJSON]?) -> Void)
@@ -28,6 +29,10 @@ protocol ApiProtocol: class {
 }
 
 extension ApiProtocol {
+    
+    var ecoMode: Bool {
+        return modeEco.boolean
+    }
     
     var session: URLSession {
         return URLSession(configuration: .default)
@@ -46,6 +51,10 @@ extension ApiProtocol {
     }
     
     func newRequestGet(completionHandler: @escaping (Bool, [DataJSON]?) -> Void) {
+        if self.ecoMode == true {
+            completionHandler(true, [])
+            return
+        }
         self.createUrl()  // Call the function createUrl
         guard let url = URL(string: self.url) else {
             return NotificationCenter.default.post(name: .error, object: ["Error Url", "Can't construct URL"])

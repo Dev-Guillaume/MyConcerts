@@ -38,7 +38,7 @@ extension InfoConcertsController: UICollectionViewDataSource, UICollectionViewDe
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: ArtistCollectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ArtistCollectionCell", for: indexPath) as! ArtistCollectionCell
-        cell.setImageCollection(imageArtist: imageArtists[indexPath.row].image)
+        cell.setImageCollection(performers: self.imageArtists[indexPath.row])
         return cell
     }
     

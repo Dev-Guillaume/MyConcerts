@@ -27,7 +27,7 @@ class ImageArtist: InfoArtist {
             self.setArtist(artist: artist.displayName )
             self.newRequestGet { success, data in
                 if (success) {
-                    self.imagesArtists.append(ImagesArtists(name: (data?.first as! Info).strArtist, image: self.recoverDataImage(urlImage: (data?.first as! Info).strArtistThumb ?? "")))
+                    self.imagesArtists.append(ImagesArtists(name: artist.displayName, image: self.recoverDataImage(urlImage: (data?.first as? Info)?.strArtistThumb ?? "")))
                 }
                 myGroup.leave()
             }

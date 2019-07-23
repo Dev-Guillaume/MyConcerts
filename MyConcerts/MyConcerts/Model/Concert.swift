@@ -32,6 +32,7 @@ class Concert: ApiProtocol, ArtistProtocol {
     var url: String = ""
     var request: URLRequest!
     internal var artist: String
+    var ecoMode: Bool = false
     
     init(artist: String) {
         self.artist = artist.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? ""

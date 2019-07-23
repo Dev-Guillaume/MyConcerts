@@ -57,7 +57,7 @@ class InfoArtist: ApiProtocol, ArtistProtocol {
             self.setArtist(artist: artist.name ?? "")
             self.newRequestGet { success, data in
                 if (success) {
-                    self.infoArtists.append(InfoArtists(info: data?.first as! Info,
+                    self.infoArtists.append(InfoArtists(info: (data?.first as? Info ?? Info(strArtist: artist.name ?? "", strLabel: nil, intBornYear: nil, intDiedYear: nil, strGenre: nil, strWebsite: nil, strFacebook: nil, strTwitter: nil, strBiographyEN: nil, strCountry: nil, strArtistThumb: nil)),
                                                         image: self.recoverDataImage(urlImage: (data?.first as! Info).strArtistThumb ?? "")))
                 }
                 myGroup.leave()
@@ -75,7 +75,7 @@ class InfoArtist: ApiProtocol, ArtistProtocol {
             guard success else {
                 return completionHandler(false, nil)
             }
-            completionHandler(true, InfoArtists(info: (data?.first as? Info)!, image: self.recoverDataImage(urlImage: (data?.first as? Info)?.strArtistThumb ?? "")))
+            completionHandler(true, InfoArtists(info: ((data?.first as? Info ?? Info(strArtist: artist, strLabel: nil, intBornYear: nil, intDiedYear: nil, strGenre: nil, strWebsite: nil, strFacebook: nil, strTwitter: nil, strBiographyEN: nil, strCountry: nil, strArtistThumb: nil))), image: self.recoverDataImage(urlImage: (data?.first as? Info)?.strArtistThumb ?? "")))
         }
     }
     

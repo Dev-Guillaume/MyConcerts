@@ -35,6 +35,7 @@ class EventsHref: ApiProtocol {
     var url: String = ""
     var request: URLRequest!
     private var href: String
+    var ecoMode: Bool = false
     
     init(href: String) {
         self.href = href

@@ -25,7 +25,14 @@ struct startConcert: Codable {
     let time: String?
 }
 
+struct Location: Codable {
+    let city: String?
+    let lng: Double?
+    let lat: Double?
+}
+
 struct DetailEvent: DataJSON {
+    let location: Location
     let displayName: String?
     let type: String?
     let uri: String?
@@ -52,6 +59,7 @@ class InfoConcert: ApiProtocol {
     var url: String = ""
     var request: URLRequest!
     private var idConcert: Int
+    var ecoMode: Bool = false
     
     init(idConcert: Int) {
         self.idConcert = idConcert

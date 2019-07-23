@@ -11,10 +11,12 @@ import UIKit
 class ArtistCollectionCell: UICollectionViewCell {
     
     @IBOutlet weak var imageArtist: UIImageView!
+    @IBOutlet weak var nameArtist: UILabel!
     
-    func setImageCollection(imageArtist: Data?) {
+    func setImageCollection(performers: ImagesArtists) {
         self.imageArtist.layer.cornerRadius = self.imageArtist.frame.height / 2
         self.imageArtist.clipsToBounds = true
-        self.imageArtist.image = imageArtist.dataToUIImage
+        self.imageArtist.image = performers.image.dataToUIImage
+        self.nameArtist.text = performers.name
     }
 }

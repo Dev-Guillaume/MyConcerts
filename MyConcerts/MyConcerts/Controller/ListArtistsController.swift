@@ -14,13 +14,19 @@ class ListArtistsController: UIViewController {
     var infoEvents: [Events] = []
     var artistPicked: InfoArtists!
     
+    @IBOutlet weak var modeEcoView: ModeEcoView!
     @IBOutlet weak var artistsTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var launchingActivityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        switch modeEco.boolean {
+        case true:
+            self.modeEcoView.modeEcoOn()
+        case false:
+            self.modeEcoView.modeEcoOff()
+        }
         NotificationCenter.default.addObserver(self, selector: #selector(displayError), name: .error, object: nil)
         TopArtists().newRequestGet { success, data in
             if success {
@@ -28,6 +34,7 @@ class ListArtistsController: UIViewController {
                     guard success, let data = data else {
                         return
                     }
+                    self.modeEcoView.enabledModeEco()
                     self.searchBar.isHidden = false
                     self.artistsTableView.isHidden = false
                     self.launchingActivityIndicator.stopAnimating()
@@ -40,6 +47,26 @@ class ListArtistsController: UIViewController {
     
     @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
         searchBar.resignFirstResponder()
+    }
+    
+    @IBAction func buttonModeEco(_ sender: Any) {
+        let alert = UIAlertController(title: "EcoMode", message: "The EcoMode makes it possible to reduce the sending of requests to have a faster application.\nThe informations and photos of each artist are disabled.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Continue", style: .default, handler: { action in
+            self.ecoMode()
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    private func ecoMode() {
+        switch modeEco.boolean {
+        case true:
+            self.modeEcoView.modeEcoOff()
+            UserDefaults.standard.set(false, forKey: "ModeEco")
+        case false:
+            self.modeEcoView.modeEcoOn()
+            UserDefaults.standard.set(true, forKey: "ModeEco")
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) { // Prepare variables for the changement of controller
