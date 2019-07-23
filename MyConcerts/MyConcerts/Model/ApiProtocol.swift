@@ -21,6 +21,8 @@ protocol ApiProtocol: class {
     var url: String { set get }
     var request: URLRequest! { set get }
     var ecoMode: Bool { get }
+    var task: URLSessionDataTask? { get set }
+    var cancel: Bool { get }
     
     func createUrl() -> Void
     func newRequestGet(completionHandler: @escaping (Bool, [DataJSON]?) -> Void)
@@ -32,6 +34,10 @@ extension ApiProtocol {
     
     var ecoMode: Bool {
         return modeEco.boolean
+    }
+    
+    var cancel: Bool {
+        return true
     }
     
     var session: URLSession {
@@ -68,7 +74,10 @@ extension ApiProtocol {
     
     func getData(completionHandler: @escaping (Bool, [DataJSON]?) -> Void) {
         // Create a task with the Url for get some Date
-        let task = self.session.dataTask(with: self.request) { (data, response, error) in
+        if self.cancel == true {
+            self.task?.cancel()
+        }
+        self.task = self.session.dataTask(with: self.request) { (data, response, error) in
             DispatchQueue.main.async {
                 guard let data = data, error == nil else { // Get the data
                     completionHandler(false, nil)
@@ -84,18 +93,6 @@ extension ApiProtocol {
                 }
             }
         }
-        task.resume()
-    }
-}
-
-
-protocol ArtistProtocol: class {
-    var artist: String { set get }
-    func setArtist(artist: String) -> Void
-}
-
-extension ArtistProtocol {
-    func setArtist(artist: String) {
-        self.artist = artist.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? ""
+        self.task?.resume()
     }
 }

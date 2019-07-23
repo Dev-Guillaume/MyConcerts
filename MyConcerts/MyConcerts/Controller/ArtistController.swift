@@ -16,6 +16,9 @@ class ArtistController: UIViewController {
     var imageArtists: [ImagesArtists]!
     var infoEventPicked: DetailEvent!
     
+    let infoConcert = InfoConcert()
+    let imageArtist = ImageArtist()
+    
     @IBOutlet var artistView: ArtistView!
     
     override func viewDidLoad() {
@@ -57,12 +60,13 @@ extension ArtistController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        InfoConcert(idConcert: self.infoEvents[indexPath.row].id).newRequestGet { success, data in
+        self.infoConcert.setIdConcert(idConcert: self.infoEvents[indexPath.row].id)
+        self.infoConcert.newRequestGet { success, data in
             guard success, let data = (data as? [DetailEvent])?.first else {
                 return
             }
             self.infoEventPicked = data
-            ImageArtist().searchManyImagesArtists(arrayArtists: data.performance) { success, data in
+            self.imageArtist.searchManyImagesArtists(arrayArtists: data.performance) { success, data in
                 guard success, let data = data else {
                     return
                 }

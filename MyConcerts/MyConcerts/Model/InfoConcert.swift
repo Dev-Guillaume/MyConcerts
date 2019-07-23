@@ -15,9 +15,9 @@ struct Performance: DataJSON {
 struct Venue: Codable {
     let phone: String?
     let displayName: String?
+    let street: String?
     let capacity: Int?
-    let lat: Double
-    let lng: Double
+    let description: String?
 }
 
 struct startConcert: Codable {
@@ -56,12 +56,21 @@ struct DetailConcert: Codable {
 }
 
 class InfoConcert: ApiProtocol {
+    var task: URLSessionDataTask?
     var url: String = ""
     var request: URLRequest!
     private var idConcert: Int
     var ecoMode: Bool = false
     
     init(idConcert: Int) {
+        self.idConcert = idConcert
+    }
+    
+    init() {
+        self.idConcert = 0
+    }
+    
+    func setIdConcert(idConcert: Int) {
         self.idConcert = idConcert
     }
     

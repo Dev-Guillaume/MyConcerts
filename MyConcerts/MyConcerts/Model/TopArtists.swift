@@ -21,6 +21,7 @@ struct ListTopArtists: Codable {
 }
 
 class TopArtists: ApiProtocol {
+    var task: URLSessionDataTask?
     var url: String = ""
     var request: URLRequest!
     

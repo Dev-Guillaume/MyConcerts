@@ -32,8 +32,10 @@ struct InfoArtists {
 }
 
 class InfoArtist: ApiProtocol, ArtistProtocol {
+    var task: URLSessionDataTask?
     var url: String = ""
     var request: URLRequest!
+    var cancel: Bool = false
     internal var artist: String
     private var topArtists: [Name] = []
     private var infoArtists: [InfoArtists] = []
@@ -47,6 +49,7 @@ class InfoArtist: ApiProtocol, ArtistProtocol {
     }
     
     func searchManyArtists(arrayArtists: [DataJSON], completionHandler: @escaping (Bool, [InfoArtists]?) -> Void) {
+        self.task?.cancel()
         guard let arrayArtists = arrayArtists as? [Name] else {
             completionHandler(false, nil)
             return
@@ -69,6 +72,7 @@ class InfoArtist: ApiProtocol, ArtistProtocol {
     }
     
     func searchArtist(artist: String, completionHandler: @escaping (Bool, InfoArtists?) -> Void) {
+        self.task?.cancel()
         self.infoArtists.removeAll()
         self.setArtist(artist: artist)
         self.newRequestGet { success, data in

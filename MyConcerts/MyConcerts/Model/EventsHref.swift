@@ -32,6 +32,7 @@ struct InfoEvent: Codable {
 }
 
 class EventsHref: ApiProtocol {
+    var task: URLSessionDataTask?
     var url: String = ""
     var request: URLRequest!
     private var href: String
@@ -44,7 +45,6 @@ class EventsHref: ApiProtocol {
     func createUrl() {
         self.url = self.href + "?apikey=JDyRTYDK3g9GUd3V"
         self.url = self.url.replacingOccurrences(of: "http", with: "https")
-        print(self.url)
     }
     
     func getResponseJSON(data: Data, completionHandler: @escaping (Bool, [DataJSON]?) -> Void) {

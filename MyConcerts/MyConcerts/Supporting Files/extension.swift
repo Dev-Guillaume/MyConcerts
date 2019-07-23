@@ -48,6 +48,13 @@ extension String {
         dateFormatter.dateFormat = "EEEE MMM d yyyy"
         return  dateFormatter.string(from: date!)
     }
+    
+    var openSafari: Void {
+        guard let url = URL(string: "https://" + self) else {
+            return
+        }
+        UIApplication.shared.open(url)
+    }
 }
 
 extension Array where Element == Performance {

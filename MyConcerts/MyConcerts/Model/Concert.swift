@@ -29,14 +29,11 @@ struct EventRef: DataJSON {
 }
 
 class Concert: ApiProtocol, ArtistProtocol {
+    var task: URLSessionDataTask?
     var url: String = ""
     var request: URLRequest!
-    internal var artist: String
+    internal var artist: String = ""
     var ecoMode: Bool = false
-    
-    init(artist: String) {
-        self.artist = artist.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? ""
-    }
     
     func createUrl() {
         self.url = self.urlApi[.songkick]! + "search/artists.json?" + self.keyApi[.songkick]! + "&query=" + self.artist

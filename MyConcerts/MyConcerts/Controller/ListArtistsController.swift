@@ -14,6 +14,8 @@ class ListArtistsController: UIViewController {
     var infoEvents: [Events] = []
     var artistPicked: InfoArtists!
     
+    let concert = Concert()
+    
     @IBOutlet weak var modeEcoView: ModeEcoView!
     @IBOutlet weak var artistsTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -96,7 +98,8 @@ extension ListArtistsController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.artistPicked = self.listTopArtists[indexPath.row]
-        Concert(artist: self.artistPicked.info.strArtist).newRequestGet { success, data in
+        self.concert.setArtist(artist: self.artistPicked.info.strArtist)
+        self.concert.newRequestGet { success, data in
             guard success, let data = data as? [Events] else {
                 return
             }

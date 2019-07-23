@@ -35,7 +35,7 @@ extension InfoArtistController: UITableViewDataSource, UITableViewDelegate {
                 (infoArtist.info.intBornYear ?? "?", UIImage(named: "birth")),
                 (infoArtist.info.intDiedYear ?? "?", UIImage(named: "died")),
                 (infoArtist.info.strGenre ?? "?", UIImage(named: "genre")),
-                (infoArtist.info.strBiographyEN ?? "No Biography", UIImage(named: "biography")),
+                (infoArtist.info.strBiographyEN ?? "No Biography", UIImage(named: "description")),
                 (infoArtist.info.strCountry ?? "?", UIImage(named: "country"))]
     }
     
@@ -56,19 +56,12 @@ extension InfoArtistController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch true {
         case InfoArtistController.website.contains(indexPath.row):
-            self.openSafari(url: arrayInfoArtist[indexPath.row].0)
+            arrayInfoArtist[indexPath.row].0.openSafari
         case InfoArtistController.biography == indexPath.row:
             self.openTextView(biography: arrayInfoArtist[indexPath.row].0)
         default:
             return
         }
-    }
-    
-    func openSafari(url: String) {
-        guard let url = URL(string: "https://" + url) else {
-            return
-        }
-        UIApplication.shared.open(url)
     }
     
     func openTextView(biography: String) {

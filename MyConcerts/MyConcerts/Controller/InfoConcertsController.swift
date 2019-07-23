@@ -15,6 +15,7 @@ class InfoConcertsController: UIViewController {
     var infoEventPicked: DetailEvent!
     var artistPicked: InfoArtists!
     var infoEvent: [Events]!
+    let concert = Concert()
     
     @IBOutlet var infoConcertView: InfoConcertView!
     override func viewDidLoad() {
@@ -48,7 +49,8 @@ extension InfoConcertsController: UICollectionViewDataSource, UICollectionViewDe
                 return
             }
             self.artistPicked = data
-            Concert(artist: self.imageArtists[indexPath.row].name).newRequestGet { success, data in
+            self.concert.setArtist(artist: self.imageArtists[indexPath.row].name)
+            self.concert.newRequestGet { success, data in
                 guard success, let data = data as? [Events] else {
                     return
                 }
@@ -64,12 +66,15 @@ extension InfoConcertsController: UITableViewDataSource, UITableViewDelegate {
     var arrayInfoEvents: [(String, UIImage?)] {
         return [(infoEventPicked.type ?? "No type concert" , UIImage(named: "typeConcert")),
                 (String(infoEventPicked.popularity) + " popularity", UIImage(named: "popularity")),
-                (infoEventPicked.uri ?? "No Webside" , UIImage(named: "website")),
-                (infoEventPicked.start.date?.formateDate ?? "No date", UIImage(named: "date")),
-                (infoEventPicked.start.time ?? "No time found", UIImage(named: "date")),
-                (infoEventPicked.ageRestriction ?? "No restriction", UIImage(named: "date")),
-                (infoEventPicked.venue?.phone ?? "No phone", UIImage(named: "date")),
-                (infoEventPicked.venue?.capacity.intToString ?? "No capacity found", UIImage(named: "date"))]
+                (infoEventPicked.start.date?.formateDate ?? "No Date", UIImage(named: "date")),
+                (infoEventPicked.start.time ?? "No Time", UIImage(named: "time")),
+                (infoEventPicked.ageRestriction ?? "No Restriction", UIImage(named: "restriction")),
+                (infoEventPicked.venue?.phone ?? "No Phone", UIImage(named: "phone")),
+                (infoEventPicked.venue?.capacity.intToString ?? "No Capacity", UIImage(named: "capacity")),
+                ((infoEventPicked.venue?.street ?? "") + " " + (infoEventPicked.location.city ?? "No Location"), UIImage(named: "location")),
+                (infoEventPicked.venue?.displayName ?? "No Name", UIImage(named: "concert")),
+                (infoEventPicked.venue?.description ?? "No Description", UIImage(named: "description")),
+                (infoEventPicked.uri ?? "No Webside" , UIImage(named: "website"))]
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
