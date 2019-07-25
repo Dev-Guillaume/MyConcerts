@@ -49,11 +49,11 @@ class InfoArtist: ApiProtocol, ArtistProtocol {
     }
     
     func searchManyArtists(arrayArtists: [DataJSON], completionHandler: @escaping (Bool, [InfoArtists]?) -> Void) {
-        if ((self.task?.cancel()) != nil) {
+        guard let arrayArtists = arrayArtists as? [Name] else {
             completionHandler(false, nil)
             return
         }
-        guard let arrayArtists = arrayArtists as? [Name] else {
+        guard self.cancelTask else {
             completionHandler(false, nil)
             return
         }
@@ -75,7 +75,10 @@ class InfoArtist: ApiProtocol, ArtistProtocol {
     }
     
     func searchArtist(artist: String, completionHandler: @escaping (Bool, InfoArtists?) -> Void) {
-        self.task?.cancel()
+        guard self.cancelTask else {
+            completionHandler(false, nil)
+            return
+        }
         self.infoArtists.removeAll()
         self.setArtist(artist: artist)
         self.newRequestGet { success, data in

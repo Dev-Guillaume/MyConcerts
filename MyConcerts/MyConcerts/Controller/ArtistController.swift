@@ -23,12 +23,7 @@ class ArtistController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(toConcert), name: .toConcert, object: nil)
         self.artistView.setArtistView(infoArtist: artist)
-    }
-    
-    @objc func toConcert() {
-        self.performSegue(withIdentifier: "segueToInfoConcert", sender: self)
     }
     
     @IBAction func showDetailArtist(_ sender: Any) {
@@ -76,6 +71,7 @@ extension ArtistController: UITableViewDataSource, UITableViewDelegate {
                     return
                 }
                 self.imageArtists = data
+                 self.performSegue(withIdentifier: "segueToInfoConcert", sender: self)
             }
         }
     }

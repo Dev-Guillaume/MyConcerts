@@ -45,7 +45,7 @@ class Concert: ApiProtocol, ArtistProtocol {
             let resultData = try JSONDecoder().decode(EventRef.self, from: data)
             EventsHref(href: resultData.resultsPage.results.artist.first?.identifier.first?.eventsHref ?? "").newRequestGet() { success, data in
                 completionHandler(success, data)
-                return NotificationCenter.default.post(name: .toArtist, object: nil)
+                return
             }
         } catch {
             NSLog("Class Concert - Error Decoder: \(error)")

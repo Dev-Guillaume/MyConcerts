@@ -21,6 +21,10 @@ class ImageArtist: InfoArtist {
             completionHandler(false, nil)
             return
         }
+        guard self.cancelTask else {
+            completionHandler(false, nil)
+            return
+        }
         let myGroup: DispatchGroup = DispatchGroup()
         for artist in arrayArtists {
             myGroup.enter()
@@ -34,7 +38,7 @@ class ImageArtist: InfoArtist {
         }
         myGroup.notify(queue: .main) {
             completionHandler(true, self.imagesArtists)
-            return NotificationCenter.default.post(name: .toConcert, object: nil)
+            return
         }
     }
 }

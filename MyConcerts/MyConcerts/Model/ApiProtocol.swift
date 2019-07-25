@@ -23,6 +23,7 @@ protocol ApiProtocol: class {
     var ecoMode: Bool { get }
     var task: URLSessionDataTask? { get set }
     var cancel: Bool { get }
+    var cancelTask: Bool { get }
     
     func createUrl() -> Void
     func newRequestGet(completionHandler: @escaping (Bool, [DataJSON]?) -> Void)
@@ -56,6 +57,11 @@ extension ApiProtocol {
                 .songkick: "https://api.songkick.com/api/3.0/"]
     }
     
+    var cancelTask: Bool {
+        self.task?.cancel()
+        return self.task?.state != URLSessionTask.State.canceling
+    }
+    
     func newRequestGet(completionHandler: @escaping (Bool, [DataJSON]?) -> Void) {
         if self.ecoMode == true {
             completionHandler(true, [])
@@ -74,8 +80,11 @@ extension ApiProtocol {
     
     func getData(completionHandler: @escaping (Bool, [DataJSON]?) -> Void) {
         // Create a task with the Url for get some Date
-        if self.cancel == true && self.task != nil {
-            self.task?.cancel()
+        if (self.cancel == true) {
+            guard self.cancelTask else {
+                completionHandler(false, nil)
+                return
+            }
         }
         self.task = self.session.dataTask(with: self.request) { (data, response, error) in
             DispatchQueue.main.async {
