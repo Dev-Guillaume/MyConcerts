@@ -30,6 +30,7 @@ class ListArtistsController: UIViewController {
             self.modeEcoView.modeEcoOff()
         }
         NotificationCenter.default.addObserver(self, selector: #selector(displayError), name: .error, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(toArtist), name: .toArtist, object: nil)
         TopArtists().newRequestGet { success, data in
             if success {
                 InfoArtist().searchManyArtists(arrayArtists: data!) { success, data in
@@ -45,6 +46,10 @@ class ListArtistsController: UIViewController {
                 }
             }
         }
+    }
+    
+    @objc func toArtist() {
+        self.performSegue(withIdentifier: "segueToArtist", sender: self)
     }
     
     @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
@@ -104,7 +109,6 @@ extension ListArtistsController: UITableViewDataSource, UITableViewDelegate {
                 return
             }
             self.infoEvents = data
-            self.performSegue(withIdentifier: "segueToArtist", sender: self)
         }
     }
 }

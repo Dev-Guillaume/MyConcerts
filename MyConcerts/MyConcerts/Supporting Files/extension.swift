@@ -11,6 +11,8 @@ import UIKit
 
 extension Notification.Name {
     static let error = Notification.Name("error")
+    static let toArtist = Notification.Name("toArtist")
+    static let toConcert = Notification.Name("toConcert")
 }
 
 extension UIViewController {
@@ -55,6 +57,22 @@ extension String {
         }
         UIApplication.shared.open(url)
     }
+    
+    var hoursToDate: Date {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm:ss"
+        return dateFormatter.date(from: self) ?? Date()
+    }
+    
+    var stringToDate: Date {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        return dateFormatter.date(from: self) ?? Date()
+    }
+    
+    var startDate: Date {
+        return self.stringToDate
+    }
 }
 
 extension Array where Element == Performance {
@@ -76,4 +94,10 @@ extension Optional where Wrapped == Int {
         return String(self!)
     }
     
+}
+
+extension Date {
+    var endDate: Date {
+        return Calendar.current.date(byAdding: .hour, value: 10, to: self) ?? Date()
+    }
 }

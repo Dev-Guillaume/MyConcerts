@@ -15,6 +15,8 @@
 		F054CF2B22E5167F000F6FFB /* ArtistCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F054CF2A22E5167F000F6FFB /* ArtistCollectionCell.swift */; };
 		F054CF2D22E53320000F6FFB /* InfoConcertCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F054CF2C22E53320000F6FFB /* InfoConcertCell.swift */; };
 		F054CF2F22E536AB000F6FFB /* InfoConcertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F054CF2E22E536AB000F6FFB /* InfoConcertView.swift */; };
+		F064375E22E7F94700874923 /* EventCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F064375D22E7F94700874923 /* EventCalendar.swift */; };
+		F064376022E8CC8100874923 /* FavoriteButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F064375F22E8CC8100874923 /* FavoriteButtonView.swift */; };
 		F08889BD22E0FCC300B8CFDE /* TopArtists.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08889BC22E0FCC300B8CFDE /* TopArtists.swift */; };
 		F08889BF22E0FCE000B8CFDE /* InfoArtist.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08889BE22E0FCE000B8CFDE /* InfoArtist.swift */; };
 		F08889C122E0FD1100B8CFDE /* Concert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08889C022E0FD1100B8CFDE /* Concert.swift */; };
@@ -57,6 +59,8 @@
 		F054CF2A22E5167F000F6FFB /* ArtistCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistCollectionCell.swift; sourceTree = "<group>"; };
 		F054CF2C22E53320000F6FFB /* InfoConcertCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoConcertCell.swift; sourceTree = "<group>"; };
 		F054CF2E22E536AB000F6FFB /* InfoConcertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoConcertView.swift; sourceTree = "<group>"; };
+		F064375D22E7F94700874923 /* EventCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCalendar.swift; sourceTree = "<group>"; };
+		F064375F22E8CC8100874923 /* FavoriteButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteButtonView.swift; sourceTree = "<group>"; };
 		F08889BC22E0FCC300B8CFDE /* TopArtists.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopArtists.swift; sourceTree = "<group>"; };
 		F08889BE22E0FCE000B8CFDE /* InfoArtist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoArtist.swift; sourceTree = "<group>"; };
 		F08889C022E0FD1100B8CFDE /* Concert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Concert.swift; sourceTree = "<group>"; };
@@ -154,6 +158,7 @@
 				F0ACDF9822E6B08A00C52191 /* ImageArtist.swift */,
 				F0ACDF9A22E6B0B400C52191 /* InfoConcert.swift */,
 				F097F16922E79147002A3F5B /* ModeEco.swift */,
+				F064375D22E7F94700874923 /* EventCalendar.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -170,6 +175,7 @@
 				F054CF2C22E53320000F6FFB /* InfoConcertCell.swift */,
 				F054CF2E22E536AB000F6FFB /* InfoConcertView.swift */,
 				F097F16722E772BC002A3F5B /* ModeEcoView.swift */,
+				F064375F22E8CC8100874923 /* FavoriteButtonView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -314,11 +320,13 @@
 				F097F16A22E79147002A3F5B /* ModeEco.swift in Sources */,
 				F0AEA67222C576D6009100D1 /* extension.swift in Sources */,
 				F054CF2B22E5167F000F6FFB /* ArtistCollectionCell.swift in Sources */,
+				F064375E22E7F94700874923 /* EventCalendar.swift in Sources */,
 				F0ACDF9B22E6B0B400C52191 /* InfoConcert.swift in Sources */,
 				F03CFBFF22D9358600A44632 /* InfoArtistController.swift in Sources */,
 				F0AEA66E22C57634009100D1 /* ListArtistsController.swift in Sources */,
 				F03CFC0322D94FE300A44632 /* InfoArtistCell.swift in Sources */,
 				F03CFC0122D9360000A44632 /* InfoArtistView.swift in Sources */,
+				F064376022E8CC8100874923 /* FavoriteButtonView.swift in Sources */,
 				F08889C522E10F3700B8CFDE /* ApiProtocol.swift in Sources */,
 				F03CFBFD22D8C6CE00A44632 /* ConcertsCell.swift in Sources */,
 				F0AEA67A22C7C593009100D1 /* ArtistView.swift in Sources */,

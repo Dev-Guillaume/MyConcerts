@@ -17,9 +17,11 @@ class InfoConcertsController: UIViewController {
     var infoEvent: [Events]!
     let concert = Concert()
     
+    @IBOutlet weak var favoriteButtonView: FavoriteButtonView!
     @IBOutlet var infoConcertView: InfoConcertView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        IconFavorite.boolean = true
         self.infoConcertView.setInfoConcertView(infoConcert: infoEventPicked)
     }
     
@@ -29,6 +31,26 @@ class InfoConcertsController: UIViewController {
             successVC.artist = self.artistPicked
             successVC.infoEvents = self.infoEvent
         }
+    }
+    
+    @IBAction func favoriteConcert(_ sender: Any) {
+        guard IconFavorite.boolean else {
+            return
+        }
+        self.favoriteButtonView.favoriteUnselected()
+        let alert = UIAlertController(title: "Add Event", message: "Do you want add this event on your personal calendar ?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
+            EventCalendar(detailEvent: self.infoEventPicked).addEventToCalendar { success in
+                guard success else {
+                    return
+                }
+                DispatchQueue.main.async {
+                    self.displayAlert(title: "Add Event", message: "Event added with success !")
+                }
+            }
+        }))
+        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
 }
 
@@ -67,13 +89,12 @@ extension InfoConcertsController: UITableViewDataSource, UITableViewDelegate {
         return [(infoEventPicked.type ?? "No type concert" , UIImage(named: "typeConcert")),
                 (String(infoEventPicked.popularity) + " popularity", UIImage(named: "popularity")),
                 (infoEventPicked.start.date?.formateDate ?? "No Date", UIImage(named: "date")),
-                (infoEventPicked.start.time ?? "No Time", UIImage(named: "time")),
+                (infoEventPicked.start.datetime ?? "No Time", UIImage(named: "time")),
                 (infoEventPicked.ageRestriction ?? "No Restriction", UIImage(named: "restriction")),
                 (infoEventPicked.venue?.phone ?? "No Phone", UIImage(named: "phone")),
                 (infoEventPicked.venue?.capacity.intToString ?? "No Capacity", UIImage(named: "capacity")),
                 ((infoEventPicked.venue?.street ?? "") + " " + (infoEventPicked.location.city ?? "No Location"), UIImage(named: "location")),
                 (infoEventPicked.venue?.displayName ?? "No Name", UIImage(named: "concert")),
-                (infoEventPicked.venue?.description ?? "No Description", UIImage(named: "description")),
                 (infoEventPicked.uri ?? "No Webside" , UIImage(named: "website"))]
     }
     

@@ -49,7 +49,10 @@ class InfoArtist: ApiProtocol, ArtistProtocol {
     }
     
     func searchManyArtists(arrayArtists: [DataJSON], completionHandler: @escaping (Bool, [InfoArtists]?) -> Void) {
-        self.task?.cancel()
+        if ((self.task?.cancel()) != nil) {
+            completionHandler(false, nil)
+            return
+        }
         guard let arrayArtists = arrayArtists as? [Name] else {
             completionHandler(false, nil)
             return

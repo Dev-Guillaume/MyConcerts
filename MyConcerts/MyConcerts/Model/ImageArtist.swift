@@ -34,6 +34,7 @@ class ImageArtist: InfoArtist {
         }
         myGroup.notify(queue: .main) {
             completionHandler(true, self.imagesArtists)
+            return NotificationCenter.default.post(name: .toConcert, object: nil)
         }
     }
 }

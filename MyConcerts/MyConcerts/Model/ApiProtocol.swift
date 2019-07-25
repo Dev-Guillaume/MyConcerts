@@ -74,7 +74,7 @@ extension ApiProtocol {
     
     func getData(completionHandler: @escaping (Bool, [DataJSON]?) -> Void) {
         // Create a task with the Url for get some Date
-        if self.cancel == true {
+        if self.cancel == true && self.task != nil {
             self.task?.cancel()
         }
         self.task = self.session.dataTask(with: self.request) { (data, response, error) in

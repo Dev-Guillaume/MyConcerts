@@ -17,12 +17,12 @@ struct Venue: Codable {
     let displayName: String?
     let street: String?
     let capacity: Int?
-    let description: String?
 }
 
 struct startConcert: Codable {
     let date: String?
     let time: String?
+    let datetime: String?
 }
 
 struct Location: Codable {
