@@ -25,13 +25,14 @@ class TopArtists: ApiProtocol {
     var url: String = ""
     var request: URLRequest!
     
+    // Create an URL to get the top artist of the moment
     func createUrl() {
         self.url = self.urlApi[.audioscrobbler]! + "&" + self.keyApi[.audioscrobbler]! + "&format=json"
     }
     
     func getResponseJSON(data: Data, completionHandler: @escaping (Bool, [DataJSON]?) -> Void) {
         do {
-            // Use the struct CurrentWeather with the methode Decode
+            // Use the struct ListTopArtists with the methode Decode
             let resultData: [DataJSON] = try JSONDecoder().decode(ListTopArtists.self, from: data).artists.artist
             completionHandler(true, resultData)
             return

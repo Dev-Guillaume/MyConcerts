@@ -12,18 +12,21 @@ import Foundation
 enum ApiName {
     case audioscrobbler, audiodb, songkick
 }
+
+// Using this protocol to have a generic type between some struct
 protocol DataJSON: Codable {}
 
+// Protocol Api containing the declaration of variables and functions
 protocol ApiProtocol: class {
-    var session: URLSession { get }
-    var keyApi: [ApiName: String] { get }
-    var urlApi: [ApiName: String] { get }
-    var url: String { set get }
-    var request: URLRequest! { set get }
-    var ecoMode: Bool { get }
-    var task: URLSessionDataTask? { get set }
-    var cancel: Bool { get }
-    var cancelTask: Bool { get }
+    var session: URLSession { get } // To create request
+    var keyApi: [ApiName: String] { get } // Get the keyApi
+    var urlApi: [ApiName: String] { get } // Get the urlApi
+    var url: String { set get } // Set and get the requestUrl
+    var request: URLRequest! { set get } // To set request
+    var ecoMode: Bool { get } // True EcoMode activate / False desactivate then some requests are canceled
+    var task: URLSessionDataTask? { get set } // To send request
+    var cancel: Bool { get } // Boolean to know if we can canceled the task in model
+    var cancelTask: Bool { get } // Return a boolean to know if the task was canceled
     
     func createUrl() -> Void
     func newRequestGet(completionHandler: @escaping (Bool, [DataJSON]?) -> Void)
@@ -31,6 +34,7 @@ protocol ApiProtocol: class {
     func getResponseJSON(data: Data, completionHandler: @escaping (Bool, [DataJSON]?) -> Void)
 }
 
+// ApiProtocol Extension's to declare
 extension ApiProtocol {
     
     var ecoMode: Bool {
@@ -63,32 +67,31 @@ extension ApiProtocol {
     }
     
     func newRequestGet(completionHandler: @escaping (Bool, [DataJSON]?) -> Void) {
-        if self.ecoMode == true {
+        if self.ecoMode == true { // If ecoMode is true, the request can be canceled
             completionHandler(true, [])
             return
         }
-        self.createUrl()  // Call the function createUrl
-        guard let url = URL(string: self.url) else {
+        self.createUrl()  // Call the function createUrl to create an url
+        guard let url = URL(string: self.url) else { // Check the url
             return NotificationCenter.default.post(name: .error, object: ["Error Url", "Can't construct URL"])
         }
         self.request = URLRequest(url: url) // Create a request
-        self.request.httpMethod = "GET" // Set the metthod
+        self.request.httpMethod = "GET" // Set the method
         self.getData() { success, data in
             completionHandler(success, data)
         }
     }
     
     func getData(completionHandler: @escaping (Bool, [DataJSON]?) -> Void) {
-        // Create a task with the Url for get some Date
-        if (self.cancel == true) {
-            guard self.cancelTask else {
+        if (self.cancel == true) { // If cancel is true, we can try to cancel the task is a task is in progress
+            guard self.cancelTask else { // If task.state == .canceled, the task is canceled and we can return false
                 completionHandler(false, nil)
                 return
             }
         }
         self.task = self.session.dataTask(with: self.request) { (data, response, error) in
             DispatchQueue.main.async {
-                guard let data = data, error == nil else { // Get the data
+                guard let data = data, error == nil else { // Get the data and check if there are not error
                     completionHandler(false, nil)
                     return NotificationCenter.default.post(name: .error, object: ["Error Data", "Can't recover Data from Api"])
                 }
@@ -97,7 +100,7 @@ extension ApiProtocol {
                     completionHandler(false, nil)
                     return NotificationCenter.default.post(name: .error, object: ["Error Response", "Error Access from Api"])
                 }
-                self.getResponseJSON(data: data) { success, data in
+                self.getResponseJSON(data: data) { success, data in //Decode the response
                     completionHandler(success, data)
                 }
             }

@@ -19,9 +19,11 @@ class ListArtistsController: UIViewController {
     @IBOutlet weak var modeEcoView: ModeEcoView!
     @IBOutlet weak var artistsTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var launchingActivityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var activityIndicator: ActivityIndicatorView!
+    //@IBOutlet weak var launchingActivityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
+        NotificationCenter.default.addObserver(self, selector: #selector(displayError), name: .error, object: nil)
         super.viewDidLoad()
         switch modeEco.boolean {
         case true:
@@ -29,7 +31,6 @@ class ListArtistsController: UIViewController {
         case false:
             self.modeEcoView.modeEcoOff()
         }
-        NotificationCenter.default.addObserver(self, selector: #selector(displayError), name: .error, object: nil)
         TopArtists().newRequestGet { success, data in
             if success {
                 InfoArtist().searchManyArtists(arrayArtists: data!) { success, data in
@@ -39,7 +40,7 @@ class ListArtistsController: UIViewController {
                     self.modeEcoView.enabledModeEco()
                     self.searchBar.isHidden = false
                     self.artistsTableView.isHidden = false
-                    self.launchingActivityIndicator.stopAnimating()
+                    self.activityIndicator.stopActivityIndicator()
                     self.listTopArtists = data
                     self.artistsTableView.reloadData()
                 }

@@ -15,9 +15,11 @@ extension Notification.Name {
 
 extension UIViewController {
     func displayAlert(title: String, message: String) {
-        let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-        self.present(alertVC, animated: true, completion: nil)
+        DispatchQueue.main.async {
+            let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+            self.present(alertVC, animated: true, completion: nil)
+        }
     }
     
     @objc func displayError(notification :Notification) {
@@ -50,7 +52,9 @@ extension String {
     }
     
     var openSafari: Void {
-        guard let url = URL(string: "https://" + self) else {
+        var checkOccurences = self.replacingOccurrences(of: "http://", with: "")
+        checkOccurences = checkOccurences.replacingOccurrences(of: "https://", with: "")
+        guard let url = URL(string: "https://" + checkOccurences) else {
             return
         }
         UIApplication.shared.open(url)

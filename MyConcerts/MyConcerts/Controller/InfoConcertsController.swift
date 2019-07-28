@@ -42,11 +42,10 @@ class InfoConcertsController: UIViewController {
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
             EventCalendar(detailEvent: self.infoEventPicked).addEventToCalendar { success in
                 guard success else {
+                    self.displayAlert(title: "Add Event", message: "Fail to adding event")
                     return
                 }
-                DispatchQueue.main.async {
-                    self.displayAlert(title: "Add Event", message: "Event added with success !")
-                }
+                self.displayAlert(title: "Add Event", message: "Event added with success !")
             }
         }))
         alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
@@ -85,6 +84,8 @@ extension InfoConcertsController: UICollectionViewDataSource, UICollectionViewDe
 
 extension InfoConcertsController: UITableViewDataSource, UITableViewDelegate {
 
+    static let website: Int = 9
+    
     var arrayInfoEvents: [(String, UIImage?)] {
         return [(infoEventPicked.type ?? "No type concert" , UIImage(named: "typeConcert")),
                 (String(infoEventPicked.popularity) + " popularity", UIImage(named: "popularity")),
@@ -106,6 +107,12 @@ extension InfoConcertsController: UITableViewDataSource, UITableViewDelegate {
         let cell: InfoConcertCell = tableView.dequeueReusableCell(withIdentifier: "InfoConcertCell") as! InfoConcertCell
         cell.setInfoConcertCell(dataInfo: arrayInfoEvents[indexPath.row].0, imageInfo: arrayInfoEvents[indexPath.row].1)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == InfoConcertsController.website {
+            arrayInfoEvents[indexPath.row].0.openSafari
+        }
     }
 }
 

@@ -8,6 +8,7 @@
 
 import Foundation
 
+// Protocol Artist to help to search some Artists
 protocol ArtistProtocol: class {
     var artist: String { set get }
     func setArtist(artist: String) -> Void

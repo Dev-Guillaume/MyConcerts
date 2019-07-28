@@ -37,7 +37,6 @@ class InfoArtist: ApiProtocol, ArtistProtocol {
     var request: URLRequest!
     var cancel: Bool = false
     internal var artist: String
-    private var topArtists: [Name] = []
     private var infoArtists: [InfoArtists] = []
     
     init(artist: String) {
@@ -53,27 +52,28 @@ class InfoArtist: ApiProtocol, ArtistProtocol {
             completionHandler(false, nil)
             return
         }
-        guard self.cancelTask else {
-            completionHandler(false, nil)
+        guard self.cancelTask else { // Check if the task is canceled
+            completionHandler(false, nil) // If the task is canceled then return
             return
         }
-        let myGroup: DispatchGroup = DispatchGroup()
-        for artist in arrayArtists {
+        let myGroup: DispatchGroup = DispatchGroup() // Create an DispatchGroup to check when all requests are finished
+        for artist in arrayArtists { // Get all names of a list of artists
             myGroup.enter()
-            self.setArtist(artist: artist.name ?? "")
-            self.newRequestGet { success, data in
-                if (success) {
+            self.setArtist(artist: artist.name ?? "") // Set the artist who want search information
+            self.newRequestGet { success, data in // Get data containning the information of the artist
+                if (success) { // Success == true then save information
                     self.infoArtists.append(InfoArtists(info: (data?.first as? Info ?? Info(strArtist: artist.name ?? "", strLabel: nil, intBornYear: nil, intDiedYear: nil, strGenre: nil, strWebsite: nil, strFacebook: nil, strTwitter: nil, strBiographyEN: nil, strCountry: nil, strArtistThumb: nil)),
                                                         image: self.recoverDataImage(urlImage: (data?.first as! Info).strArtistThumb ?? "")))
                 }
                 myGroup.leave()
             }
         }
-        myGroup.notify(queue: .main) {
-            completionHandler(true, self.infoArtists)
+        myGroup.notify(queue: .main) { // All requests are finished
+            completionHandler(true, self.infoArtists) // Return information of all artists
         }
     }
     
+    // Same than searchManyArtists but search a single artist
     func searchArtist(artist: String, completionHandler: @escaping (Bool, InfoArtists?) -> Void) {
         guard self.cancelTask else {
             completionHandler(false, nil)
@@ -89,13 +89,14 @@ class InfoArtist: ApiProtocol, ArtistProtocol {
         }
     }
     
+    // Create an Url to get the informations of an artist
     func createUrl() {
         self.url = self.urlApi[.audiodb]! + self.keyApi[.audiodb]! + "/search.php?s=" + self.artist
     }
     
     func getResponseJSON(data: Data, completionHandler: @escaping (Bool, [DataJSON]?) -> Void) {
         do {
-            // Use the struct CurrentWeather with the methode Decode
+            // Use the struct ListInfoArtist with the methode Decode
             let resultData: [DataJSON] = try JSONDecoder().decode(ListInfoArtist.self, from: data).artists
             completionHandler(true, resultData)
         } catch {
@@ -104,11 +105,11 @@ class InfoArtist: ApiProtocol, ArtistProtocol {
         }
     }
     
+    // Try to get data of an Image
     func recoverDataImage(urlImage: String) -> Data? { // Download all images of recettes and stock in array
         if URL(string: urlImage) != nil {
             return try? Data(contentsOf: URL(string: urlImage)!)
         }
-        NSLog("Error Decoder: Can't recover Image")
         return nil
     }
 }

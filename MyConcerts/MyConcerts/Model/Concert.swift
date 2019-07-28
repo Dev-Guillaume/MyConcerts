@@ -35,13 +35,14 @@ class Concert: ApiProtocol, ArtistProtocol {
     internal var artist: String = ""
     var ecoMode: Bool = false
     
+    // Create an Url to get an Url which will allow to get all information about a concert
     func createUrl() {
         self.url = self.urlApi[.songkick]! + "search/artists.json?" + self.keyApi[.songkick]! + "&query=" + self.artist
     }
     
     func getResponseJSON(data: Data, completionHandler: @escaping (Bool, [DataJSON]?) -> Void) {
         do {
-            // Use the struct CurrentWeather with the methode Decode
+            // Use the struct EventRef with the methode Decode
             let resultData = try JSONDecoder().decode(EventRef.self, from: data)
             EventsHref(href: resultData.resultsPage.results.artist.first?.identifier.first?.eventsHref ?? "").newRequestGet() { success, data in
                 completionHandler(success, data)

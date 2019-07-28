@@ -37,9 +37,13 @@ class EventCalendar {
                 return
             }
             let event = EKEvent(eventStore: eventStore)
+            guard let startDateEvent: Date = self.detailEvent.start.datetime?.startDate else {
+                completionHandler(false)
+                return
+            }
             event.title = self.detailEvent.displayName
-            event.startDate = self.detailEvent.start.datetime?.startDate
-            event.endDate = event.startDate.endDate
+            event.startDate = startDateEvent
+            event.endDate = startDateEvent.endDate
             event.structuredLocation = self.structuredLocation
             event.notes = (self.detailEvent.ageRestriction ?? "") + " - " + (self.detailEvent.venue?.phone ?? "")
             event.location = (self.detailEvent.venue?.street ?? "") + " " + (self.detailEvent.location.city ?? "")

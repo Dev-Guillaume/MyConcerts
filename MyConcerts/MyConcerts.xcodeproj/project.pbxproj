@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F029274D22EB59D700EE536D /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = F029274C22EB59D700EE536D /* Favorite.swift */; };
 		F03CFBFD22D8C6CE00A44632 /* ConcertsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03CFBFC22D8C6CE00A44632 /* ConcertsCell.swift */; };
 		F03CFBFF22D9358600A44632 /* InfoArtistController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03CFBFE22D9358600A44632 /* InfoArtistController.swift */; };
 		F03CFC0122D9360000A44632 /* InfoArtistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03CFC0022D9360000A44632 /* InfoArtistView.swift */; };
@@ -17,6 +18,7 @@
 		F054CF2F22E536AB000F6FFB /* InfoConcertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F054CF2E22E536AB000F6FFB /* InfoConcertView.swift */; };
 		F064375E22E7F94700874923 /* EventCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F064375D22E7F94700874923 /* EventCalendar.swift */; };
 		F064376022E8CC8100874923 /* FavoriteButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F064375F22E8CC8100874923 /* FavoriteButtonView.swift */; };
+		F064376222EA79B200874923 /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F064376122EA79B100874923 /* ActivityIndicatorView.swift */; };
 		F08889BD22E0FCC300B8CFDE /* TopArtists.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08889BC22E0FCC300B8CFDE /* TopArtists.swift */; };
 		F08889BF22E0FCE000B8CFDE /* InfoArtist.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08889BE22E0FCE000B8CFDE /* InfoArtist.swift */; };
 		F08889C122E0FD1100B8CFDE /* Concert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08889C022E0FD1100B8CFDE /* Concert.swift */; };
@@ -51,6 +53,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F029274C22EB59D700EE536D /* Favorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorite.swift; sourceTree = "<group>"; };
 		F03CFBFC22D8C6CE00A44632 /* ConcertsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcertsCell.swift; sourceTree = "<group>"; };
 		F03CFBFE22D9358600A44632 /* InfoArtistController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoArtistController.swift; sourceTree = "<group>"; };
 		F03CFC0022D9360000A44632 /* InfoArtistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoArtistView.swift; sourceTree = "<group>"; };
@@ -61,6 +64,7 @@
 		F054CF2E22E536AB000F6FFB /* InfoConcertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoConcertView.swift; sourceTree = "<group>"; };
 		F064375D22E7F94700874923 /* EventCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCalendar.swift; sourceTree = "<group>"; };
 		F064375F22E8CC8100874923 /* FavoriteButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteButtonView.swift; sourceTree = "<group>"; };
+		F064376122EA79B100874923 /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
 		F08889BC22E0FCC300B8CFDE /* TopArtists.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopArtists.swift; sourceTree = "<group>"; };
 		F08889BE22E0FCE000B8CFDE /* InfoArtist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoArtist.swift; sourceTree = "<group>"; };
 		F08889C022E0FD1100B8CFDE /* Concert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Concert.swift; sourceTree = "<group>"; };
@@ -159,6 +163,7 @@
 				F0ACDF9A22E6B0B400C52191 /* InfoConcert.swift */,
 				F097F16922E79147002A3F5B /* ModeEco.swift */,
 				F064375D22E7F94700874923 /* EventCalendar.swift */,
+				F029274C22EB59D700EE536D /* Favorite.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -176,6 +181,7 @@
 				F054CF2E22E536AB000F6FFB /* InfoConcertView.swift */,
 				F097F16722E772BC002A3F5B /* ModeEcoView.swift */,
 				F064375F22E8CC8100874923 /* FavoriteButtonView.swift */,
+				F064376122EA79B100874923 /* ActivityIndicatorView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -307,6 +313,7 @@
 				F0AEA67622C58490009100D1 /* ArtistsCell.swift in Sources */,
 				F0AEA64722C56992009100D1 /* AppDelegate.swift in Sources */,
 				F054CF2D22E53320000F6FFB /* InfoConcertCell.swift in Sources */,
+				F029274D22EB59D700EE536D /* Favorite.swift in Sources */,
 				F0AEA64F22C56992009100D1 /* MyConcerts.xcdatamodeld in Sources */,
 				F08889BF22E0FCE000B8CFDE /* InfoArtist.swift in Sources */,
 				F054CF2F22E536AB000F6FFB /* InfoConcertView.swift in Sources */,
@@ -331,6 +338,7 @@
 				F03CFBFD22D8C6CE00A44632 /* ConcertsCell.swift in Sources */,
 				F0AEA67A22C7C593009100D1 /* ArtistView.swift in Sources */,
 				F097F16822E772BC002A3F5B /* ModeEcoView.swift in Sources */,
+				F064376222EA79B200874923 /* ActivityIndicatorView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -495,6 +503,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 69X4D33E8B;
 				INFOPLIST_FILE = MyConcerts/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -513,6 +522,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 69X4D33E8B;
 				INFOPLIST_FILE = MyConcerts/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
