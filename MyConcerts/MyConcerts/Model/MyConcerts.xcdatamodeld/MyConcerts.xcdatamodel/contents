@@ -20,10 +20,11 @@
     </entity>
     <entity name="PerformanceFavorite" representedClassName=".PerformanceFavorite" syncable="YES" codeGenerationType="class">
         <attribute name="displayName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="image" optional="YES" attributeType="Binary" syncable="YES"/>
         <relationship name="favorite" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Favorite" inverseName="performance" inverseEntity="Favorite" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Favorite" positionX="-296.109375" positionY="-226.9921875" width="128" height="283"/>
-        <element name="PerformanceFavorite" positionX="-27" positionY="135" width="128" height="73"/>
+        <element name="Favorite" positionX="-296.109375" positionY="-226.9921875" width="128" height="285"/>
+        <element name="PerformanceFavorite" positionX="-27" positionY="135" width="128" height="90"/>
     </elements>
 </model>

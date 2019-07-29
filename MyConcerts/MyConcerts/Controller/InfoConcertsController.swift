@@ -50,6 +50,8 @@ class InfoConcertsController: UIViewController {
         }))
         alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
+        let favorite = Favorite(context: AppDelegate.viewContext)
+        favorite.addElement(detailEvent: infoEventPicked, performers: imageArtists)
     }
 }
 

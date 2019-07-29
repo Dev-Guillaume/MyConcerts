@@ -49,7 +49,7 @@ class EventsHref: ApiProtocol {
     
     func getResponseJSON(data: Data, completionHandler: @escaping (Bool, [DataJSON]?) -> Void) {
         do {
-            // Use the struct CurrentWeather with the methode Decode)
+            // Use the struct InfoEvent with the methode Decode
             let resultData: [DataJSON] = try JSONDecoder().decode(InfoEvent.self, from: data).resultsPage.results.event
             completionHandler(true, resultData)
             return

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F029274D22EB59D700EE536D /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = F029274C22EB59D700EE536D /* Favorite.swift */; };
+		F029274F22EE08A900EE536D /* FavoriteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F029274E22EE08A900EE536D /* FavoriteController.swift */; };
 		F03CFBFD22D8C6CE00A44632 /* ConcertsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03CFBFC22D8C6CE00A44632 /* ConcertsCell.swift */; };
 		F03CFBFF22D9358600A44632 /* InfoArtistController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03CFBFE22D9358600A44632 /* InfoArtistController.swift */; };
 		F03CFC0122D9360000A44632 /* InfoArtistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03CFC0022D9360000A44632 /* InfoArtistView.swift */; };
@@ -40,6 +41,7 @@
 		F0AEA67622C58490009100D1 /* ArtistsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0AEA67522C58490009100D1 /* ArtistsCell.swift */; };
 		F0AEA67822C7B653009100D1 /* ArtistController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0AEA67722C7B653009100D1 /* ArtistController.swift */; };
 		F0AEA67A22C7C593009100D1 /* ArtistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0AEA67922C7C593009100D1 /* ArtistView.swift */; };
+		F0DBC7FB22EE5974002E1B52 /* FavoriteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DBC7FA22EE5974002E1B52 /* FavoriteCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +56,7 @@
 
 /* Begin PBXFileReference section */
 		F029274C22EB59D700EE536D /* Favorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorite.swift; sourceTree = "<group>"; };
+		F029274E22EE08A900EE536D /* FavoriteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteController.swift; sourceTree = "<group>"; };
 		F03CFBFC22D8C6CE00A44632 /* ConcertsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcertsCell.swift; sourceTree = "<group>"; };
 		F03CFBFE22D9358600A44632 /* InfoArtistController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoArtistController.swift; sourceTree = "<group>"; };
 		F03CFC0022D9360000A44632 /* InfoArtistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoArtistView.swift; sourceTree = "<group>"; };
@@ -90,6 +93,7 @@
 		F0AEA67522C58490009100D1 /* ArtistsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistsCell.swift; sourceTree = "<group>"; };
 		F0AEA67722C7B653009100D1 /* ArtistController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistController.swift; sourceTree = "<group>"; };
 		F0AEA67922C7C593009100D1 /* ArtistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistView.swift; sourceTree = "<group>"; };
+		F0DBC7FA22EE5974002E1B52 /* FavoriteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +186,7 @@
 				F097F16722E772BC002A3F5B /* ModeEcoView.swift */,
 				F064375F22E8CC8100874923 /* FavoriteButtonView.swift */,
 				F064376122EA79B100874923 /* ActivityIndicatorView.swift */,
+				F0DBC7FA22EE5974002E1B52 /* FavoriteCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -194,6 +199,7 @@
 				F0AEA67722C7B653009100D1 /* ArtistController.swift */,
 				F03CFBFE22D9358600A44632 /* InfoArtistController.swift */,
 				F054CF2822E50B3E000F6FFB /* InfoConcertsController.swift */,
+				F029274E22EE08A900EE536D /* FavoriteController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -324,6 +330,7 @@
 				F0AEA67822C7B653009100D1 /* ArtistController.swift in Sources */,
 				F097F16C22E7A389002A3F5B /* ArtistProtocol.swift in Sources */,
 				F0ACDF9922E6B08A00C52191 /* ImageArtist.swift in Sources */,
+				F0DBC7FB22EE5974002E1B52 /* FavoriteCell.swift in Sources */,
 				F097F16A22E79147002A3F5B /* ModeEco.swift in Sources */,
 				F0AEA67222C576D6009100D1 /* extension.swift in Sources */,
 				F054CF2B22E5167F000F6FFB /* ArtistCollectionCell.swift in Sources */,
@@ -335,6 +342,7 @@
 				F03CFC0122D9360000A44632 /* InfoArtistView.swift in Sources */,
 				F064376022E8CC8100874923 /* FavoriteButtonView.swift in Sources */,
 				F08889C522E10F3700B8CFDE /* ApiProtocol.swift in Sources */,
+				F029274F22EE08A900EE536D /* FavoriteController.swift in Sources */,
 				F03CFBFD22D8C6CE00A44632 /* ConcertsCell.swift in Sources */,
 				F0AEA67A22C7C593009100D1 /* ArtistView.swift in Sources */,
 				F097F16822E772BC002A3F5B /* ModeEcoView.swift in Sources */,

@@ -11,6 +11,7 @@ import UIKit
 
 extension Notification.Name {
     static let error = Notification.Name("error")
+    static let reloadFavorites = Notification.Name("reloadFavorites")
 }
 
 extension UIViewController {
