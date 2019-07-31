@@ -10,6 +10,7 @@ import UIKit
 
 class FavoriteCell: UITableViewCell {
 
+    @IBOutlet weak var imageBackground: UIImageView!
     @IBOutlet weak var nameConcert: UILabel!
     @IBOutlet weak var location: UILabel!
     @IBOutlet weak var type: UILabel!
@@ -27,28 +28,29 @@ class FavoriteCell: UITableViewCell {
 
     func setFavorite(favorite: Favorite) {
         self.layer.cornerRadius = 10
-        self.createBackground(performanceFavorite: (favorite.performance?.allObjects as? [PerformanceFavorite]))
         self.nameConcert.text = favorite.displayName
         self.location.text = "\(favorite.street ?? "") \(favorite.city ?? "")"
         self.type.text = favorite.type
         self.restriction.text = favorite.ageRestriction
+        self.imageBackground.image = createBackground(performanceFavorite: (favorite.performance?.allObjects as? [PerformanceFavorite]))
     }
     
-    func createBackground(performanceFavorite: [PerformanceFavorite]?) {
+    func createBackground(performanceFavorite: [PerformanceFavorite]?) -> UIImage {
         guard let performers = performanceFavorite else {
-            return
+            return UIImage()
         }
         let height = self.bounds.height - 5
         let width = self.bounds.width / CGFloat(performers.count)
         var x: CGFloat = 0
-        
+        let size = CGSize(width:  self.bounds.width, height:  self.bounds.height - 5)
+        UIGraphicsBeginImageContext(size)
         for performer in performers {
-            let image = performer.image.dataToUIImage
-            let imageView = UIImageView(image: image)
-            imageView.frame = CGRect(x: x, y: 0, width: width, height: height)
-            self.addSubview(imageView)
-            self.sendSubviewToBack(imageView)
+            performer.image.dataToUIImage.draw(in: CGRect(x: x, y: 0, width: width, height: height))
             x += width
         }
+        let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        return newImage
     }
 }
+

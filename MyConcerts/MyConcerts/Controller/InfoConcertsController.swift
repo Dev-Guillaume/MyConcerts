@@ -16,12 +16,13 @@ class InfoConcertsController: UIViewController {
     var artistPicked: InfoArtists!
     var infoEvent: [Events]!
     let concert = Concert()
+    var index: Int!
     
     @IBOutlet weak var favoriteButtonView: FavoriteButtonView!
     @IBOutlet var infoConcertView: InfoConcertView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        IconFavorite.boolean = true
+        favoriteButtonView.initIconFavorite = navigationController?.title ?? ""
         self.infoConcertView.setInfoConcertView(infoConcert: infoEventPicked)
     }
     
@@ -34,10 +35,31 @@ class InfoConcertsController: UIViewController {
     }
     
     @IBAction func favoriteConcert(_ sender: Any) {
-        guard IconFavorite.boolean else {
+        if navigationController?.title == "Favorite" {
+           self.controllerFavorite()
+        }
+        else {
+            self.controllerSearch()
+        }
+    }
+    
+    private func controllerFavorite() {
+        if !IconFavorite.iconFavorite {
+            Favorite.deleteElement(row: index)
+            self.favoriteButtonView.selectIconFavorite = "Favorite"
             return
         }
-        self.favoriteButtonView.favoriteUnselected()
+        else {
+            self.favoriteButtonView.unselectIconFavorite = "Favorite"
+            self.saveElement()
+        }
+    }
+    
+    private func controllerSearch() {
+        guard IconFavorite.iconSearch else {
+            return
+        }
+        self.favoriteButtonView.unselectIconFavorite = "Search" //favoriteUnselected(idIcon: "Search")
         let alert = UIAlertController(title: "Add Event", message: "Do you want add this event on your personal calendar ?", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
             EventCalendar(detailEvent: self.infoEventPicked).addEventToCalendar { success in
@@ -50,9 +72,15 @@ class InfoConcertsController: UIViewController {
         }))
         alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
+        self.saveElement()
+    }
+    
+    
+    private func saveElement() {
         let favorite = Favorite(context: AppDelegate.viewContext)
         favorite.addElement(detailEvent: infoEventPicked, performers: imageArtists)
     }
+    
 }
 
 extension InfoConcertsController: UICollectionViewDataSource, UICollectionViewDelegate {
@@ -78,6 +106,9 @@ extension InfoConcertsController: UICollectionViewDataSource, UICollectionViewDe
                     return
                 }
                 self.infoEvent = data
+                if self.navigationController?.title == "Favorite" {
+                    IconFavorite.iconFavorite = true
+                }
                 self.performSegue(withIdentifier: "segueToArtist", sender: self)
             }
         }

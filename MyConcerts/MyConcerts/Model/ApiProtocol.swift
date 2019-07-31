@@ -84,7 +84,7 @@ extension ApiProtocol {
     
     func getData(completionHandler: @escaping (Bool, [DataJSON]?) -> Void) {
         if (self.cancel == true) { // If cancel is true, we can try to cancel the task is a task is in progress
-            guard self.cancelTask else { // If task.state == .canceled, the task is canceled and we can return false
+            guard self.cancelTask else { // Check if the task has been canceled
                 completionHandler(false, nil)
                 return
             }

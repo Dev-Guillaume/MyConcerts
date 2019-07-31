@@ -20,6 +20,7 @@ struct ListTopArtists: Codable {
     let artists: Artist
 }
 
+// Get all top artist of the moment
 class TopArtists: ApiProtocol {
     var task: URLSessionDataTask?
     var url: String = ""

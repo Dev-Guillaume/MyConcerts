@@ -11,15 +11,16 @@ import CoreData
 
 public class Favorite: NSManagedObject {
     
-    static var favorite: [Favorite] { // Get an Array of favorite
+    static var favorite: [Favorite] { // Get an Array of favorites
         let request: NSFetchRequest<Favorite> = Favorite.fetchRequest()
         guard let favorites = try? AppDelegate.viewContext.fetch(request) else { return [] }
         return favorites
     }
     
+    // Add an element in momory
     func addElement(detailEvent: DetailEvent, performers: [ImagesArtists]) {
         self.ageRestriction = detailEvent.ageRestriction
-        self.capacity = Int16(detailEvent.venue?.capacity ?? -1)
+        self.capacity = Int64(detailEvent.venue?.capacity ?? -1)
         self.date = detailEvent.start.date
         self.datetime = detailEvent.start.datetime
         self.displayName = detailEvent.displayName
@@ -35,9 +36,10 @@ public class Favorite: NSManagedObject {
         for performer in performers {
             self.addToPerformance(addPerformer(performer: performer))
         }
-        Favorite.save() // Save the new favorite recette
+        Favorite.save() // Save the new element
     }
     
+    // Add the list performers of concert
     func addPerformer(performer: ImagesArtists) -> PerformanceFavorite {
         let performance = PerformanceFavorite(context: AppDelegate.viewContext)
         performance.displayName = performer.name
@@ -45,9 +47,10 @@ public class Favorite: NSManagedObject {
         return (performance)
     }
     
+    // Delete all favorites
     static func resetFavorite() {
         for favorite in Favorite.favorite {
-            AppDelegate.viewContext.delete(favorite) // Delete all favorites
+            AppDelegate.viewContext.delete(favorite)
         }
         Favorite.save() // Save the changement
     }

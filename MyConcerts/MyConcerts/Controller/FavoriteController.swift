@@ -12,11 +12,16 @@ class FavoriteController: UIViewController {
 
     var detailEvent: DetailEvent!
     var imagesArtists: [ImagesArtists]!
+    var index = 0
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         NotificationCenter.default.addObserver(self, selector: #selector(reloadFavorites), name: .reloadFavorites, object: nil)
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        IconFavorite.iconFavorite = false
     }
     
     @objc func reloadFavorites() {
@@ -28,6 +33,7 @@ class FavoriteController: UIViewController {
             let successVC = segue.destination as! InfoConcertsController
             successVC.infoEventPicked = self.detailEvent
             successVC.imageArtists = self.imagesArtists
+            successVC.index = self.index
         }
     }
 }
@@ -51,6 +57,7 @@ extension FavoriteController: UITableViewDataSource, UITableViewDelegate {
         let favorites = Favorite.favorite[indexPath.row].restoreAllFavorites()
         self.detailEvent = favorites.0
         self.imagesArtists = favorites.1
+        self.index = indexPath.row
         self.performSegue(withIdentifier: "segueToInfoConcert", sender: self)
     }
 }

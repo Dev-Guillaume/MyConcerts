@@ -160,12 +160,12 @@
 				F08889C422E10F3700B8CFDE /* ApiProtocol.swift */,
 				F097F16B22E7A389002A3F5B /* ArtistProtocol.swift */,
 				F08889BC22E0FCC300B8CFDE /* TopArtists.swift */,
+				F097F16922E79147002A3F5B /* ModeEco.swift */,
 				F08889BE22E0FCE000B8CFDE /* InfoArtist.swift */,
 				F08889C022E0FD1100B8CFDE /* Concert.swift */,
 				F08889C222E0FD2C00B8CFDE /* EventsHref.swift */,
 				F0ACDF9822E6B08A00C52191 /* ImageArtist.swift */,
 				F0ACDF9A22E6B0B400C52191 /* InfoConcert.swift */,
-				F097F16922E79147002A3F5B /* ModeEco.swift */,
 				F064375D22E7F94700874923 /* EventCalendar.swift */,
 				F029274C22EB59D700EE536D /* Favorite.swift */,
 			);

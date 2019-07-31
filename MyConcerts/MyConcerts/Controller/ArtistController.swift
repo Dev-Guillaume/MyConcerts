@@ -39,7 +39,12 @@ class ArtistController: UIViewController {
             let successVC = segue.destination as! InfoConcertsController
             successVC.infoEventPicked = self.infoEventPicked
             successVC.imageArtists = self.imageArtists
+            successVC.index = self.index
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        IconFavorite.iconSearch = true
     }
 }
 
@@ -71,6 +76,7 @@ extension ArtistController: UITableViewDataSource, UITableViewDelegate {
                     return
                 }
                 self.imageArtists = data
+                self.index = indexPath.row
                  self.performSegue(withIdentifier: "segueToInfoConcert", sender: self)
             }
         }

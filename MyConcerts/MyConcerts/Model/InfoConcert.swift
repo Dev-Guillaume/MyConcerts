@@ -55,6 +55,7 @@ struct DetailConcert: Codable {
     let resultsPage: ResultsPageDetailConcert
 }
 
+// Get all information about a concert
 class InfoConcert: ApiProtocol {
     var task: URLSessionDataTask?
     var url: String = ""
@@ -70,17 +71,19 @@ class InfoConcert: ApiProtocol {
         self.idConcert = 0
     }
     
+    // Set the If of concert
     func setIdConcert(idConcert: Int) {
         self.idConcert = idConcert
     }
     
+    // Create an Url for get all information about a concert
     func createUrl() {
         self.url = self.urlApi[.songkick]! + "events/" + String(self.idConcert) + ".json?" + self.keyApi[.songkick]!
     }
     
     func getResponseJSON(data: Data, completionHandler: @escaping (Bool, [DataJSON]?) -> Void) {
         do {
-            // Use the struct CurrentWeather with the methode Decode
+            // Use the struct DetailConcert with the methode Decode
             let resultData: DataJSON = try JSONDecoder().decode(DetailConcert.self, from: data).resultsPage.results.event
             completionHandler(true, [resultData])
         } catch {

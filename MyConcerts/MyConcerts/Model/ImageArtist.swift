@@ -8,20 +8,23 @@
 
 import Foundation
 
+// Struct used to send data between controllers
 struct ImagesArtists {
-    let name: String
-    let image: Data?
+    let name: String // The name of the artist
+    let image: Data? // The image of the artist
 }
 
+// Get images of many artists
 class ImageArtist: InfoArtist {
     private var imagesArtists: [ImagesArtists] = []
     
     func searchManyImagesArtists(arrayArtists: [DataJSON], completionHandler: @escaping (Bool, [ImagesArtists]?) -> Void) {
+        self.imagesArtists.removeAll()
         guard let arrayArtists = arrayArtists as? [Performance] else {
             completionHandler(false, nil)
             return
         }
-        guard self.cancelTask else {
+        guard self.cancelTask else { // // Check if the task has been canceled
             completionHandler(false, nil)
             return
         }
@@ -31,12 +34,13 @@ class ImageArtist: InfoArtist {
             self.setArtist(artist: artist.displayName )
             self.newRequestGet { success, data in
                 if (success) {
-                    self.imagesArtists.append(ImagesArtists(name: artist.displayName, image: self.recoverDataImage(urlImage: (data?.first as? Info)?.strArtistThumb ?? "")))
+                    self.imagesArtists.append(ImagesArtists(name: artist.displayName,
+                                                            image: self.recoverDataImage(urlImage: (data?.first as? Info)?.strArtistThumb ?? "")))
                 }
                 myGroup.leave()
             }
         }
-        myGroup.notify(queue: .main) {
+        myGroup.notify(queue: .main) { // When all requests are finishef return Data containing Name and Image of the artist
             completionHandler(true, self.imagesArtists)
             return
         }

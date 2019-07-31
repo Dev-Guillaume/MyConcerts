@@ -31,6 +31,7 @@ struct InfoArtists {
     let image: Data?
 }
 
+// Get all info of the artist or many artists
 class InfoArtist: ApiProtocol, ArtistProtocol {
     var task: URLSessionDataTask?
     var url: String = ""
@@ -48,6 +49,7 @@ class InfoArtist: ApiProtocol, ArtistProtocol {
     }
     
     func searchManyArtists(arrayArtists: [DataJSON], completionHandler: @escaping (Bool, [InfoArtists]?) -> Void) {
+        self.infoArtists.removeAll()
         guard let arrayArtists = arrayArtists as? [Name] else {
             completionHandler(false, nil)
             return
@@ -68,7 +70,7 @@ class InfoArtist: ApiProtocol, ArtistProtocol {
                 myGroup.leave()
             }
         }
-        myGroup.notify(queue: .main) { // All requests are finished
+        myGroup.notify(queue: .main) { // When all requests are finished
             completionHandler(true, self.infoArtists) // Return information of all artists
         }
     }
@@ -106,7 +108,7 @@ class InfoArtist: ApiProtocol, ArtistProtocol {
     }
     
     // Try to get data of an Image
-    func recoverDataImage(urlImage: String) -> Data? { // Download all images of recettes and stock in array
+    func recoverDataImage(urlImage: String) -> Data? {
         if URL(string: urlImage) != nil {
             return try? Data(contentsOf: URL(string: urlImage)!)
         }

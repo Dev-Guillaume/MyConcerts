@@ -28,6 +28,7 @@ struct EventRef: DataJSON {
     let resultsPage: ResultPage
 }
 
+// Get an url containing ID of a concert
 class Concert: ApiProtocol, ArtistProtocol {
     var task: URLSessionDataTask?
     var url: String = ""
@@ -35,7 +36,7 @@ class Concert: ApiProtocol, ArtistProtocol {
     internal var artist: String = ""
     var ecoMode: Bool = false
     
-    // Create an Url to get an Url which will allow to get all information about a concert
+    // Create an Url to get an Url which will allow to get the ID of a concert
     func createUrl() {
         self.url = self.urlApi[.songkick]! + "search/artists.json?" + self.keyApi[.songkick]! + "&query=" + self.artist
     }

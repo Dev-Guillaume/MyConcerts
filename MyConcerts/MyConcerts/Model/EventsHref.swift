@@ -31,6 +31,7 @@ struct InfoEvent: Codable {
     let resultsPage: ResultsPage
 }
 
+// Get ID of a concert
 class EventsHref: ApiProtocol {
     var task: URLSessionDataTask?
     var url: String = ""
@@ -39,12 +40,12 @@ class EventsHref: ApiProtocol {
     var ecoMode: Bool = false
     
     init(href: String) {
-        self.href = href
+        self.href = href // Init the url send by Class Concert
     }
     
     func createUrl() {
-        self.url = self.href + "?apikey=JDyRTYDK3g9GUd3V"
-        self.url = self.url.replacingOccurrences(of: "http", with: "https")
+        self.url = self.href + "?apikey=JDyRTYDK3g9GUd3V" // Add the ApiKey to the url
+        self.url = self.url.replacingOccurrences(of: "http", with: "https") // Change "http" to "https"
     }
     
     func getResponseJSON(data: Data, completionHandler: @escaping (Bool, [DataJSON]?) -> Void) {

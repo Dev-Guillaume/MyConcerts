@@ -17,6 +17,7 @@ class InfoArtistController: UIViewController {
         super.viewDidLoad()
         self.infoArtistView.setInfoArtist(infoArtist: infoArtist)
     }
+    
     @IBAction func dismissTextView(_ sender: UITapGestureRecognizer) {
         self.infoArtistView.hiddenTextView()
     }

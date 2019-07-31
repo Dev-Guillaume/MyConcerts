@@ -8,16 +8,62 @@
 
 import UIKit
 
-class FavoriteButtonView: UIBarButtonItem {
+// Struct to know if button Favorite is pressed
+struct IconFavorite {
+    static var iconSearch: Bool = true
+    static var iconFavorite: Bool = false
+}
 
-    func favoriteSelected() {
-        IconFavorite.boolean = true
-        self.image = UIImage(named: "FavoriteSelected")
+class FavoriteButtonView: UIBarButtonItem {
+    
+    var initIconFavorite: String = "" {
+        didSet {
+            switch self.initIconFavorite {
+            case "Search":
+                switch IconFavorite.iconSearch {
+                case true :
+                    self.selectIconFavorite = "Search"
+                case false :
+                    self.unselectIconFavorite = "Search"
+                }
+            case "Favorite":
+                switch IconFavorite.iconFavorite {
+                case true :
+                    self.selectIconFavorite = "Favorite"
+                case false :
+                    self.unselectIconFavorite = "Favorite"
+                }
+            default:
+                return
+            }
+        }
     }
     
-    func favoriteUnselected() {
-        IconFavorite.boolean = false
-        self.image = UIImage(named: "FavoriteUnselected")
+    var selectIconFavorite: String = "" {
+        didSet {
+            switch self.selectIconFavorite {
+            case "Search":
+                IconFavorite.iconSearch = true
+            case "Favorite":
+                IconFavorite.iconFavorite = true
+            default:
+                return
+            }
+            self.image = UIImage(named: "FavoriteSelected")
+        }
     }
     
+    var unselectIconFavorite: String = "" {
+        didSet {
+            switch self.unselectIconFavorite {
+            case "Search":
+                IconFavorite.iconSearch = false
+            case "Favorite":
+                IconFavorite.iconFavorite = false
+            default:
+                return
+            }
+            self.image = UIImage(named: "FavoriteUnselected")
+        }
+    }
 }

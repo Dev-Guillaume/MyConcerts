@@ -9,10 +9,6 @@
 import Foundation
 import EventKit
 
-struct IconFavorite {
-    static var boolean: Bool = true
-}
-
 class EventCalendar {
     var detailEvent: DetailEvent
     
@@ -20,6 +16,7 @@ class EventCalendar {
         self.detailEvent = detailEvent
     }
     
+    // Create and return a location for display a view of concert
     var structuredLocation: EKStructuredLocation {
         let location = CLLocation(latitude: self.detailEvent.location.lat ?? 0, longitude: self.detailEvent.location.lng ?? 0)
         let structuredLocation = EKStructuredLocation(title: self.detailEvent.displayName ?? "")
@@ -27,6 +24,7 @@ class EventCalendar {
         return structuredLocation
     }
     
+    // Create an Event a save it in personal calendor of user
     func addEventToCalendar(completionHandler: @escaping (Bool) -> Void) {
         let eventStore = EKEventStore()
         
@@ -41,16 +39,16 @@ class EventCalendar {
                 completionHandler(false)
                 return
             }
-            event.title = self.detailEvent.displayName
-            event.startDate = startDateEvent
-            event.endDate = startDateEvent.endDate
-            event.structuredLocation = self.structuredLocation
-            event.notes = (self.detailEvent.ageRestriction ?? "") + " - " + (self.detailEvent.venue?.phone ?? "")
-            event.location = (self.detailEvent.venue?.street ?? "") + " " + (self.detailEvent.location.city ?? "")
-            event.url = URL(string: self.detailEvent.uri ?? "No Url for this Event")
+            event.title = self.detailEvent.displayName // Set the title of event
+            event.startDate = startDateEvent // Set when the event start
+            event.endDate = startDateEvent.endDate // Set when the event ends
+            event.structuredLocation = self.structuredLocation // Get the location of event
+            event.notes = (self.detailEvent.ageRestriction ?? "") + " - " + (self.detailEvent.venue?.phone ?? "") // Set some information like age restriction and phone numer
+            event.location = (self.detailEvent.venue?.street ?? "") + " " + (self.detailEvent.location.city ?? "") // Set information of location
+            event.url = URL(string: self.detailEvent.uri ?? "No Url for this Event") // Set the url of the event
             event.calendar = eventStore.defaultCalendarForNewEvents
             do {
-                try eventStore.save(event, span: .thisEvent)
+                try eventStore.save(event, span: .thisEvent) // Save in the personal calendar of user
                 completionHandler(true)
             } catch {
                 NSLog("Error save event")
