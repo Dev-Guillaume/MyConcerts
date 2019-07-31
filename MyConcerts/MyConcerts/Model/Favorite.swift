@@ -64,6 +64,7 @@ public class Favorite: NSManagedObject {
         Favorite.save()
     }
     
+    // Save any changement in memo
     static private func save() {
         do {
             try  AppDelegate.viewContext.save()
@@ -73,7 +74,10 @@ public class Favorite: NSManagedObject {
         }
     }
     
-    func restoreAllFavorites() -> (DetailEvent, [ImagesArtists]) { // Get all Favorite in a Struct Recipes
+    // Restor Favorites in a Struct DetailEvent and an array ImagesArtists
+    // DetailEvent contains all information about an event
+    // Array of ImagesArtits contains all images and name of artists
+    func restoreAllFavorites() -> (DetailEvent, [ImagesArtists]) {
         let retorePerformance = self.restorePerformance()
         let detailEvent = DetailEvent(location: Location(city: self.displayVenue, lng: self.lng, lat: self.lat), displayName: self.displayName, type: self.type, uri: self.uri, popularity: self.popularity, start: startConcert(date: self.date, time: self.time, datetime: self.datetime), performance: self.restorePerformance().0, ageRestriction: self.ageRestriction, venue: Venue(phone: self.phone, displayName: self.displayVenue, street: self.street, capacity: Int(self.capacity)))
         return (detailEvent, retorePerformance.1)

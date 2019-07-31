@@ -8,6 +8,7 @@
 
 import UIKit
 
+// Set each cells of TableView to display the concerts of an artist
 class ConcertsCell: UITableViewCell {
 
     @IBOutlet weak var displayName: UILabel!
@@ -20,9 +21,9 @@ class ConcertsCell: UITableViewCell {
     }
 
     func setConcert(event: Events) {
-        self.displayName.text = event.displayName
-        self.type.text = event.type
-        self.date.text = event.start.date?.formateDate
+        self.displayName.text = event.displayName // Set the name of concert
+        self.type.text = event.type // Set the type of concert. Concert or Festival
+        self.date.text = event.start.date?.formateDate // Set the date of concert
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

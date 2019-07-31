@@ -16,6 +16,7 @@ struct IconFavorite {
 
 class FavoriteButtonView: UIBarButtonItem {
     
+    // Initialise the view of button favorite when we change controller
     var initIconFavorite: String = "" {
         didSet {
             switch self.initIconFavorite {
@@ -39,6 +40,7 @@ class FavoriteButtonView: UIBarButtonItem {
         }
     }
     
+    // Display Icon Favorite to select
     var selectIconFavorite: String = "" {
         didSet {
             switch self.selectIconFavorite {
@@ -53,6 +55,7 @@ class FavoriteButtonView: UIBarButtonItem {
         }
     }
     
+    // Display Icon Favorite to unselect
     var unselectIconFavorite: String = "" {
         didSet {
             switch self.unselectIconFavorite {

@@ -8,6 +8,7 @@
 
 import UIKit
 
+// Set each cells of TableView to display informations of an concert
 class InfoConcertCell: UITableViewCell {
 
     @IBOutlet weak var imageInfo: UIImageView!
@@ -25,8 +26,8 @@ class InfoConcertCell: UITableViewCell {
     }
     
     func setInfoConcertCell(dataInfo: String, imageInfo: UIImage?) {
-        self.dataInfo.text = dataInfo
-         self.imageInfo.image = imageInfo
+        self.dataInfo.text = dataInfo // Set information about an concert. Exemple ageRestriction, location etc
+         self.imageInfo.image = imageInfo // Set the image corresponding
     }
 
 }

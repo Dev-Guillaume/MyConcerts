@@ -8,6 +8,7 @@
 
 import UIKit
 
+// Stop the animation of ActivityIndicator
 class ActivityIndicatorView: UIActivityIndicatorView {
     func stopActivityIndicator() {
         self.stopAnimating()

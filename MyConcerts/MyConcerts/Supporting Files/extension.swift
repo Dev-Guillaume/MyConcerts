@@ -15,6 +15,7 @@ extension Notification.Name {
 }
 
 extension UIViewController {
+    // Create an alertView
     func displayAlert(title: String, message: String) {
         DispatchQueue.main.async {
             let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -33,6 +34,7 @@ extension UIViewController {
 
 extension Optional where Wrapped == Data {
     
+    // Check the url of an image and return it, if the url is incorrect return an default image
     var dataToUIImage: UIImage {
         if self != nil, let image = UIImage(data: self!) {
             return image
@@ -44,14 +46,7 @@ extension Optional where Wrapped == Data {
 
 extension String {
     
-    var formateDate: String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        let date = dateFormatter.date(from: self)
-        dateFormatter.dateFormat = "EEEE MMM d yyyy"
-        return  dateFormatter.string(from: date!)
-    }
-    
+    // Adjust the url and open it with safari
     var openSafari: Void {
         var checkOccurences = self.replacingOccurrences(of: "http://", with: "")
         checkOccurences = checkOccurences.replacingOccurrences(of: "https://", with: "")
@@ -59,6 +54,16 @@ extension String {
             return
         }
         UIApplication.shared.open(url)
+    }
+    
+    // Some functions for formate string to date
+    
+    var formateDate: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let date = dateFormatter.date(from: self)
+        dateFormatter.dateFormat = "EEEE MMM d yyyy"
+        return  dateFormatter.string(from: date!)
     }
     
     var hoursToDate: Date {
@@ -90,6 +95,7 @@ extension Array where Element == Performance {
 
 extension Optional where Wrapped == Int {
     
+    // Check an optional Int and return it, if the Int is incorrect return nil
     var intToString: String? {
         guard(self != nil) else {
             return nil
@@ -100,6 +106,8 @@ extension Optional where Wrapped == Int {
 }
 
 extension Date {
+    
+    // Add 10 hours to an date
     var endDate: Date {
         return Calendar.current.date(byAdding: .hour, value: 10, to: self) ?? Date()
     }

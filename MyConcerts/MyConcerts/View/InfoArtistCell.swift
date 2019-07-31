@@ -8,6 +8,7 @@
 
 import UIKit
 
+// Set each cells of TableView to display informations of an artist
 class InfoArtistCell: UITableViewCell {
 
     @IBOutlet weak var labelData: UILabel!
@@ -22,7 +23,7 @@ class InfoArtistCell: UITableViewCell {
     }
 
     func setInfoArtistCell(data: (String, UIImage)) {
-        self.labelData.text = data.0
-        self.imageData.image = data.1
+        self.labelData.text = data.0 // // Set information about an artist. Exemple biography, age, name etc
+        self.imageData.image = data.1 // Set the image corresponding
     }
 }

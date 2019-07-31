@@ -8,6 +8,7 @@
 
 import UIKit
 
+// Display all performers present in conert in CollectionView
 class ArtistCollectionCell: UICollectionViewCell {
     
     @IBOutlet weak var imageArtist: UIImageView!
@@ -15,8 +16,8 @@ class ArtistCollectionCell: UICollectionViewCell {
     
     func setImageCollection(performers: ImagesArtists) {
         self.imageArtist.layer.cornerRadius = self.imageArtist.frame.height / 2
-        self.imageArtist.clipsToBounds = true
-        self.imageArtist.image = performers.image.dataToUIImage
-        self.nameArtist.text = performers.name
+        self.imageArtist.clipsToBounds = true // Create a round image
+        self.imageArtist.image = performers.image.dataToUIImage // Set the image of an artist
+        self.nameArtist.text = performers.name // Set the name of an artist
     }
 }
