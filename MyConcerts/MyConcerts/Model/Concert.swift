@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Identifier: Codable {
+struct Identifier: DataJSON {
     let eventsHref: String?
 }
 
@@ -24,12 +24,13 @@ struct ResultPage: Codable {
     let results: Result
 }
 
-struct EventRef: DataJSON {
+struct EventRef: Codable {
     let resultsPage: ResultPage
 }
 
 // Get an url containing ID of a concert
 class Concert: ApiProtocol, ArtistProtocol {
+    var session: URLSession = URLSession(configuration: .default)
     var task: URLSessionDataTask?
     var url: String = ""
     var request: URLRequest!
@@ -39,18 +40,16 @@ class Concert: ApiProtocol, ArtistProtocol {
     // Create an Url to get an Url which will allow to get the ID of a concert
     func createUrl() {
         self.url = self.urlApi[.songkick]! + "search/artists.json?" + self.keyApi[.songkick]! + "&query=" + self.artist
+        print("Concert: \(self.url)")
     }
     
     func getResponseJSON(data: Data, completionHandler: @escaping (Bool, [DataJSON]?) -> Void) {
         do {
             // Use the struct EventRef with the methode Decode
             let resultData = try JSONDecoder().decode(EventRef.self, from: data)
-            EventsHref(href: resultData.resultsPage.results.artist.first?.identifier.first?.eventsHref ?? "").newRequestGet() { success, data in
-                completionHandler(success, data)
-                return
-            }
+            completionHandler(true, resultData.resultsPage.results.artist.first?.identifier)
         } catch {
-            NSLog("Class Concert - Error Decoder: \(error)")
+            //NSLog("Class Concert - Error Decoder: \(error)")
             completionHandler(false, nil)
             return
         }

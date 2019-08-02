@@ -1,0 +1,81 @@
+{
+    "resultsPage": {
+        "status": "ok",
+        "results": {
+            "event": {
+                "id": 37612919,
+                "displayName": "Kygo at Encore Beach Club, Wynn Las Vegas (August 3, 2019)",
+                "type": "Concert",
+                "uri": "http://www.songkick.com/concerts/37612919-kygo-at-encore-beach-club-wynn-las-vegas?utm_source=58656&utm_medium=partner",
+                "status": "ok",
+                "popularity": 0.228473,
+                "start": {
+                    "date": "2019-08-03",
+                    "datetime": "2019-08-03T10:00:00-0700",
+                    "time": "10:00:00"
+                },
+                "performance": [
+                    {
+                        "id": 71467174,
+                        "displayName": "Kygo",
+                        "billing": "headline",
+                        "billingIndex": 1,
+                        "artist": {
+                            "id": 7738429,
+                            "displayName": "Kygo",
+                            "uri": "http://www.songkick.com/artists/7738429-kygo?utm_source=58656&utm_medium=partner",
+                            "identifier": [
+                                {
+                                    "mbid": "ba0e7638-0cd6-4ff4-8987-c3e224d22c23",
+                                    "href": "http://api.songkick.com/api/3.0/artists/mbid:ba0e7638-0cd6-4ff4-8987-c3e224d22c23.json"
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "ageRestriction": null,
+                "flaggedAsEnded": false,
+                "venue": {
+                    "phone": null,
+                    "displayName": "Encore Beach Club, Wynn Las Vegas",
+                    "capacity": null,
+                    "city": {
+                        "displayName": "Las Vegas",
+                        "uri": "http://www.songkick.com/metro_areas/8396-us-las-vegas?utm_source=58656&utm_medium=partner",
+                        "country": {
+                            "displayName": "US"
+                        },
+                        "id": 8396,
+                        "state": {
+                            "displayName": "NV"
+                        }
+                    },
+                    "zip": "89109",
+                    "description": "",
+                    "lat": 36.130189,
+                    "lng": -115.165129,
+                    "website": null,
+                    "street": "3121 Las Vegas Blvd. S.,",
+                    "uri": "http://www.songkick.com/venues/1285851-encore-beach-club-wynn-las-vegas?utm_source=58656&utm_medium=partner",
+                    "id": 1285851,
+                    "metroArea": {
+                        "displayName": "Las Vegas",
+                        "uri": "http://www.songkick.com/metro_areas/8396-us-las-vegas?utm_source=58656&utm_medium=partner",
+                        "country": {
+                            "displayName": "US"
+                        },
+                        "id": 8396,
+                        "state": {
+                            "displayName": "NV"
+                        }
+                    }
+                },
+                "location": {
+                    "city": "Las Vegas, NV, US",
+                    "lat": 36.13019,
+                    "lng": -115.16513
+                }
+            }
+        }
+    }
+}

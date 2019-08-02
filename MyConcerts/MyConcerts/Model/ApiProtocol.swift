@@ -18,7 +18,7 @@ protocol DataJSON: Codable {}
 
 // Protocol Api containing the declaration of variables and functions
 protocol ApiProtocol: class {
-    var session: URLSession { get } // To create request
+    var session: URLSession { get set } // To create request
     var keyApi: [ApiName: String] { get } // Get the keyApi
     var urlApi: [ApiName: String] { get } // Get the urlApi
     var url: String { set get } // Set and get the requestUrl
@@ -45,10 +45,6 @@ extension ApiProtocol {
         return true
     }
     
-    var session: URLSession {
-        return URLSession(configuration: .default)
-    }
-    
     var keyApi: [ApiName: String] {
         return [.audioscrobbler: "api_key=0dc8921cfd471d1ebe01c2f0d5973119",
                 .audiodb: "195003",
@@ -63,7 +59,7 @@ extension ApiProtocol {
     
     var cancelTask: Bool {
         self.task?.cancel()
-        return self.task?.state != URLSessionTask.State.canceling
+        return (self.task?.state == URLSessionTask.State.canceling)
     }
     
     func newRequestGet(completionHandler: @escaping (Bool, [DataJSON]?) -> Void) {
@@ -83,17 +79,17 @@ extension ApiProtocol {
     }
     
     func getData(completionHandler: @escaping (Bool, [DataJSON]?) -> Void) {
-        if (self.cancel == true) { // If cancel is true, we can try to cancel the task is a task is in progress
-            guard self.cancelTask else { // Check if the task has been canceled
+        if (self.cancel == true) { // If cancel is true, we can try to cancel the task
+            if self.cancelTask {
                 completionHandler(false, nil)
-                return
             }
         }
         self.task = self.session.dataTask(with: self.request) { (data, response, error) in
             DispatchQueue.main.async {
                 guard let data = data, error == nil else { // Get the data and check if there are not error
                     completionHandler(false, nil)
-                    return NotificationCenter.default.post(name: .error, object: ["Error Data", "Can't recover Data from Api"])
+                    NotificationCenter.default.post(name: .error, object: ["Error Data", "Can't recover Data from Api"])
+                    return
                 }
                 // Get the response server. 200 is Ok else is failed
                 guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
@@ -102,6 +98,7 @@ extension ApiProtocol {
                 }
                 self.getResponseJSON(data: data) { success, data in //Decode the response
                     completionHandler(success, data)
+                    return
                 }
             }
         }

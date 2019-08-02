@@ -22,6 +22,7 @@ struct ListTopArtists: Codable {
 
 // Get all top artist of the moment
 class TopArtists: ApiProtocol {
+    var session: URLSession = URLSession(configuration: .default)
     var task: URLSessionDataTask?
     var url: String = ""
     var request: URLRequest!
@@ -29,6 +30,7 @@ class TopArtists: ApiProtocol {
     // Create an URL to get the top artist of the moment
     func createUrl() {
         self.url = self.urlApi[.audioscrobbler]! + "&" + self.keyApi[.audioscrobbler]! + "&format=json"
+        //print("TopArtists: \(self.url)")
     }
     
     func getResponseJSON(data: Data, completionHandler: @escaping (Bool, [DataJSON]?) -> Void) {

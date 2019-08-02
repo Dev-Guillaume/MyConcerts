@@ -1,0 +1,68 @@
+{
+    "resultsPage": {
+        "status": "ok",
+        "results": {
+            "artist": [
+                {
+                    "id": 7738429,
+                    "displayName": "Kygo",
+                    "uri": "http://www.songkick.com/artists/7738429-kygo?utm_source=58656&utm_medium=partner",
+                    "identifier": [
+                        {
+                            "mbid": "ba0e7638-0cd6-4ff4-8987-c3e224d22c23",
+                            "href": "http://api.songkick.com/api/3.0/artists/mbid:ba0e7638-0cd6-4ff4-8987-c3e224d22c23.json",
+                            "eventsHref": "http://api.songkick.com/api/3.0/artists/mbid:ba0e7638-0cd6-4ff4-8987-c3e224d22c23/calendar.json",
+                            "setlistsHref": "http://api.songkick.com/api/3.0/artists/mbid:ba0e7638-0cd6-4ff4-8987-c3e224d22c23/setlists.json"
+                        }
+                    ],
+                    "onTourUntil": "2019-11-08"
+                },
+                {
+                    "id": 5261078,
+                    "displayName": "Lygo",
+                    "uri": "http://www.songkick.com/artists/5261078-lygo?utm_source=58656&utm_medium=partner",
+                    "identifier": [
+                        {
+                            "mbid": "9486103c-9315-4136-90c0-d688847da9b9",
+                            "href": "http://api.songkick.com/api/3.0/artists/mbid:9486103c-9315-4136-90c0-d688847da9b9.json",
+                            "eventsHref": "http://api.songkick.com/api/3.0/artists/mbid:9486103c-9315-4136-90c0-d688847da9b9/calendar.json",
+                            "setlistsHref": "http://api.songkick.com/api/3.0/artists/mbid:9486103c-9315-4136-90c0-d688847da9b9/setlists.json"
+                        }
+                    ],
+                    "onTourUntil": "2019-09-14"
+                },
+                {
+                    "id": 9070189,
+                    "displayName": "kygo, a",
+                    "uri": "http://www.songkick.com/artists/9070189-kygo-a?utm_source=58656&utm_medium=partner",
+                    "identifier": [],
+                    "onTourUntil": null
+                },
+                {
+                    "onTourUntil": null,
+                    "displayName": "Kygo Welcomes",
+                    "uri": "http://www.songkick.com/artists/577924-kygo-welcomes?utm_source=58656&utm_medium=partner",
+                    "id": 577924,
+                    "identifier": []
+                },
+                {
+                    "displayName": "Kygo 2018",
+                    "identifier": [],
+                    "uri": "http://www.songkick.com/artists/9371014-kygo-2018?utm_source=58656&utm_medium=partner",
+                    "onTourUntil": null,
+                    "id": 9371014
+                },
+                {
+                    "onTourUntil": null,
+                    "displayName": "Kygo's Friday at the Fillmore",
+                    "uri": "http://www.songkick.com/artists/7844459-kygos-friday-at-the-fillmore?utm_source=58656&utm_medium=partner",
+                    "id": 7844459,
+                    "identifier": []
+                }
+            ]
+        },
+        "perPage": 50,
+        "page": 1,
+        "totalEntries": 6
+    }
+}

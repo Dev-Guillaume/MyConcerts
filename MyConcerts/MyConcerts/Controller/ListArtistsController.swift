@@ -11,7 +11,7 @@ import UIKit
 class ListArtistsController: UIViewController {
 
     var listTopArtists: [InfoArtists] = [] // Array containing the list of top artists
-    let concert = Concert() // Allow to get all concert about an artist
+    //static let concert = Concert() // Allow to get all concert about an artist
     
     // Variables send to ArtistController
     var artistPicked: InfoArtists! // Containing an artist with informations
@@ -37,7 +37,7 @@ class ListArtistsController: UIViewController {
         TopArtists().newRequestGet { success, data in
             if success {
                 // Get the information for each artist recover
-                InfoArtist().searchManyArtists(arrayArtists: data!) { success, data in
+                Singleton.infoArtist.searchManyArtists(arrayArtists: data!) { success, data in
                     guard success, let data = data else {
                         return
                     }
@@ -112,13 +112,20 @@ extension ListArtistsController: UITableViewDataSource, UITableViewDelegate {
     // Check if a row is selected
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.artistPicked = self.listTopArtists[indexPath.row] // Set the artist pick
-        self.concert.setArtist(artist: self.artistPicked.info.strArtist) // Set the artist pick for search all concerts
-        self.concert.newRequestGet { success, data in // // Get all concerts about the artist
-            guard success, let data = data as? [Events] else {
+        Singleton.concert.setArtist(artist: self.artistPicked.info.strArtist) // Set the artist pick for search all concerts
+        Singleton.concert.newRequestGet { success, data in // // Get all concerts about the artist
+            guard success, let data = (data as? [Identifier])?.first?.eventsHref else {
                 return
             }
-            self.infoEvents = data // Set all concerts
-            self.performSegue(withIdentifier: "segueToArtist", sender: self) // Change controller
+            print(data)
+            Singleton.eventHref.setHref(href: data)
+            Singleton.eventHref.newRequestGet { success, data in
+                guard success, let data = data as? [Events] else {
+                    return
+                }
+                self.infoEvents = data // Set all concerts
+                self.performSegue(withIdentifier: "segueToArtist", sender: self) // Change controller
+            }
         }
     }
 }
@@ -127,7 +134,7 @@ extension ListArtistsController: UITableViewDataSource, UITableViewDelegate {
 extension ListArtistsController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        InfoArtist().searchArtist(artist: searchBar.text ?? "") { success, data in // Search an artist
+        Singleton.infoArtist.searchArtist(artist: searchBar.text ?? "") { success, data in // Search an artist
             guard success, let data = data else {
                 return
             }

@@ -19,7 +19,7 @@ struct Info: DataJSON {
     let strTwitter: String?
     let strBiographyEN: String?
     let strCountry: String?
-    let strArtistThumb: String?
+    let strArtistThumb: String
 }
 
 struct ListInfoArtist: Codable {
@@ -33,20 +33,13 @@ struct InfoArtists {
 
 // Get all info of the artist or many artists
 class InfoArtist: ApiProtocol, ArtistProtocol {
+    var session: URLSession = URLSession(configuration: .default)
     var task: URLSessionDataTask?
     var url: String = ""
     var request: URLRequest!
     var cancel: Bool = false
-    internal var artist: String
+    internal var artist: String = ""
     private var infoArtists: [InfoArtists] = []
-    
-    init(artist: String) {
-        self.artist = artist.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? ""
-    }
-    
-    init() {
-        self.artist = ""
-    }
     
     func searchManyArtists(arrayArtists: [DataJSON], completionHandler: @escaping (Bool, [InfoArtists]?) -> Void) {
         self.infoArtists.removeAll()
@@ -54,18 +47,18 @@ class InfoArtist: ApiProtocol, ArtistProtocol {
             completionHandler(false, nil)
             return
         }
-        guard self.cancelTask else { // Check if the task is canceled
-            completionHandler(false, nil) // If the task is canceled then return
-            return
+        if self.cancelTask {
+            completionHandler(false, nil)
         }
         let myGroup: DispatchGroup = DispatchGroup() // Create an DispatchGroup to check when all requests are finished
         for artist in arrayArtists { // Get all names of a list of artists
             myGroup.enter()
             self.setArtist(artist: artist.name ?? "") // Set the artist who want search information
             self.newRequestGet { success, data in // Get data containning the information of the artist
-                if (success) { // Success == true then save information
-                    self.infoArtists.append(InfoArtists(info: (data?.first as? Info ?? Info(strArtist: artist.name ?? "", strLabel: nil, intBornYear: nil, intDiedYear: nil, strGenre: nil, strWebsite: nil, strFacebook: nil, strTwitter: nil, strBiographyEN: nil, strCountry: nil, strArtistThumb: nil)),
-                                                        image: self.recoverDataImage(urlImage: (data?.first as! Info).strArtistThumb ?? "")))
+                if success {
+                    if let data = data?.first as? Info { // Success == true then save information
+                        self.infoArtists.append(InfoArtists(info: data, image: self.recoverDataImage(urlImage: data.strArtistThumb)))
+                    }
                 }
                 myGroup.leave()
             }
@@ -77,23 +70,23 @@ class InfoArtist: ApiProtocol, ArtistProtocol {
     
     // Same than searchManyArtists but search a single artist
     func searchArtist(artist: String, completionHandler: @escaping (Bool, InfoArtists?) -> Void) {
-        guard self.cancelTask else {
+        if self.cancelTask {
             completionHandler(false, nil)
-            return
         }
         self.infoArtists.removeAll()
         self.setArtist(artist: artist)
         self.newRequestGet { success, data in
-            guard success else {
+            guard success, let data = data?.first as? Info else {
                 return completionHandler(false, nil)
             }
-            completionHandler(true, InfoArtists(info: ((data?.first as? Info ?? Info(strArtist: artist, strLabel: nil, intBornYear: nil, intDiedYear: nil, strGenre: nil, strWebsite: nil, strFacebook: nil, strTwitter: nil, strBiographyEN: nil, strCountry: nil, strArtistThumb: nil))), image: self.recoverDataImage(urlImage: (data?.first as? Info)?.strArtistThumb ?? "")))
+            completionHandler(true, InfoArtists(info: data, image: self.recoverDataImage(urlImage: data.strArtistThumb)))
         }
     }
     
     // Create an Url to get the informations of an artist
     func createUrl() {
         self.url = self.urlApi[.audiodb]! + self.keyApi[.audiodb]! + "/search.php?s=" + self.artist
+        //print("TopArtists: \(self.url)")
     }
     
     func getResponseJSON(data: Data, completionHandler: @escaping (Bool, [DataJSON]?) -> Void) {
@@ -103,7 +96,7 @@ class InfoArtist: ApiProtocol, ArtistProtocol {
             completionHandler(true, resultData)
         } catch {
             completionHandler(false, nil)
-            NSLog("Class InfoArtist - Error Decoder: \(error)")
+            //NSLog("Class InfoArtist - Error Decoder: \(error)")
         }
     }
     

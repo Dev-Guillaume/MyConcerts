@@ -24,9 +24,8 @@ class ImageArtist: InfoArtist {
             completionHandler(false, nil)
             return
         }
-        guard self.cancelTask else { // // Check if the task has been canceled
+        if self.cancelTask {
             completionHandler(false, nil)
-            return
         }
         let myGroup: DispatchGroup = DispatchGroup()
         for artist in arrayArtists {

@@ -16,9 +16,6 @@ class ArtistController: UIViewController {
     var imageArtists: [ImagesArtists]! // List of all perfomers containing Image and name
     var infoEventPicked: DetailEvent! // Detail of the event
     
-    let infoConcert = InfoConcert()
-    let imageArtist = ImageArtist()
-    
     @IBOutlet var artistView: ArtistView!
     
     override func viewDidLoad() {
@@ -71,20 +68,20 @@ extension ArtistController: UITableViewDataSource, UITableViewDelegate {
     
     // Check if a row is selected
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.infoConcert.setIdConcert(idConcert: self.infoEvents[indexPath.row].id) // Set id of the concert
-        self.infoConcert.newRequestGet { success, data in // Search information of the concert
+        Singleton.infoConcert.setIdConcert(idConcert: self.infoEvents[indexPath.row].id) // Set id of the concert
+        Singleton.infoConcert.newRequestGet { success, data in // Search information of the concert
             guard success, let data = (data as? [DetailEvent])?.first else {
                 return
             }
             self.infoEventPicked = data
             // Search images of perfomerts of the concer
-            self.imageArtist.searchManyImagesArtists(arrayArtists: data.performance) { success, data in
+            Singleton.imageArtist.searchManyImagesArtists(arrayArtists: data.performance) { success, data in
                 guard success, let data = data else {
                     return
                 }
                 self.imageArtists = data
                 self.index = indexPath.row
-                 self.performSegue(withIdentifier: "segueToInfoConcert", sender: self)
+                self.performSegue(withIdentifier: "segueToInfoConcert", sender: self)
             }
         }
     }

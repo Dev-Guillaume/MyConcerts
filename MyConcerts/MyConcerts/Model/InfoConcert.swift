@@ -57,19 +57,12 @@ struct DetailConcert: Codable {
 
 // Get all information about a concert
 class InfoConcert: ApiProtocol {
+    var session: URLSession = URLSession(configuration: .default)
     var task: URLSessionDataTask?
     var url: String = ""
     var request: URLRequest!
-    private var idConcert: Int
+    private var idConcert: Int = 0
     var ecoMode: Bool = false
-    
-    init(idConcert: Int) {
-        self.idConcert = idConcert
-    }
-    
-    init() {
-        self.idConcert = 0
-    }
     
     // Set the If of concert
     func setIdConcert(idConcert: Int) {
@@ -79,6 +72,7 @@ class InfoConcert: ApiProtocol {
     // Create an Url for get all information about a concert
     func createUrl() {
         self.url = self.urlApi[.songkick]! + "events/" + String(self.idConcert) + ".json?" + self.keyApi[.songkick]!
+        //print("InfoConcert: \(self.url)")
     }
     
     func getResponseJSON(data: Data, completionHandler: @escaping (Bool, [DataJSON]?) -> Void) {

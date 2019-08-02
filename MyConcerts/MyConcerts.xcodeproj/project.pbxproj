@@ -7,6 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F00FF89522F26243005F9379 /* URLSessionFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00FF89422F26243005F9379 /* URLSessionFake.swift */; };
+		F00FF89722F26A2B005F9379 /* ResultApiTopArtists.json in Resources */ = {isa = PBXBuildFile; fileRef = F00FF89622F26A2B005F9379 /* ResultApiTopArtists.json */; };
+		F00FF89B22F26A5F005F9379 /* ResultApiInfoArtist.json in Resources */ = {isa = PBXBuildFile; fileRef = F00FF89A22F26A5F005F9379 /* ResultApiInfoArtist.json */; };
+		F00FF89D22F26A78005F9379 /* ResultApiConcert.json in Resources */ = {isa = PBXBuildFile; fileRef = F00FF89C22F26A78005F9379 /* ResultApiConcert.json */; };
+		F00FF89F22F26AA9005F9379 /* ResultApiEventsHref.json in Resources */ = {isa = PBXBuildFile; fileRef = F00FF89E22F26AA9005F9379 /* ResultApiEventsHref.json */; };
+		F00FF8A122F26ABF005F9379 /* ResultApiImageArtist.json in Resources */ = {isa = PBXBuildFile; fileRef = F00FF8A022F26ABF005F9379 /* ResultApiImageArtist.json */; };
+		F00FF8A322F26AE4005F9379 /* ResultApiInfoConcert.json in Resources */ = {isa = PBXBuildFile; fileRef = F00FF8A222F26AE4005F9379 /* ResultApiInfoConcert.json */; };
+		F00FF8A522F27159005F9379 /* TopArtistsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00FF8A422F27159005F9379 /* TopArtistsTest.swift */; };
+		F00FF8A722F2BC0A005F9379 /* PatternSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00FF8A622F2BC0A005F9379 /* PatternSingleton.swift */; };
+		F0155DE622F32B46004F889C /* InfoArtistTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0155DE522F32B46004F889C /* InfoArtistTest.swift */; };
+		F0155DE822F35B9F004F889C /* ResultApiInfoArtistNil.json in Resources */ = {isa = PBXBuildFile; fileRef = F0155DE722F35B9F004F889C /* ResultApiInfoArtistNil.json */; };
 		F029274D22EB59D700EE536D /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = F029274C22EB59D700EE536D /* Favorite.swift */; };
 		F029274F22EE08A900EE536D /* FavoriteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F029274E22EE08A900EE536D /* FavoriteController.swift */; };
 		F03CFBFD22D8C6CE00A44632 /* ConcertsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03CFBFC22D8C6CE00A44632 /* ConcertsCell.swift */; };
@@ -20,6 +31,7 @@
 		F064375E22E7F94700874923 /* EventCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F064375D22E7F94700874923 /* EventCalendar.swift */; };
 		F064376022E8CC8100874923 /* FavoriteButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F064375F22E8CC8100874923 /* FavoriteButtonView.swift */; };
 		F064376222EA79B200874923 /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F064376122EA79B100874923 /* ActivityIndicatorView.swift */; };
+		F084AC6622F4C98400EE3E4D /* ImageArtistTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F084AC6522F4C98400EE3E4D /* ImageArtistTest.swift */; };
 		F08889BD22E0FCC300B8CFDE /* TopArtists.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08889BC22E0FCC300B8CFDE /* TopArtists.swift */; };
 		F08889BF22E0FCE000B8CFDE /* InfoArtist.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08889BE22E0FCE000B8CFDE /* InfoArtist.swift */; };
 		F08889C122E0FD1100B8CFDE /* Concert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08889C022E0FD1100B8CFDE /* Concert.swift */; };
@@ -35,12 +47,14 @@
 		F0AEA64F22C56992009100D1 /* MyConcerts.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F0AEA64D22C56992009100D1 /* MyConcerts.xcdatamodeld */; };
 		F0AEA65122C56993009100D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0AEA65022C56993009100D1 /* Assets.xcassets */; };
 		F0AEA65422C56993009100D1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0AEA65222C56993009100D1 /* LaunchScreen.storyboard */; };
-		F0AEA65F22C56993009100D1 /* MyConcertsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0AEA65E22C56993009100D1 /* MyConcertsTests.swift */; };
 		F0AEA66E22C57634009100D1 /* ListArtistsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0AEA66D22C57634009100D1 /* ListArtistsController.swift */; };
 		F0AEA67222C576D6009100D1 /* extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0AEA67122C576D6009100D1 /* extension.swift */; };
 		F0AEA67622C58490009100D1 /* ArtistsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0AEA67522C58490009100D1 /* ArtistsCell.swift */; };
 		F0AEA67822C7B653009100D1 /* ArtistController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0AEA67722C7B653009100D1 /* ArtistController.swift */; };
 		F0AEA67A22C7C593009100D1 /* ArtistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0AEA67922C7C593009100D1 /* ArtistView.swift */; };
+		F0B774FA22F3814000F41CD2 /* ConcertTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B774F922F3814000F41CD2 /* ConcertTest.swift */; };
+		F0B774FD22F39C5800F41CD2 /* EventsHrefTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B774FC22F39C5800F41CD2 /* EventsHrefTest.swift */; };
+		F0B7750022F3A6ED00F41CD2 /* InfoConcertTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B774FF22F3A6ED00F41CD2 /* InfoConcertTest.swift */; };
 		F0DBC7FB22EE5974002E1B52 /* FavoriteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DBC7FA22EE5974002E1B52 /* FavoriteCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +69,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F00FF89422F26243005F9379 /* URLSessionFake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionFake.swift; sourceTree = "<group>"; };
+		F00FF89622F26A2B005F9379 /* ResultApiTopArtists.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ResultApiTopArtists.json; sourceTree = "<group>"; };
+		F00FF89A22F26A5F005F9379 /* ResultApiInfoArtist.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ResultApiInfoArtist.json; sourceTree = "<group>"; };
+		F00FF89C22F26A78005F9379 /* ResultApiConcert.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ResultApiConcert.json; sourceTree = "<group>"; };
+		F00FF89E22F26AA9005F9379 /* ResultApiEventsHref.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ResultApiEventsHref.json; sourceTree = "<group>"; };
+		F00FF8A022F26ABF005F9379 /* ResultApiImageArtist.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ResultApiImageArtist.json; sourceTree = "<group>"; };
+		F00FF8A222F26AE4005F9379 /* ResultApiInfoConcert.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ResultApiInfoConcert.json; sourceTree = "<group>"; };
+		F00FF8A422F27159005F9379 /* TopArtistsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopArtistsTest.swift; sourceTree = "<group>"; };
+		F00FF8A622F2BC0A005F9379 /* PatternSingleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatternSingleton.swift; sourceTree = "<group>"; };
+		F0155DE522F32B46004F889C /* InfoArtistTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoArtistTest.swift; sourceTree = "<group>"; };
+		F0155DE722F35B9F004F889C /* ResultApiInfoArtistNil.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ResultApiInfoArtistNil.json; sourceTree = "<group>"; };
 		F029274C22EB59D700EE536D /* Favorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorite.swift; sourceTree = "<group>"; };
 		F029274E22EE08A900EE536D /* FavoriteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteController.swift; sourceTree = "<group>"; };
 		F03CFBFC22D8C6CE00A44632 /* ConcertsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcertsCell.swift; sourceTree = "<group>"; };
@@ -68,6 +93,7 @@
 		F064375D22E7F94700874923 /* EventCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCalendar.swift; sourceTree = "<group>"; };
 		F064375F22E8CC8100874923 /* FavoriteButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteButtonView.swift; sourceTree = "<group>"; };
 		F064376122EA79B100874923 /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
+		F084AC6522F4C98400EE3E4D /* ImageArtistTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageArtistTest.swift; sourceTree = "<group>"; };
 		F08889BC22E0FCC300B8CFDE /* TopArtists.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopArtists.swift; sourceTree = "<group>"; };
 		F08889BE22E0FCE000B8CFDE /* InfoArtist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoArtist.swift; sourceTree = "<group>"; };
 		F08889C022E0FD1100B8CFDE /* Concert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Concert.swift; sourceTree = "<group>"; };
@@ -86,13 +112,15 @@
 		F0AEA65322C56993009100D1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F0AEA65522C56993009100D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F0AEA65A22C56993009100D1 /* MyConcertsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyConcertsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F0AEA65E22C56993009100D1 /* MyConcertsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyConcertsTests.swift; sourceTree = "<group>"; };
 		F0AEA66022C56993009100D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F0AEA66D22C57634009100D1 /* ListArtistsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListArtistsController.swift; sourceTree = "<group>"; };
 		F0AEA67122C576D6009100D1 /* extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extension.swift; sourceTree = "<group>"; };
 		F0AEA67522C58490009100D1 /* ArtistsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistsCell.swift; sourceTree = "<group>"; };
 		F0AEA67722C7B653009100D1 /* ArtistController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistController.swift; sourceTree = "<group>"; };
 		F0AEA67922C7C593009100D1 /* ArtistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistView.swift; sourceTree = "<group>"; };
+		F0B774F922F3814000F41CD2 /* ConcertTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcertTest.swift; sourceTree = "<group>"; };
+		F0B774FC22F39C5800F41CD2 /* EventsHrefTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsHrefTest.swift; sourceTree = "<group>"; };
+		F0B774FF22F3A6ED00F41CD2 /* InfoConcertTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoConcertTest.swift; sourceTree = "<group>"; };
 		F0DBC7FA22EE5974002E1B52 /* FavoriteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -147,8 +175,14 @@
 		F0AEA65D22C56993009100D1 /* MyConcertsTests */ = {
 			isa = PBXGroup;
 			children = (
-				F0AEA65E22C56993009100D1 /* MyConcertsTests.swift */,
 				F0AEA66022C56993009100D1 /* Info.plist */,
+				F00FF89422F26243005F9379 /* URLSessionFake.swift */,
+				F0B774F622F3791B00F41CD2 /* TopArtistsTest */,
+				F0B774F722F3794C00F41CD2 /* InfoArtistTest */,
+				F0B774F822F3811600F41CD2 /* ConcertTest */,
+				F0B774FB22F39C3900F41CD2 /* EventsHrefTest */,
+				F0B774FE22F3A5C000F41CD2 /* InfoConcertTest */,
+				F00FF8A022F26ABF005F9379 /* ResultApiImageArtist.json */,
 			);
 			path = MyConcertsTests;
 			sourceTree = "<group>";
@@ -168,6 +202,7 @@
 				F0ACDF9A22E6B0B400C52191 /* InfoConcert.swift */,
 				F064375D22E7F94700874923 /* EventCalendar.swift */,
 				F029274C22EB59D700EE536D /* Favorite.swift */,
+				F00FF8A622F2BC0A005F9379 /* PatternSingleton.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -213,6 +248,53 @@
 				F0AEA67122C576D6009100D1 /* extension.swift */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F0B774F622F3791B00F41CD2 /* TopArtistsTest */ = {
+			isa = PBXGroup;
+			children = (
+				F00FF8A422F27159005F9379 /* TopArtistsTest.swift */,
+				F00FF89622F26A2B005F9379 /* ResultApiTopArtists.json */,
+			);
+			path = TopArtistsTest;
+			sourceTree = "<group>";
+		};
+		F0B774F722F3794C00F41CD2 /* InfoArtistTest */ = {
+			isa = PBXGroup;
+			children = (
+				F084AC6522F4C98400EE3E4D /* ImageArtistTest.swift */,
+				F0155DE522F32B46004F889C /* InfoArtistTest.swift */,
+				F00FF89A22F26A5F005F9379 /* ResultApiInfoArtist.json */,
+				F0155DE722F35B9F004F889C /* ResultApiInfoArtistNil.json */,
+			);
+			path = InfoArtistTest;
+			sourceTree = "<group>";
+		};
+		F0B774F822F3811600F41CD2 /* ConcertTest */ = {
+			isa = PBXGroup;
+			children = (
+				F0B774F922F3814000F41CD2 /* ConcertTest.swift */,
+				F00FF89C22F26A78005F9379 /* ResultApiConcert.json */,
+			);
+			path = ConcertTest;
+			sourceTree = "<group>";
+		};
+		F0B774FB22F39C3900F41CD2 /* EventsHrefTest */ = {
+			isa = PBXGroup;
+			children = (
+				F0B774FC22F39C5800F41CD2 /* EventsHrefTest.swift */,
+				F00FF89E22F26AA9005F9379 /* ResultApiEventsHref.json */,
+			);
+			path = EventsHrefTest;
+			sourceTree = "<group>";
+		};
+		F0B774FE22F3A5C000F41CD2 /* InfoConcertTest */ = {
+			isa = PBXGroup;
+			children = (
+				F0B774FF22F3A6ED00F41CD2 /* InfoConcertTest.swift */,
+				F00FF8A222F26AE4005F9379 /* ResultApiInfoConcert.json */,
+			);
+			path = InfoConcertTest;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -306,6 +388,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F00FF8A322F26AE4005F9379 /* ResultApiInfoConcert.json in Resources */,
+				F00FF89B22F26A5F005F9379 /* ResultApiInfoArtist.json in Resources */,
+				F00FF89722F26A2B005F9379 /* ResultApiTopArtists.json in Resources */,
+				F00FF8A122F26ABF005F9379 /* ResultApiImageArtist.json in Resources */,
+				F00FF89D22F26A78005F9379 /* ResultApiConcert.json in Resources */,
+				F00FF89F22F26AA9005F9379 /* ResultApiEventsHref.json in Resources */,
+				F0155DE822F35B9F004F889C /* ResultApiInfoArtistNil.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -318,6 +407,7 @@
 			files = (
 				F0AEA67622C58490009100D1 /* ArtistsCell.swift in Sources */,
 				F0AEA64722C56992009100D1 /* AppDelegate.swift in Sources */,
+				F00FF8A722F2BC0A005F9379 /* PatternSingleton.swift in Sources */,
 				F054CF2D22E53320000F6FFB /* InfoConcertCell.swift in Sources */,
 				F029274D22EB59D700EE536D /* Favorite.swift in Sources */,
 				F0AEA64F22C56992009100D1 /* MyConcerts.xcdatamodeld in Sources */,
@@ -354,7 +444,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F0AEA65F22C56993009100D1 /* MyConcertsTests.swift in Sources */,
+				F0155DE622F32B46004F889C /* InfoArtistTest.swift in Sources */,
+				F084AC6622F4C98400EE3E4D /* ImageArtistTest.swift in Sources */,
+				F0B774FD22F39C5800F41CD2 /* EventsHrefTest.swift in Sources */,
+				F0B7750022F3A6ED00F41CD2 /* InfoConcertTest.swift in Sources */,
+				F00FF8A522F27159005F9379 /* TopArtistsTest.swift in Sources */,
+				F0B774FA22F3814000F41CD2 /* ConcertTest.swift in Sources */,
+				F00FF89522F26243005F9379 /* URLSessionFake.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
