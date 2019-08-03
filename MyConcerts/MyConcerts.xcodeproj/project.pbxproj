@@ -12,12 +12,14 @@
 		F00FF89B22F26A5F005F9379 /* ResultApiInfoArtist.json in Resources */ = {isa = PBXBuildFile; fileRef = F00FF89A22F26A5F005F9379 /* ResultApiInfoArtist.json */; };
 		F00FF89D22F26A78005F9379 /* ResultApiConcert.json in Resources */ = {isa = PBXBuildFile; fileRef = F00FF89C22F26A78005F9379 /* ResultApiConcert.json */; };
 		F00FF89F22F26AA9005F9379 /* ResultApiEventsHref.json in Resources */ = {isa = PBXBuildFile; fileRef = F00FF89E22F26AA9005F9379 /* ResultApiEventsHref.json */; };
-		F00FF8A122F26ABF005F9379 /* ResultApiImageArtist.json in Resources */ = {isa = PBXBuildFile; fileRef = F00FF8A022F26ABF005F9379 /* ResultApiImageArtist.json */; };
 		F00FF8A322F26AE4005F9379 /* ResultApiInfoConcert.json in Resources */ = {isa = PBXBuildFile; fileRef = F00FF8A222F26AE4005F9379 /* ResultApiInfoConcert.json */; };
 		F00FF8A522F27159005F9379 /* TopArtistsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00FF8A422F27159005F9379 /* TopArtistsTest.swift */; };
 		F00FF8A722F2BC0A005F9379 /* PatternSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00FF8A622F2BC0A005F9379 /* PatternSingleton.swift */; };
 		F0155DE622F32B46004F889C /* InfoArtistTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0155DE522F32B46004F889C /* InfoArtistTest.swift */; };
 		F0155DE822F35B9F004F889C /* ResultApiInfoArtistNil.json in Resources */ = {isa = PBXBuildFile; fileRef = F0155DE722F35B9F004F889C /* ResultApiInfoArtistNil.json */; };
+		F0263D8122F60C0A008FDADE /* ApiProtocolTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0263D8022F60C0A008FDADE /* ApiProtocolTest.swift */; };
+		F0263D8722F618F3008FDADE /* EventCalendarTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0263D8622F618F3008FDADE /* EventCalendarTest.swift */; };
+		F0263D8922F61904008FDADE /* FavoriteTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0263D8822F61904008FDADE /* FavoriteTest.swift */; };
 		F029274D22EB59D700EE536D /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = F029274C22EB59D700EE536D /* Favorite.swift */; };
 		F029274F22EE08A900EE536D /* FavoriteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F029274E22EE08A900EE536D /* FavoriteController.swift */; };
 		F03CFBFD22D8C6CE00A44632 /* ConcertsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03CFBFC22D8C6CE00A44632 /* ConcertsCell.swift */; };
@@ -74,12 +76,14 @@
 		F00FF89A22F26A5F005F9379 /* ResultApiInfoArtist.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ResultApiInfoArtist.json; sourceTree = "<group>"; };
 		F00FF89C22F26A78005F9379 /* ResultApiConcert.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ResultApiConcert.json; sourceTree = "<group>"; };
 		F00FF89E22F26AA9005F9379 /* ResultApiEventsHref.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ResultApiEventsHref.json; sourceTree = "<group>"; };
-		F00FF8A022F26ABF005F9379 /* ResultApiImageArtist.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ResultApiImageArtist.json; sourceTree = "<group>"; };
 		F00FF8A222F26AE4005F9379 /* ResultApiInfoConcert.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ResultApiInfoConcert.json; sourceTree = "<group>"; };
 		F00FF8A422F27159005F9379 /* TopArtistsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopArtistsTest.swift; sourceTree = "<group>"; };
 		F00FF8A622F2BC0A005F9379 /* PatternSingleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatternSingleton.swift; sourceTree = "<group>"; };
 		F0155DE522F32B46004F889C /* InfoArtistTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoArtistTest.swift; sourceTree = "<group>"; };
 		F0155DE722F35B9F004F889C /* ResultApiInfoArtistNil.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ResultApiInfoArtistNil.json; sourceTree = "<group>"; };
+		F0263D8022F60C0A008FDADE /* ApiProtocolTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiProtocolTest.swift; sourceTree = "<group>"; };
+		F0263D8622F618F3008FDADE /* EventCalendarTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCalendarTest.swift; sourceTree = "<group>"; };
+		F0263D8822F61904008FDADE /* FavoriteTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTest.swift; sourceTree = "<group>"; };
 		F029274C22EB59D700EE536D /* Favorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorite.swift; sourceTree = "<group>"; };
 		F029274E22EE08A900EE536D /* FavoriteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteController.swift; sourceTree = "<group>"; };
 		F03CFBFC22D8C6CE00A44632 /* ConcertsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcertsCell.swift; sourceTree = "<group>"; };
@@ -142,6 +146,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F0263D7F22F60B7A008FDADE /* ProtocolTest */ = {
+			isa = PBXGroup;
+			children = (
+				F0263D8022F60C0A008FDADE /* ApiProtocolTest.swift */,
+			);
+			path = ProtocolTest;
+			sourceTree = "<group>";
+		};
+		F0263D8422F61514008FDADE /* FavoriteTest */ = {
+			isa = PBXGroup;
+			children = (
+				F0263D8822F61904008FDADE /* FavoriteTest.swift */,
+			);
+			path = FavoriteTest;
+			sourceTree = "<group>";
+		};
+		F0263D8522F6152F008FDADE /* EventCalendarTest */ = {
+			isa = PBXGroup;
+			children = (
+				F0263D8622F618F3008FDADE /* EventCalendarTest.swift */,
+			);
+			path = EventCalendarTest;
+			sourceTree = "<group>";
+		};
 		F0AEA63A22C56992009100D1 = {
 			isa = PBXGroup;
 			children = (
@@ -177,12 +205,14 @@
 			children = (
 				F0AEA66022C56993009100D1 /* Info.plist */,
 				F00FF89422F26243005F9379 /* URLSessionFake.swift */,
+				F0263D8522F6152F008FDADE /* EventCalendarTest */,
+				F0263D8422F61514008FDADE /* FavoriteTest */,
+				F0263D7F22F60B7A008FDADE /* ProtocolTest */,
 				F0B774F622F3791B00F41CD2 /* TopArtistsTest */,
 				F0B774F722F3794C00F41CD2 /* InfoArtistTest */,
 				F0B774F822F3811600F41CD2 /* ConcertTest */,
 				F0B774FB22F39C3900F41CD2 /* EventsHrefTest */,
 				F0B774FE22F3A5C000F41CD2 /* InfoConcertTest */,
-				F00FF8A022F26ABF005F9379 /* ResultApiImageArtist.json */,
 			);
 			path = MyConcertsTests;
 			sourceTree = "<group>";
@@ -391,7 +421,6 @@
 				F00FF8A322F26AE4005F9379 /* ResultApiInfoConcert.json in Resources */,
 				F00FF89B22F26A5F005F9379 /* ResultApiInfoArtist.json in Resources */,
 				F00FF89722F26A2B005F9379 /* ResultApiTopArtists.json in Resources */,
-				F00FF8A122F26ABF005F9379 /* ResultApiImageArtist.json in Resources */,
 				F00FF89D22F26A78005F9379 /* ResultApiConcert.json in Resources */,
 				F00FF89F22F26AA9005F9379 /* ResultApiEventsHref.json in Resources */,
 				F0155DE822F35B9F004F889C /* ResultApiInfoArtistNil.json in Resources */,
@@ -446,8 +475,11 @@
 			files = (
 				F0155DE622F32B46004F889C /* InfoArtistTest.swift in Sources */,
 				F084AC6622F4C98400EE3E4D /* ImageArtistTest.swift in Sources */,
+				F0263D8722F618F3008FDADE /* EventCalendarTest.swift in Sources */,
+				F0263D8922F61904008FDADE /* FavoriteTest.swift in Sources */,
 				F0B774FD22F39C5800F41CD2 /* EventsHrefTest.swift in Sources */,
 				F0B7750022F3A6ED00F41CD2 /* InfoConcertTest.swift in Sources */,
+				F0263D8122F60C0A008FDADE /* ApiProtocolTest.swift in Sources */,
 				F00FF8A522F27159005F9379 /* TopArtistsTest.swift in Sources */,
 				F0B774FA22F3814000F41CD2 /* ConcertTest.swift in Sources */,
 				F00FF89522F26243005F9379 /* URLSessionFake.swift in Sources */,

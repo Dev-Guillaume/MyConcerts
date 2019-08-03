@@ -102,24 +102,6 @@ extension InfoConcertsController: UICollectionViewDataSource, UICollectionViewDe
         return cell
     }
     
-    
-    /*
-        Singleton.concert.setArtist(artist: self.artistPicked.info.strArtist) // Set the artist pick for search all concerts
-        Singleton.concert.newRequestGet { success, data in // // Get all concerts about the artist
-            guard success, let data = (data as? [Identifier])?.first?.eventsHref else {
-                return
-            }
-            Singleton.eventHref.setHref(href: data)
-            Singleton.eventHref.newRequestGet { success, data in
-                guard success, let data = data as? [Events] else {
-                    return
-                }
-                self.infoEvents = data // Set all concerts
-                self.performSegue(withIdentifier: "segueToArtist", sender: self) // Change controller
-            }
-        }
-    }*/
-    
     // Check if an artist is selected
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // Search information about an artist

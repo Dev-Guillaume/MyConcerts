@@ -13,5 +13,5 @@ struct Singleton {
     static let infoConcert = InfoConcert() // Get information about a concert
     static let imageArtist = ImageArtist() // Get image of an artist
     static let infoArtist = InfoArtist() // Get information of an artist
-    static let eventHref = EventsHref()
+    static let eventHref = EventsHref() // Get information of an concert
 }

@@ -69,6 +69,7 @@ extension ApiProtocol {
         }
         self.createUrl()  // Call the function createUrl to create an url
         guard let url = URL(string: self.url) else { // Check the url
+            completionHandler(false, nil)
             return NotificationCenter.default.post(name: .error, object: ["Error Url", "Can't construct URL"])
         }
         self.request = URLRequest(url: url) // Create a request

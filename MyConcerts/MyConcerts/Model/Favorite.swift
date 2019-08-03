@@ -56,7 +56,7 @@ public class Favorite: NSManagedObject {
     }
     
     static func deleteElement(row: Int) { // Delete an element with index
-        if (row > Favorite.favorite.count) {
+        if (row > Favorite.favorite.count || Favorite.favorite.isEmpty) {
             return
         }
         let element = Favorite.favorite[row]

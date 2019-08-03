@@ -18,6 +18,7 @@ class FakeResponseTopArtists {
     }
     
     static let incorrectData = "erreur".data(using: .utf8)!
+    
     static let responseOK = HTTPURLResponse(
         url: URL(string: "https://ws.audioscrobbler.com")!,
         statusCode: 200, httpVersion: nil, headerFields: [:])!
@@ -45,11 +46,37 @@ class TopArtistsTest: XCTestCase {
         wait(for: [expectation], timeout: 0.01)
     }
     
+    func testGetDataTopArtistsWhenDataIsCorrectResponseIsIncorrectWithNoErrorThenResultShouldBeKO() {
+        let topArtists = TopArtists()
+        let expectation = XCTestExpectation(description: "Wait for queue change.")
+        
+        topArtists.session = URLSessionFake(data: FakeResponseTopArtists.correctData, response: FakeResponseTopArtists.responseKO, error: nil)
+        topArtists.newRequestGet { success, data in
+            XCTAssertFalse(success)
+            XCTAssertNil(data)
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 0.01)
+    }
+    
     func testGetDataTopArtistsWhenDataIsIncorrectResponseIsCorrectWithNoErrorThenResultShouldBeKO() {
         let topArtists = TopArtists()
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         
         topArtists.session = URLSessionFake(data: FakeResponseTopArtists.incorrectData, response: FakeResponseTopArtists.responseOK, error: nil)
+        topArtists.newRequestGet { success, data in
+            XCTAssertFalse(success)
+            XCTAssertNil(data)
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 0.01)
+    }
+    
+    func testGetDataTopArtistsWhenDataIsCorrectResponseIsCorrectWithErrorThenResultShouldBeKO() {
+        let topArtists = TopArtists()
+        let expectation = XCTestExpectation(description: "Wait for queue change.")
+        
+        topArtists.session = URLSessionFake(data: FakeResponseTopArtists.correctData, response: FakeResponseTopArtists.responseOK, error: FakeResponseTopArtists.error)
         topArtists.newRequestGet { success, data in
             XCTAssertFalse(success)
             XCTAssertNil(data)
