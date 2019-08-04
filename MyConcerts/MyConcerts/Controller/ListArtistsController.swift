@@ -11,7 +11,6 @@ import UIKit
 class ListArtistsController: UIViewController {
 
     var listTopArtists: [InfoArtists] = [] // Array containing the list of top artists
-    //static let concert = Concert() // Allow to get all concert about an artist
     
     // Variables send to ArtistController
     var artistPicked: InfoArtists! // Containing an artist with informations
@@ -117,7 +116,6 @@ extension ListArtistsController: UITableViewDataSource, UITableViewDelegate {
             guard success, let data = (data as? [Identifier])?.first?.eventsHref else {
                 return
             }
-            print(data)
             Singleton.eventHref.setHref(href: data)
             Singleton.eventHref.newRequestGet { success, data in
                 guard success, let data = data as? [Events] else {

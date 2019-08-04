@@ -47,7 +47,6 @@ class EventsHref: ApiProtocol {
     func createUrl() {
         self.url = self.href + "?apikey=JDyRTYDK3g9GUd3V" // Add the ApiKey to the url
         self.url = self.url.replacingOccurrences(of: "http", with: "https") // Change "http" to "https"
-        print("EventHref: \(self.url)")
     }
     
     func getResponseJSON(data: Data, completionHandler: @escaping (Bool, [DataJSON]?) -> Void) {

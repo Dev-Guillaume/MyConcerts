@@ -89,8 +89,7 @@ extension ApiProtocol {
             DispatchQueue.main.async {
                 guard let data = data, error == nil else { // Get the data and check if there are not error
                     completionHandler(false, nil)
-                    NotificationCenter.default.post(name: .error, object: ["Error Data", "Can't recover Data from Api"])
-                    return
+                    return NotificationCenter.default.post(name: .error, object: ["Error Data", "Can't recover Data from Api"])
                 }
                 // Get the response server. 200 is Ok else is failed
                 guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {

@@ -40,7 +40,6 @@ class Concert: ApiProtocol, ArtistProtocol {
     // Create an Url to get an Url which will allow to get the ID of a concert
     func createUrl() {
         self.url = self.urlApi[.songkick]! + "search/artists.json?" + self.keyApi[.songkick]! + "&query=" + self.artist
-        print("Concert: \(self.url)")
     }
     
     func getResponseJSON(data: Data, completionHandler: @escaping (Bool, [DataJSON]?) -> Void) {
@@ -49,7 +48,7 @@ class Concert: ApiProtocol, ArtistProtocol {
             let resultData = try JSONDecoder().decode(EventRef.self, from: data)
             completionHandler(true, resultData.resultsPage.results.artist.first?.identifier)
         } catch {
-            //NSLog("Class Concert - Error Decoder: \(error)")
+            NSLog("Class Concert - Error Decoder: \(error)")
             completionHandler(false, nil)
             return
         }

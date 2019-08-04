@@ -55,10 +55,8 @@ class InfoArtist: ApiProtocol, ArtistProtocol {
             myGroup.enter()
             self.setArtist(artist: artist.name ?? "") // Set the artist who want search information
             self.newRequestGet { success, data in // Get data containning the information of the artist
-                if success {
-                    if let data = data?.first as? Info { // Success == true then save information
-                        self.infoArtists.append(InfoArtists(info: data, image: self.recoverDataImage(urlImage: data.strArtistThumb)))
-                    }
+                if (success) { // Success == true then save information
+                    self.infoArtists.append(InfoArtists(info: (data?.first as? Info ?? Info(strArtist: artist.name ?? "", strLabel: nil, intBornYear: nil, intDiedYear: nil, strGenre: nil, strWebsite: nil, strFacebook: nil, strTwitter: nil, strBiographyEN: nil, strCountry: nil, strArtistThumb: "")), image: self.recoverDataImage(urlImage: (data?.first as? Info)?.strArtistThumb ?? "")))
                 }
                 myGroup.leave()
             }
@@ -76,17 +74,16 @@ class InfoArtist: ApiProtocol, ArtistProtocol {
         self.infoArtists.removeAll()
         self.setArtist(artist: artist)
         self.newRequestGet { success, data in
-            guard success, let data = data?.first as? Info else {
+            guard success else {
                 return completionHandler(false, nil)
             }
-            completionHandler(true, InfoArtists(info: data, image: self.recoverDataImage(urlImage: data.strArtistThumb)))
+            completionHandler(true, InfoArtists(info: ((data?.first as? Info ?? Info(strArtist: artist, strLabel: nil, intBornYear: nil, intDiedYear: nil, strGenre: nil, strWebsite: nil, strFacebook: nil, strTwitter: nil, strBiographyEN: nil, strCountry: nil, strArtistThumb: ""))), image: self.recoverDataImage(urlImage: (data?.first as? Info)?.strArtistThumb ?? "")))
         }
     }
     
     // Create an Url to get the informations of an artist
     func createUrl() {
         self.url = self.urlApi[.audiodb]! + self.keyApi[.audiodb]! + "/search.php?s=" + self.artist
-        //print("TopArtists: \(self.url)")
     }
     
     func getResponseJSON(data: Data, completionHandler: @escaping (Bool, [DataJSON]?) -> Void) {
@@ -96,7 +93,7 @@ class InfoArtist: ApiProtocol, ArtistProtocol {
             completionHandler(true, resultData)
         } catch {
             completionHandler(false, nil)
-            //NSLog("Class InfoArtist - Error Decoder: \(error)")
+            NSLog("Class InfoArtist - Error Decoder: \(error)")
         }
     }
     

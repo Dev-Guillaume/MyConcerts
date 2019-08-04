@@ -72,7 +72,6 @@ class InfoConcert: ApiProtocol {
     // Create an Url for get all information about a concert
     func createUrl() {
         self.url = self.urlApi[.songkick]! + "events/" + String(self.idConcert) + ".json?" + self.keyApi[.songkick]!
-        //print("InfoConcert: \(self.url)")
     }
     
     func getResponseJSON(data: Data, completionHandler: @escaping (Bool, [DataJSON]?) -> Void) {

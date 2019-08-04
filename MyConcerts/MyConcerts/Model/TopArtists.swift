@@ -30,7 +30,6 @@ class TopArtists: ApiProtocol {
     // Create an URL to get the top artist of the moment
     func createUrl() {
         self.url = self.urlApi[.audioscrobbler]! + "&" + self.keyApi[.audioscrobbler]! + "&format=json"
-        //print("TopArtists: \(self.url)")
     }
     
     func getResponseJSON(data: Data, completionHandler: @escaping (Bool, [DataJSON]?) -> Void) {
