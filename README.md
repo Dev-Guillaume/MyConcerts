@@ -1,6 +1,6 @@
 # MyConcerts
 
-MyConcerts est une application orientée sur la musique, elle va permettre principalement de gérer les concerts de ses artistes préférées.
+MyConcerts is a music-oriented application, it will mainly manage the concerts of its favorite artists.
 
 ## Features
 
